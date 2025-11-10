@@ -7,12 +7,38 @@ import EnhancedForm from '../components/EnhancedForm';
 const Casting = () => {
   const { toast } = useToast();
 
-  const handleSubmit = (formData) => {
-    console.log('Casting form submitted:', formData);
-    toast({
-      title: "Application Submitted Successfully!",
-      description: "We'll review your profile and contact shortlisted candidates.",
-    });
+  const handleSubmit = async (formData) => {
+    try {
+      // Send form data to backend API
+      const response = await fetch('http://localhost:5000/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          formType: 'casting',
+          formData: formData
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        toast({
+          title: "Application Submitted Successfully!",
+          description: "We'll review your profile and contact shortlisted candidates.",
+        });
+      } else {
+        throw new Error(result.message || 'Failed to submit application');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast({
+        title: "Submission Failed",
+        description: "There was an error submitting your application. Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    }
   };
 
   const roles = [

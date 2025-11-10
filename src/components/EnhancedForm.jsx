@@ -7,6 +7,7 @@ const EnhancedForm = ({ type = 'contact', onSubmit }) => {
   const [formData, setFormData] = useState({});
   const [focusedField, setFocusedField] = useState(null);
   const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const getFormFields = () => {
     switch (type) {
@@ -66,11 +67,18 @@ const EnhancedForm = ({ type = 'contact', onSubmit }) => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      onSubmit?.(formData);
-      setFormData({});
+      setIsSubmitting(true);
+      try {
+        await onSubmit?.(formData);
+        setFormData({});
+      } catch (error) {
+        console.error('Form submission error:', error);
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -189,10 +197,20 @@ const EnhancedForm = ({ type = 'contact', onSubmit }) => {
       <Button
         type="submit"
         size="lg"
-        className="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-black hover:from-amber-400 hover:to-amber-500 font-semibold py-6 transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/50 transform hover:scale-[1.02] group"
+        disabled={isSubmitting}
+        className="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-black hover:from-amber-400 hover:to-amber-500 font-semibold py-6 transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/50 transform hover:scale-[1.02] group disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
       >
-        <span className="mr-2">Submit {type === 'investor' ? 'Interest' : type === 'casting' ? 'Application' : 'Message'}</span>
-        <CheckCircle2 className="h-5 w-5 transition-transform duration-300 group-hover:rotate-12" />
+        {isSubmitting ? (
+          <>
+            <span className="mr-2">Sending...</span>
+            <div className="h-5 w-5 border-2 border-black border-t-transparent rounded-full animate-spin" />
+          </>
+        ) : (
+          <>
+            <span className="mr-2">Submit {type === 'investor' ? 'Interest' : type === 'casting' ? 'Application' : 'Message'}</span>
+            <CheckCircle2 className="h-5 w-5 transition-transform duration-300 group-hover:rotate-12" />
+          </>
+        )}
       </Button>
     </form>
   );

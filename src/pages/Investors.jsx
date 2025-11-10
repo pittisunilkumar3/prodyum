@@ -7,12 +7,38 @@ import EnhancedForm from '../components/EnhancedForm';
 const Investors = () => {
   const { toast } = useToast();
 
-  const handleSubmit = (formData) => {
-    console.log('Investor form submitted:', formData);
-    toast({
-      title: "Interest Submitted Successfully!",
-      description: "We'll contact you within 2 business days.",
-    });
+  const handleSubmit = async (formData) => {
+    try {
+      // Send form data to backend API
+      const response = await fetch('http://localhost:5000/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          formType: 'investor',
+          formData: formData
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        toast({
+          title: "Interest Submitted Successfully!",
+          description: "We'll contact you within 2 business days.",
+        });
+      } else {
+        throw new Error(result.message || 'Failed to submit form');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast({
+        title: "Submission Failed",
+        description: "There was an error submitting your interest. Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
