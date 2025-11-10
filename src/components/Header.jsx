@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Film } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Button } from './ui/button';
 
 const Header = () => {
@@ -36,7 +36,11 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 group relative z-10">
             <div className="relative">
-              <Film className="h-8 w-8 text-amber-500 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12" />
+              <img 
+                src="/logo.png" 
+                alt="ProDyum Logo" 
+                className="h-12 w-12 object-contain transition-all duration-300 group-hover:scale-110" 
+              />
               <div className="absolute inset-0 bg-amber-500/20 blur-xl transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
             </div>
             <span className="text-2xl font-bold tracking-tight">

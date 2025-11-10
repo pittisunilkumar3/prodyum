@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Film, Mail, Phone, MapPin, Youtube, Instagram } from 'lucide-react';
+import { Mail, Phone, MapPin, Youtube, Instagram } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -12,7 +12,11 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-6">
             <Link to="/" className="flex items-center space-x-3 group">
-              <Film className="h-8 w-8 text-amber-500" />
+              <img 
+                src="/logo.png" 
+                alt="ProDyum Logo" 
+                className="h-10 w-10 object-contain" 
+              />
               <span className="text-xl font-bold text-white">ProDyum</span>
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed">

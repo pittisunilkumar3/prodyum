@@ -43,7 +43,7 @@ export const projects = [
       vfx: "ProDyum VFX",
       sound: "ProDyum Sound"
     },
-    thumbnail: "https://images.unsplash.com/photo-1574267432644-f74f8ec1e93b?w=800"
+    thumbnail: "https://images.unsplash.com/photo-1518676590629-3dcbd9c5a5c9?w=800&q=80"
   },
   {
     id: 3,
