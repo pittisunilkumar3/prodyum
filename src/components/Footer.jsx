@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Youtube, Instagram } from 'lucide-react';
+import { Mail, Phone, MapPin, Youtube, Instagram, Facebook } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -24,7 +24,7 @@ const Footer = () => {
             </p>
             <div className="flex items-center space-x-4">
               <a
-                href="https://www.youtube.com/@prodyumentertainments"
+                href="https://youtube.com/@prodyumentertainments?si=KsDM4KsQnfHdTIFI"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-amber-500 transition-colors duration-300"
@@ -32,12 +32,20 @@ const Footer = () => {
                 <Youtube className="h-5 w-5" />
               </a>
               <a
-                href="https://www.instagram.com/prodyumentertainments"
+                href="https://www.instagram.com/prodyumentertainments?igsh=OTF2cjB6MmI5cDh6&utm_source=qr"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-amber-500 transition-colors duration-300"
               >
                 <Instagram className="h-5 w-5" />
+              </a>
+              <a
+                href="https://www.facebook.com/share/1JkwxPbR4q/?mibextid=wwXIfr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-amber-500 transition-colors duration-300"
+              >
+                <Facebook className="h-5 w-5" />
               </a>
             </div>
           </div>
