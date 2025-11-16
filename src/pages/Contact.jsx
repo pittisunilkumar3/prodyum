@@ -46,9 +46,9 @@ const Contact = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-20">
-          <span className="text-amber-500 text-sm font-semibold uppercase tracking-wider">Get In Touch</span>
+          <span className="text-prodyum-blue-500 text-sm font-semibold uppercase tracking-wider">Get In Touch</span>
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mt-4 mb-6">Contact Us</h1>
-          <div className="w-24 h-1 bg-amber-500 mx-auto mb-6" />
+          <div className="w-24 h-1 bg-prodyum-blue-500 mx-auto mb-6" />
           <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
             Let's build something cinematic together
           </p>
@@ -56,35 +56,35 @@ const Contact = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
           {/* Contact Information Cards */}
-          <Card className="bg-gradient-to-br from-neutral-900 to-black border-white/10 hover:border-amber-500/50 transition-all duration-300 group">
+          <Card className="bg-gradient-to-br from-neutral-900 to-black border-white/10 hover:border-prodyum-blue-500/50 transition-all duration-300 group">
             <CardContent className="p-8">
-              <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-amber-500/10 border border-amber-500/30 mb-6 group-hover:bg-amber-500/20 group-hover:scale-110 transition-all duration-300">
-                <MapPin className="h-7 w-7 text-amber-500" />
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-prodyum-blue-500/10 border border-prodyum-blue-500/30 mb-6 group-hover:bg-prodyum-blue-500/20 group-hover:scale-110 transition-all duration-300">
+                <MapPin className="h-7 w-7 text-prodyum-blue-500" />
               </div>
               <h3 className="text-white font-semibold text-lg mb-2">Location</h3>
               <p className="text-gray-400 text-sm leading-relaxed">Hyderabad, Telangana, India</p>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-neutral-900 to-black border-white/10 hover:border-amber-500/50 transition-all duration-300 group">
+          <Card className="bg-gradient-to-br from-neutral-900 to-black border-white/10 hover:border-prodyum-blue-500/50 transition-all duration-300 group">
             <CardContent className="p-8">
-              <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-amber-500/10 border border-amber-500/30 mb-6 group-hover:bg-amber-500/20 group-hover:scale-110 transition-all duration-300">
-                <Phone className="h-7 w-7 text-amber-500" />
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-prodyum-blue-500/10 border border-prodyum-blue-500/30 mb-6 group-hover:bg-prodyum-blue-500/20 group-hover:scale-110 transition-all duration-300">
+                <Phone className="h-7 w-7 text-prodyum-blue-500" />
               </div>
               <h3 className="text-white font-semibold text-lg mb-2">Phone</h3>
-              <a href="tel:+919949590033" className="text-gray-400 hover:text-amber-500 transition-colors text-sm">
+              <a href="tel:+919949590033" className="text-gray-400 hover:text-prodyum-blue-500 transition-colors text-sm">
                 +91 99495 90033
               </a>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-neutral-900 to-black border-white/10 hover:border-amber-500/50 transition-all duration-300 group">
+          <Card className="bg-gradient-to-br from-neutral-900 to-black border-white/10 hover:border-prodyum-blue-500/50 transition-all duration-300 group">
             <CardContent className="p-8">
-              <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-amber-500/10 border border-amber-500/30 mb-6 group-hover:bg-amber-500/20 group-hover:scale-110 transition-all duration-300">
-                <Mail className="h-7 w-7 text-amber-500" />
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-prodyum-blue-500/10 border border-prodyum-blue-500/30 mb-6 group-hover:bg-prodyum-blue-500/20 group-hover:scale-110 transition-all duration-300">
+                <Mail className="h-7 w-7 text-prodyum-blue-500" />
               </div>
               <h3 className="text-white font-semibold text-lg mb-2">Email</h3>
-              <a href="mailto:entertainment@prodyum.in" className="text-gray-400 hover:text-amber-500 transition-colors text-sm break-all">
+              <a href="mailto:entertainment@prodyum.in" className="text-gray-400 hover:text-prodyum-blue-500 transition-colors text-sm break-all">
                 entertainment@prodyum.in
               </a>
             </CardContent>
@@ -98,7 +98,7 @@ const Contact = () => {
             <Card className="bg-gradient-to-br from-neutral-900 to-black border-white/10">
               <CardContent className="p-8">
                 <h3 className="text-white font-semibold text-lg mb-6 flex items-center">
-                  <Send className="h-5 w-5 text-amber-500 mr-2" />
+                  <Send className="h-5 w-5 text-prodyum-blue-500 mr-2" />
                   Follow Us
                 </h3>
                 <div className="flex items-center space-x-4">
@@ -106,7 +106,7 @@ const Contact = () => {
                     href="https://www.youtube.com/@prodyumentertainments"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/10 border border-amber-500/30 hover:bg-amber-500 hover:border-amber-500 text-amber-500 hover:text-black transition-all duration-300"
+                    className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-prodyum-blue-500/10 border border-prodyum-blue-500/30 hover:bg-prodyum-blue-500 hover:border-prodyum-blue-500 text-prodyum-blue-500 hover:text-black transition-all duration-300"
                   >
                     <Youtube className="h-6 w-6" />
                   </a>
@@ -114,7 +114,7 @@ const Contact = () => {
                     href="https://www.instagram.com/prodyumentertainments"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/10 border border-amber-500/30 hover:bg-amber-500 hover:border-amber-500 text-amber-500 hover:text-black transition-all duration-300"
+                    className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-prodyum-blue-500/10 border border-prodyum-blue-500/30 hover:bg-prodyum-blue-500 hover:border-prodyum-blue-500 text-prodyum-blue-500 hover:text-black transition-all duration-300"
                   >
                     <Instagram className="h-6 w-6" />
                   </a>
@@ -126,7 +126,7 @@ const Contact = () => {
             <Card className="bg-gradient-to-br from-neutral-900 to-black border-white/10">
               <CardContent className="p-8">
                 <h3 className="text-white font-semibold text-lg mb-6 flex items-center">
-                  <Clock className="h-5 w-5 text-amber-500 mr-2" />
+                  <Clock className="h-5 w-5 text-prodyum-blue-500 mr-2" />
                   Business Hours
                 </h3>
                 <div className="space-y-3 text-sm">

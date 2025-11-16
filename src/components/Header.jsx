@@ -41,11 +41,11 @@ const Header = () => {
                 alt="ProDyum Logo" 
                 className="h-12 w-12 object-contain transition-all duration-300 group-hover:scale-110" 
               />
-              <div className="absolute inset-0 bg-amber-500/20 blur-xl transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
+              <div className="absolute inset-0 bg-prodyum-green-500/20 blur-xl transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
             </div>
             <span className="text-2xl font-bold tracking-tight">
               <span className="text-white">ProDyum</span>
-              <span className="text-amber-500 ml-1">Entertainments</span>
+              <span className="bg-gradient-to-r from-prodyum-blue-500 via-prodyum-green-500 to-prodyum-lime-500 bg-clip-text text-transparent ml-1">Entertainments</span>
             </span>
           </Link>
 
@@ -57,12 +57,12 @@ const Header = () => {
                 to={link.path}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 relative group ${
                   location.pathname === link.path
-                    ? 'text-amber-500'
+                    ? 'text-prodyum-green-500'
                     : 'text-gray-300 hover:text-white'
                 }`}
               >
                 {link.label}
-                <span className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-amber-500 transition-all duration-300 ${
+                <span className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-gradient-to-r from-prodyum-blue-500 via-prodyum-green-500 to-prodyum-lime-500 transition-all duration-300 ${
                   location.pathname === link.path ? 'w-3/4' : 'w-0 group-hover:w-3/4'
                 }`} />
               </Link>
@@ -73,7 +73,7 @@ const Header = () => {
           <div className="hidden lg:block">
             <Button
               asChild
-              className="bg-amber-500 text-black hover:bg-amber-400 font-semibold px-6 transition-all duration-300 hover:shadow-lg hover:shadow-amber-500/50 hover:scale-105"
+              className="bg-gradient-to-r from-prodyum-blue-500 to-prodyum-green-500 text-white hover:from-prodyum-blue-600 hover:to-prodyum-green-600 font-bold px-6 transition-all duration-300 hover:shadow-lg hover:shadow-prodyum-green-500/50 hover:scale-105"
             >
               <Link to="/contact">Get Started</Link>
             </Button>
@@ -99,7 +99,7 @@ const Header = () => {
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
                     location.pathname === link.path
-                      ? 'text-amber-500 bg-amber-500/10'
+                      ? 'text-prodyum-green-500 bg-prodyum-green-500/10'
                       : 'text-gray-300 hover:text-white hover:bg-white/5'
                   }`}
                 >
@@ -108,7 +108,7 @@ const Header = () => {
               ))}
               <Button
                 asChild
-                className="bg-amber-500 text-black hover:bg-amber-400 font-semibold mt-4"
+                className="bg-gradient-to-r from-prodyum-blue-500 to-prodyum-green-500 text-white hover:from-prodyum-blue-600 hover:to-prodyum-green-600 font-bold mt-4"
               >
                 <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
                   Get Started

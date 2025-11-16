@@ -28,7 +28,7 @@ const Projects = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-5xl sm:text-6xl font-bold text-white mb-6">Our Projects</h1>
-          <div className="w-24 h-1 bg-amber-500 mx-auto mb-6" />
+          <div className="w-24 h-1 bg-gradient-to-r from-prodyum-blue-500 via-prodyum-green-500 to-prodyum-lime-500 mx-auto mb-6" />
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
             Explore our released and upcoming projects — movies, web series, short films and music videos
           </p>
@@ -37,7 +37,7 @@ const Projects = () => {
         {/* Filters */}
         <div className="mb-12">
           <div className="flex items-center justify-center mb-6">
-            <Filter className="h-5 w-5 text-amber-500 mr-2" />
+            <Filter className="h-5 w-5 text-prodyum-green-500 mr-2" />
             <span className="text-gray-400 text-sm uppercase tracking-wider">Filter By</span>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-3">
@@ -48,8 +48,8 @@ const Projects = () => {
                 variant="outline"
                 className={`transition-all duration-300 ${
                   activeFilter === filter.id
-                    ? 'bg-amber-500 text-black border-amber-500 hover:bg-amber-400'
-                    : 'bg-transparent text-gray-400 border-white/20 hover:border-amber-500/50 hover:text-white'
+                    ? 'bg-gradient-to-r from-prodyum-blue-500 to-prodyum-green-500 text-white border-transparent hover:from-prodyum-blue-600 hover:to-prodyum-green-600'
+                    : 'bg-transparent text-gray-400 border-white/20 hover:border-prodyum-green-500/50 hover:text-white'
                 }`}
               >
                 {filter.label}
@@ -63,7 +63,7 @@ const Projects = () => {
           {filteredProjects.map((project) => (
             <Card
               key={project.id}
-              className="bg-neutral-900 border-white/10 overflow-hidden group hover:border-amber-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-amber-500/20"
+              className="bg-neutral-900 border-white/10 overflow-hidden group hover:border-prodyum-lime-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-prodyum-lime-500/20"
             >
               <div className="relative overflow-hidden aspect-video">
                 <img
@@ -73,13 +73,13 @@ const Projects = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
                 <div className="absolute top-4 left-4">
-                  <span className="bg-amber-500 text-black text-xs font-semibold px-3 py-1 rounded-full">
+                  <span className="bg-prodyum-green-500 text-black text-xs font-semibold px-3 py-1 rounded-full">
                     {project.type}
                   </span>
                 </div>
                 {project.status === 'Upcoming' && (
                   <div className="absolute top-4 right-4">
-                    <span className="bg-green-500 text-black text-xs font-semibold px-3 py-1 rounded-full">
+                    <span className="bg-prodyum-lime-500 text-black text-xs font-semibold px-3 py-1 rounded-full">
                       Upcoming
                     </span>
                   </div>
@@ -94,8 +94,8 @@ const Projects = () => {
                 
                 {/* Credits Preview */}
                 <div className="space-y-2 text-xs text-gray-500">
-                  <div><span className="text-amber-500">Director:</span> {project.credits.director}</div>
-                  <div><span className="text-amber-500">Cast:</span> {project.credits.cast}</div>
+                  <div><span className="text-prodyum-lime-500">Director:</span> {project.credits.director}</div>
+                  <div><span className="text-prodyum-lime-500">Cast:</span> {project.credits.cast}</div>
                 </div>
               </CardContent>
             </Card>

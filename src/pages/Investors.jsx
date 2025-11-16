@@ -46,9 +46,9 @@ const Investors = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-20">
-          <span className="text-amber-500 text-sm font-semibold uppercase tracking-wider">Investment Opportunities</span>
+          <span className="text-prodyum-blue-500 text-sm font-semibold uppercase tracking-wider">Investment Opportunities</span>
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mt-4 mb-6">Investor Information</h1>
-          <div className="w-24 h-1 bg-amber-500 mx-auto mb-6" />
+          <div className="w-24 h-1 bg-prodyum-blue-500 mx-auto mb-6" />
           <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
             Invest in premium Telugu originals with a transparent, milestone-driven model
           </p>
@@ -82,13 +82,13 @@ const Investors = () => {
             ].map((benefit, index) => (
               <Card
                 key={index}
-                className="bg-gradient-to-br from-neutral-900 to-black border-white/10 hover:border-amber-500/50 transition-all duration-500 group"
+                className="bg-gradient-to-br from-neutral-900 to-black border-white/10 hover:border-prodyum-blue-500/50 transition-all duration-500 group"
               >
                 <CardContent className="p-8">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-amber-500/10 border border-amber-500/30 mb-6 group-hover:bg-amber-500/20 group-hover:scale-110 transition-all duration-300">
-                    <benefit.icon className="h-8 w-8 text-amber-500" />
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-prodyum-blue-500/10 border border-prodyum-blue-500/30 mb-6 group-hover:bg-prodyum-blue-500/20 group-hover:scale-110 transition-all duration-300">
+                    <benefit.icon className="h-8 w-8 text-prodyum-blue-500" />
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-amber-500 transition-colors duration-300">
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-prodyum-blue-500 transition-colors duration-300">
                     {benefit.title}
                   </h3>
                   <p className="text-gray-400 text-sm leading-relaxed">{benefit.description}</p>
@@ -110,13 +110,13 @@ const Investors = () => {
                 { step: '04', title: 'Delivery & QC', desc: 'Quality control and final delivery' },
                 { step: '05', title: 'Revenue Share', desc: 'Returns after recoupment as agreed' }
               ].map((item, idx) => (
-                <Card key={idx} className="bg-neutral-900 border-white/10 hover:border-amber-500/50 transition-all duration-300 group">
+                <Card key={idx} className="bg-neutral-900 border-white/10 hover:border-prodyum-blue-500/50 transition-all duration-300 group">
                   <CardContent className="p-6">
                     <div className="text-center">
-                      <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-amber-500 to-amber-600 text-black font-bold text-xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-prodyum-blue-500 to-prodyum-green-500 text-black font-bold text-xl mb-4 group-hover:scale-110 transition-transform duration-300">
                         {item.step}
                       </div>
-                      <h3 className="text-white font-semibold mb-2 group-hover:text-amber-500 transition-colors duration-300">{item.title}</h3>
+                      <h3 className="text-white font-semibold mb-2 group-hover:text-prodyum-blue-500 transition-colors duration-300">{item.title}</h3>
                       <p className="text-gray-400 text-sm">{item.desc}</p>
                     </div>
                   </CardContent>
@@ -140,11 +140,11 @@ const Investors = () => {
               <div className="mt-10 pt-10 border-t border-white/10">
                 <p className="text-center text-gray-400 text-sm mb-4">Or reach out directly:</p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm">
-                  <a href="mailto:entertainment@prodyum.in" className="text-amber-500 hover:text-amber-400 transition-colors font-medium">
+                  <a href="mailto:entertainment@prodyum.in" className="text-prodyum-blue-500 hover:text-prodyum-blue-400 transition-colors font-medium">
                     entertainment@prodyum.in
                   </a>
                   <span className="text-gray-600 hidden sm:inline">•</span>
-                  <a href="tel:+919949590033" className="text-amber-500 hover:text-amber-400 transition-colors font-medium">
+                  <a href="tel:+919949590033" className="text-prodyum-blue-500 hover:text-prodyum-blue-400 transition-colors font-medium">
                     +91 99495 90033
                   </a>
                 </div>

@@ -99,18 +99,18 @@ const EnhancedForm = ({ type = 'contact', onSubmit }) => {
               onBlur={() => setFocusedField(null)}
               rows={5}
               className={`w-full px-6 py-4 pt-7 bg-black/50 border-2 rounded-lg text-white placeholder-transparent focus:outline-none transition-all duration-300 resize-none ${
-                hasError ? 'border-red-500' : isFocused ? 'border-amber-500' : 'border-white/20 hover:border-white/30'
+                hasError ? 'border-red-500' : isFocused ? 'border-prodyum-blue-500' : 'border-white/20 hover:border-white/30'
               }`}
               placeholder={field.label}
             />
             <label
               className={`absolute left-6 transition-all duration-300 pointer-events-none ${
                 hasValue || isFocused
-                  ? 'top-2 text-xs text-amber-500'
+                  ? 'top-2 text-xs text-prodyum-blue-500'
                   : 'top-1/2 -translate-y-1/2 text-gray-400'
               }`}
             >
-              {field.label} {field.required && <span className="text-amber-500">*</span>}
+              {field.label} {field.required && <span className="text-prodyum-blue-500">*</span>}
             </label>
           </div>
           {hasError && <p className="text-red-400 text-xs mt-1 ml-2">{hasError}</p>}
@@ -128,28 +128,26 @@ const EnhancedForm = ({ type = 'contact', onSubmit }) => {
               onChange={handleChange}
               onFocus={() => setFocusedField(field.name)}
               onBlur={() => setFocusedField(null)}
-              className={`w-full px-6 py-4 pt-7 bg-black/50 border-2 rounded-lg text-white focus:outline-none transition-all duration-300 appearance-none cursor-pointer ${
-                hasError ? 'border-red-500' : isFocused ? 'border-amber-500' : 'border-white/20 hover:border-white/30'
-              }`}
+              className={`w-full px-6 py-4 bg-black/50 border-2 rounded-lg focus:outline-none transition-all duration-300 appearance-none cursor-pointer ${
+                hasError ? 'border-red-500' : isFocused ? 'border-prodyum-blue-500' : 'border-white/20 hover:border-white/30'
+              } ${hasValue ? 'text-white pt-7' : 'text-gray-400 pt-4'}`}
             >
-              <option value="" className="bg-neutral-900">Select an option</option>
+              <option value="" disabled className="bg-neutral-900 text-gray-500">
+                {field.label} {field.required && '*'}
+              </option>
               {field.options.map((option) => (
-                <option key={option} value={option} className="bg-neutral-900">
+                <option key={option} value={option} className="bg-neutral-900 text-white py-2">
                   {option}
                 </option>
               ))}
             </select>
-            <label
-              className={`absolute left-6 transition-all duration-300 pointer-events-none ${
-                hasValue || isFocused
-                  ? 'top-2 text-xs text-amber-500'
-                  : 'top-1/2 -translate-y-1/2 text-gray-400'
-              }`}
-            >
-              {field.label} {field.required && <span className="text-amber-500">*</span>}
-            </label>
+            {hasValue && (
+              <label className="absolute left-6 top-2 text-xs text-prodyum-blue-500 pointer-events-none transition-all duration-300">
+                {field.label} {field.required && <span className="text-prodyum-blue-500">*</span>}
+              </label>
+            )}
             <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none">
-              <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 text-prodyum-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </div>
@@ -170,18 +168,18 @@ const EnhancedForm = ({ type = 'contact', onSubmit }) => {
             onFocus={() => setFocusedField(field.name)}
             onBlur={() => setFocusedField(null)}
             className={`w-full px-6 py-4 pt-7 bg-black/50 border-2 rounded-lg text-white placeholder-transparent focus:outline-none transition-all duration-300 ${
-              hasError ? 'border-red-500' : isFocused ? 'border-amber-500' : 'border-white/20 hover:border-white/30'
+              hasError ? 'border-red-500' : isFocused ? 'border-prodyum-blue-500' : 'border-white/20 hover:border-white/30'
             }`}
             placeholder={field.label}
           />
           <label
             className={`absolute left-6 transition-all duration-300 pointer-events-none ${
               hasValue || isFocused
-                ? 'top-2 text-xs text-amber-500'
+                ? 'top-2 text-xs text-prodyum-blue-500'
                 : 'top-1/2 -translate-y-1/2 text-gray-400'
             }`}
           >
-            {field.label} {field.required && <span className="text-amber-500">*</span>}
+            {field.label} {field.required && <span className="text-prodyum-blue-500">*</span>}
           </label>
         </div>
         {hasError && <p className="text-red-400 text-xs mt-1 ml-2">{hasError}</p>}
@@ -198,7 +196,7 @@ const EnhancedForm = ({ type = 'contact', onSubmit }) => {
         type="submit"
         size="lg"
         disabled={isSubmitting}
-        className="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-black hover:from-amber-400 hover:to-amber-500 font-semibold py-6 transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/50 transform hover:scale-[1.02] group disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+        className="w-full bg-gradient-to-r from-prodyum-blue-500 to-prodyum-green-500 text-black hover:from-prodyum-blue-400 hover:to-prodyum-blue-500 font-semibold py-6 transition-all duration-300 hover:shadow-2xl hover:shadow-prodyum-blue-500/50 transform hover:scale-[1.02] group disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
       >
         {isSubmitting ? (
           <>

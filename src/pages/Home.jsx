@@ -73,11 +73,11 @@ const Home = () => {
           <div className="max-w-5xl mx-auto text-center space-y-8">
             {/* Animated Badge */}
             <div 
-              className="inline-flex items-center space-x-2 bg-amber-500/10 border border-amber-500/20 rounded-full px-4 py-2 backdrop-blur-sm animate-fade-in"
+              className="inline-flex items-center space-x-2 bg-prodyum-lime-500/10 border border-prodyum-lime-500/20 rounded-full px-4 py-2 backdrop-blur-sm animate-fade-in"
               style={{ animationDelay: '0.2s', opacity: 0, animation: 'fadeInUp 1s ease-out 0.2s forwards' }}
             >
-              <Sparkles className="h-4 w-4 text-amber-500" />
-              <span className="text-amber-500 text-sm font-medium">Premium Content Production</span>
+              <Sparkles className="h-4 w-4 text-prodyum-lime-500" />
+              <span className="text-prodyum-lime-500 text-sm font-medium">Premium Content Production</span>
             </div>
 
             {/* Main Heading with Reveal Effect */}
@@ -103,7 +103,7 @@ const Home = () => {
               <span className="px-3 py-1 border border-white/20 rounded">{heroProjects[currentSlide].type}</span>
               <span>{heroProjects[currentSlide].year}</span>
               <span className="flex items-center gap-1">
-                <span className="text-amber-500">★</span>
+                <span className="text-prodyum-lime-500">★</span>
                 <span>PG-13</span>
               </span>
             </div>
@@ -124,7 +124,7 @@ const Home = () => {
               <Button
                 asChild
                 size="lg"
-                className="bg-amber-500 text-black hover:bg-amber-400 font-semibold px-8 py-6 text-lg transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/50 hover:scale-105 group"
+                className="bg-gradient-to-r from-prodyum-blue-500 via-prodyum-green-500 to-prodyum-lime-500 text-white hover:from-prodyum-blue-600 hover:via-prodyum-green-600 hover:to-prodyum-lime-600 font-bold px-8 py-6 text-lg transition-all duration-300 hover:shadow-2xl hover:shadow-prodyum-blue-500/50 hover:scale-105 group"
               >
                 <Link to="/projects">
                   View Projects
@@ -135,7 +135,7 @@ const Home = () => {
                 asChild
                 size="lg"
                 variant="outline"
-                className="border-white/30 text-white hover:bg-white/10 px-8 py-6 text-lg backdrop-blur-sm transition-all duration-300 hover:border-amber-500/50 group"
+                className="border-2 border-prodyum-green-500/60 text-white hover:bg-prodyum-green-500/20 hover:border-prodyum-green-400 px-8 py-6 text-lg backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:shadow-prodyum-green-500/30 group"
               >
                 <Link to="/investors">
                   <Play className="mr-2 h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
@@ -150,7 +150,7 @@ const Home = () => {
         <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-30 flex items-center gap-4">
           <button
             onClick={prevSlide}
-            className="w-12 h-12 rounded-full border border-white/20 bg-black/30 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/10 hover:border-amber-500/50 transition-all duration-300"
+            className="w-12 h-12 rounded-full border border-white/20 bg-black/30 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/10 hover:border-prodyum-green-500/50 transition-all duration-300"
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
@@ -160,14 +160,14 @@ const Home = () => {
                 key={index}
                 onClick={() => setCurrentSlide(index)}
                 className={`h-1 rounded-full transition-all duration-300 ${
-                  index === currentSlide ? 'w-12 bg-amber-500' : 'w-6 bg-white/30 hover:bg-white/50'
+                  index === currentSlide ? 'w-12 bg-prodyum-lime-500' : 'w-6 bg-white/30 hover:bg-white/50'
                 }`}
               />
             ))}
           </div>
           <button
             onClick={nextSlide}
-            className="w-12 h-12 rounded-full border border-white/20 bg-black/30 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/10 hover:border-amber-500/50 transition-all duration-300"
+            className="w-12 h-12 rounded-full border border-white/20 bg-black/30 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/10 hover:border-prodyum-green-500/50 transition-all duration-300"
           >
             <ChevronRight className="h-5 w-5" />
           </button>
@@ -176,7 +176,7 @@ const Home = () => {
         {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-30">
           <div className="w-6 h-10 border-2 border-white/30 rounded-full flex items-start justify-center p-2">
-            <div className="w-1 h-3 bg-amber-500 rounded-full" />
+            <div className="w-1 h-3 bg-prodyum-lime-500 rounded-full" />
           </div>
         </div>
       </section>
@@ -184,7 +184,7 @@ const Home = () => {
       {/* Synopsis Section with Parallax */}
       <section id="section-synopsis" className="py-32 bg-neutral-950 relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-500 rounded-full blur-3xl" />
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-prodyum-green-500 rounded-full blur-3xl" />
         </div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-6xl mx-auto">
@@ -193,12 +193,12 @@ const Home = () => {
             }`}>
               <div className="space-y-6">
                 <div className="inline-block">
-                  <span className="text-amber-500 text-sm font-semibold uppercase tracking-wider">About Us</span>
-                  <div className="w-12 h-1 bg-amber-500 mt-2" />
+                  <span className="text-prodyum-green-500 text-sm font-semibold uppercase tracking-wider">About Us</span>
+                  <div className="w-12 h-1 bg-prodyum-green-500 mt-2" />
                 </div>
                 <h2 className="text-5xl font-bold text-white leading-tight">
                   Cinema-First <br />
-                  <span className="text-amber-500">Storytelling</span>
+                  <span className="text-prodyum-green-500">Storytelling</span>
                 </h2>
                 <div className="space-y-4 text-lg text-gray-300 leading-relaxed">
                   <p>
@@ -208,14 +208,14 @@ const Home = () => {
                     Our in-house post production pipeline—Editing, DI/Color, Title Design, VFX, Sound Design & 5.1 Mix—ensures speed, quality, and cost control.
                   </p>
                   <p>
-                    We partner with investors to create premium content with <span className="text-amber-500 font-semibold">transparent budgeting</span> and milestone-based tracking.
+                    We partner with investors to create premium content with <span className="text-prodyum-lime-500 font-semibold">transparent budgeting</span> and milestone-based tracking.
                   </p>
                 </div>
                 <div className="pt-4">
                   <Button
                     asChild
                     size="lg"
-                    className="bg-amber-500 text-black hover:bg-amber-400 font-semibold px-8 transition-all duration-300 hover:shadow-lg hover:shadow-amber-500/50"
+                    className="bg-gradient-to-r from-prodyum-blue-500 to-prodyum-green-500 text-white hover:from-prodyum-blue-600 hover:to-prodyum-green-600 font-bold px-8 transition-all duration-300 hover:shadow-lg hover:shadow-prodyum-blue-500/50 hover:scale-105"
                   >
                     <Link to="/services">
                       Explore Services
@@ -234,15 +234,15 @@ const Home = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
                 </div>
                 <div className="absolute -bottom-6 -right-6 grid grid-cols-2 gap-4">
-                  <Card className="bg-black/90 border-amber-500/30 backdrop-blur-md">
+                  <Card className="bg-black/90 border-prodyum-green-500/30 backdrop-blur-md">
                     <CardContent className="p-4 text-center">
-                      <div className="text-3xl font-bold text-amber-500">15+</div>
+                      <div className="text-3xl font-bold text-prodyum-green-500">15+</div>
                       <div className="text-xs text-gray-400">Projects</div>
                     </CardContent>
                   </Card>
-                  <Card className="bg-black/90 border-amber-500/30 backdrop-blur-md">
+                  <Card className="bg-black/90 border-prodyum-lime-500/30 backdrop-blur-md">
                     <CardContent className="p-4 text-center">
-                      <div className="text-3xl font-bold text-amber-500">100%</div>
+                      <div className="text-3xl font-bold text-prodyum-lime-500">100%</div>
                       <div className="text-xs text-gray-400">Quality</div>
                     </CardContent>
                   </Card>
@@ -259,9 +259,9 @@ const Home = () => {
           <div className={`text-center mb-16 transition-all duration-1000 ${
             isVisible['section-projects'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
           }`}>
-            <span className="text-amber-500 text-sm font-semibold uppercase tracking-wider">Portfolio</span>
+            <span className="text-prodyum-lime-500 text-sm font-semibold uppercase tracking-wider">Portfolio</span>
             <h2 className="text-5xl font-bold text-white mt-4 mb-6">Latest Trailers</h2>
-            <div className="w-24 h-1 bg-amber-500 mx-auto mb-6" />
+            <div className="w-24 h-1 bg-prodyum-lime-500 mx-auto mb-6" />
             <p className="text-xl text-gray-400 max-w-2xl mx-auto">
               Explore our recent work across movies, web series, and short films
             </p>
@@ -271,7 +271,7 @@ const Home = () => {
             {latestProjects.map((project, index) => (
               <Card
                 key={project.id}
-                className={`bg-neutral-900 border-white/10 overflow-hidden group hover:border-amber-500/50 transition-all duration-700 hover:shadow-2xl hover:shadow-amber-500/20 ${
+                className={`bg-neutral-900 border-white/10 overflow-hidden group hover:border-prodyum-lime-500/50 transition-all duration-700 hover:shadow-2xl hover:shadow-prodyum-lime-500/20 ${
                   isVisible['section-projects'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
                 }`}
                 style={{ transitionDelay: `${index * 150}ms` }}
@@ -286,13 +286,13 @@ const Home = () => {
                   
                   {/* Play Button Overlay */}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="w-16 h-16 rounded-full bg-amber-500/90 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-16 h-16 rounded-full bg-prodyum-lime-500/90 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
                       <Play className="h-8 w-8 text-black ml-1" fill="currentColor" />
                     </div>
                   </div>
 
                   <div className="absolute top-4 right-4">
-                    <span className="bg-amber-500 text-black text-xs font-semibold px-3 py-1 rounded-full">
+                    <span className="bg-prodyum-green-500 text-black text-xs font-semibold px-3 py-1 rounded-full">
                       {project.type}
                     </span>
                   </div>
@@ -306,7 +306,7 @@ const Home = () => {
                   <Button
                     asChild
                     variant="ghost"
-                    className="text-amber-500 hover:text-amber-400 hover:bg-amber-500/10 p-0 h-auto font-semibold group/btn"
+                    className="text-prodyum-lime-500 hover:text-prodyum-lime-400 hover:bg-prodyum-lime-500/10 p-0 h-auto font-semibold group/btn"
                   >
                     <Link to={`/projects`}>
                       Learn More
@@ -322,7 +322,7 @@ const Home = () => {
             <Button
               asChild
               size="lg"
-              className="bg-amber-500 text-black hover:bg-amber-400 font-semibold px-8 transition-all duration-300 hover:shadow-lg hover:shadow-amber-500/50"
+              className="bg-gradient-to-r from-prodyum-blue-500 via-prodyum-green-500 to-prodyum-lime-500 text-white hover:from-prodyum-blue-600 hover:via-prodyum-green-600 hover:to-prodyum-lime-600 font-bold px-8 transition-all duration-300 hover:shadow-lg hover:shadow-prodyum-blue-500/50 hover:scale-105"
             >
               <Link to="/projects">
                 View All Projects
@@ -339,9 +339,9 @@ const Home = () => {
           <div className={`text-center mb-16 transition-all duration-1000 ${
             isVisible['section-services'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
           }`}>
-            <span className="text-amber-500 text-sm font-semibold uppercase tracking-wider">What We Do</span>
+            <span className="text-prodyum-green-500 text-sm font-semibold uppercase tracking-wider">What We Do</span>
             <h2 className="text-5xl font-bold text-white mt-4 mb-6">Our Production</h2>
-            <div className="w-24 h-1 bg-amber-500 mx-auto mb-6" />
+            <div className="w-24 h-1 bg-prodyum-green-500 mx-auto mb-6" />
             <p className="text-xl text-gray-400 max-w-2xl mx-auto">
               End-to-end film production and robust post-production workflow
             </p>
@@ -351,22 +351,22 @@ const Home = () => {
             {featuredServices.map((service, index) => (
               <Card
                 key={service.id}
-                className={`bg-black border-white/10 hover:border-amber-500/50 transition-all duration-500 hover:shadow-xl hover:shadow-amber-500/10 group ${
+                className={`bg-black border-white/10 hover:border-prodyum-green-500/50 transition-all duration-500 hover:shadow-xl hover:shadow-prodyum-green-500/10 group ${
                   isVisible['section-services'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
                 }`}
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
                 <CardContent className="p-8 text-center">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-amber-500/20 mb-6 group-hover:bg-amber-500/30 transition-all duration-300 group-hover:scale-110">
-                    {index === 0 && <Film className="h-8 w-8 text-amber-500" />}
-                    {index === 1 && <Film className="h-8 w-8 text-amber-500" />}
-                    {index === 2 && <Film className="h-8 w-8 text-amber-500" />}
-                    {index === 3 && <Palette className="h-8 w-8 text-amber-500" />}
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-prodyum-green-500/20 mb-6 group-hover:bg-prodyum-green-500/30 transition-all duration-300 group-hover:scale-110">
+                    {index === 0 && <Film className="h-8 w-8 text-prodyum-green-500" />}
+                    {index === 1 && <Film className="h-8 w-8 text-prodyum-lime-500" />}
+                    {index === 2 && <Film className="h-8 w-8 text-prodyum-green-500" />}
+                    {index === 3 && <Palette className="h-8 w-8 text-prodyum-lime-500" />}
                   </div>
-                  <div className="text-sm text-amber-500 font-semibold mb-2 uppercase tracking-wider">
+                  <div className="text-sm text-prodyum-green-500 font-semibold mb-2 uppercase tracking-wider">
                     {service.category}
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-amber-500 transition-colors duration-300">
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-prodyum-green-500 transition-colors duration-300">
                     {service.title}
                   </h3>
                   <p className="text-gray-400 text-sm leading-relaxed">{service.description}</p>
@@ -380,7 +380,7 @@ const Home = () => {
               asChild
               size="lg"
               variant="outline"
-              className="border-white/20 text-white hover:bg-white/5 px-8 backdrop-blur-sm transition-all duration-300 hover:border-amber-500/50"
+              className="border-2 border-prodyum-lime-500/60 text-white hover:bg-prodyum-lime-500/20 hover:border-prodyum-lime-400 px-8 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:shadow-prodyum-lime-500/30"
             >
               <Link to="/services">
                 Explore All Services
@@ -403,8 +403,8 @@ const Home = () => {
       {/* CTA Section */}
       <section className="py-32 bg-black relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-amber-500 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-amber-600 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-prodyum-green-500 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-prodyum-lime-500 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
         </div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-8">
@@ -418,7 +418,7 @@ const Home = () => {
               <Button
                 asChild
                 size="lg"
-                className="bg-amber-500 text-black hover:bg-amber-400 font-semibold px-8 py-6 text-lg transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/50"
+                className="bg-gradient-to-r from-prodyum-blue-500 to-prodyum-green-500 text-white hover:from-prodyum-blue-600 hover:to-prodyum-green-600 font-bold px-8 py-6 text-lg transition-all duration-300 hover:shadow-2xl hover:shadow-prodyum-blue-500/50 hover:scale-105"
               >
                 <Link to="/investors">Investor Information</Link>
               </Button>
@@ -426,7 +426,7 @@ const Home = () => {
                 asChild
                 size="lg"
                 variant="outline"
-                className="border-white/20 text-white hover:bg-white/5 px-8 py-6 text-lg backdrop-blur-sm transition-all duration-300 hover:border-amber-500/50"
+                className="border-2 border-prodyum-green-500/60 text-white hover:bg-prodyum-green-500/20 hover:border-prodyum-green-400 px-8 py-6 text-lg backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:shadow-prodyum-green-500/30"
               >
                 <Link to="/casting">Apply: Cast & Crew</Link>
               </Button>
