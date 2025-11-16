@@ -46,17 +46,17 @@ const Investors = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-20">
-          <span className="text-prodyum-blue-500 text-sm font-semibold uppercase tracking-wider">Investment Opportunities</span>
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mt-4 mb-6">Investor Information</h1>
-          <div className="w-24 h-1 bg-prodyum-blue-500 mx-auto mb-6" />
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+          <span className="bg-gradient-to-r from-prodyum-blue-500 to-prodyum-green-500 text-transparent bg-clip-text text-sm font-semibold uppercase tracking-wider">Investment Opportunities</span>
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-prodyum-blue-400 via-prodyum-green-400 to-prodyum-lime-400 text-transparent bg-clip-text mt-4 mb-6">Investor Information</h1>
+          <div className="w-24 h-1 bg-gradient-to-r from-prodyum-blue-500 via-prodyum-green-500 to-prodyum-lime-500 mx-auto mb-6" />
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Invest in premium Telugu originals with a transparent, milestone-driven model
           </p>
         </div>
 
         {/* Why Partner With Us */}
         <div className="mb-24">
-          <h2 className="text-4xl font-bold text-white mb-12 text-center">Why Partner With ProDyum?</h2>
+          <h2 className="text-4xl font-bold bg-gradient-to-r from-prodyum-blue-400 to-prodyum-green-400 text-transparent bg-clip-text mb-12 text-center">Why Partner With ProDyum?</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
@@ -82,16 +82,16 @@ const Investors = () => {
             ].map((benefit, index) => (
               <Card
                 key={index}
-                className="bg-gradient-to-br from-neutral-900 to-black border-white/10 hover:border-prodyum-blue-500/50 transition-all duration-500 group"
+                className="bg-gradient-to-br from-prodyum-blue-500/5 via-prodyum-green-500/5 to-black border-prodyum-blue-500/20 hover:border-prodyum-green-500/50 transition-all duration-500 group hover:shadow-xl hover:shadow-prodyum-green-500/10"
               >
                 <CardContent className="p-8">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-prodyum-blue-500/10 border border-prodyum-blue-500/30 mb-6 group-hover:bg-prodyum-blue-500/20 group-hover:scale-110 transition-all duration-300">
-                    <benefit.icon className="h-8 w-8 text-prodyum-blue-500" />
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-prodyum-blue-500/20 to-prodyum-green-500/20 border border-prodyum-blue-500/30 mb-6 group-hover:scale-110 group-hover:border-prodyum-green-500/50 transition-all duration-300">
+                    <benefit.icon className="h-8 w-8 text-prodyum-green-400" />
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-prodyum-blue-500 transition-colors duration-300">
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:bg-gradient-to-r group-hover:from-prodyum-blue-400 group-hover:to-prodyum-green-400 group-hover:text-transparent group-hover:bg-clip-text transition-all duration-300">
                     {benefit.title}
                   </h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">{benefit.description}</p>
+                  <p className="text-gray-300 text-sm leading-relaxed">{benefit.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -100,7 +100,7 @@ const Investors = () => {
 
         {/* Investment Process */}
         <div className="mb-24">
-          <h2 className="text-4xl font-bold text-white mb-12 text-center">Investment Process</h2>
+          <h2 className="text-4xl font-bold bg-gradient-to-r from-prodyum-blue-400 to-prodyum-green-400 text-transparent bg-clip-text mb-12 text-center">Investment Process</h2>
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
               {[
@@ -110,14 +110,14 @@ const Investors = () => {
                 { step: '04', title: 'Delivery & QC', desc: 'Quality control and final delivery' },
                 { step: '05', title: 'Revenue Share', desc: 'Returns after recoupment as agreed' }
               ].map((item, idx) => (
-                <Card key={idx} className="bg-neutral-900 border-white/10 hover:border-prodyum-blue-500/50 transition-all duration-300 group">
+                <Card key={idx} className="bg-gradient-to-br from-prodyum-blue-500/10 to-prodyum-green-500/10 border-prodyum-blue-500/30 hover:border-prodyum-green-500/60 transition-all duration-300 group hover:shadow-lg hover:shadow-prodyum-green-500/20">
                   <CardContent className="p-6">
                     <div className="text-center">
-                      <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-prodyum-blue-500 to-prodyum-green-500 text-black font-bold text-xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-prodyum-blue-500 via-prodyum-green-500 to-prodyum-lime-500 text-white font-bold text-xl mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                         {item.step}
                       </div>
-                      <h3 className="text-white font-semibold mb-2 group-hover:text-prodyum-blue-500 transition-colors duration-300">{item.title}</h3>
-                      <p className="text-gray-400 text-sm">{item.desc}</p>
+                      <h3 className="text-white font-semibold mb-2 group-hover:bg-gradient-to-r group-hover:from-prodyum-blue-400 group-hover:to-prodyum-green-400 group-hover:text-transparent group-hover:bg-clip-text transition-all duration-300">{item.title}</h3>
+                      <p className="text-gray-300 text-sm">{item.desc}</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -128,23 +128,23 @@ const Investors = () => {
 
         {/* Enhanced Form */}
         <div className="max-w-4xl mx-auto">
-          <Card className="bg-gradient-to-br from-neutral-900 via-black to-neutral-900 border-white/10 backdrop-blur-xl">
+          <Card className="bg-gradient-to-br from-prodyum-blue-500/5 via-black to-prodyum-green-500/5 border-2 border-prodyum-blue-500/30 hover:border-prodyum-green-500/50 backdrop-blur-xl transition-all duration-500">
             <CardContent className="p-8 sm:p-12">
               <div className="text-center mb-10">
-                <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Express Your Interest</h2>
-                <p className="text-gray-400 text-lg">Fill out the form below and we'll get back to you within 2 business days</p>
+                <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-prodyum-blue-400 to-prodyum-green-400 text-transparent bg-clip-text mb-4">Express Your Interest</h2>
+                <p className="text-gray-300 text-lg">Fill out the form below and we'll get back to you within 2 business days</p>
               </div>
               <EnhancedForm type="investor" onSubmit={handleSubmit} />
 
               {/* Contact Info */}
-              <div className="mt-10 pt-10 border-t border-white/10">
-                <p className="text-center text-gray-400 text-sm mb-4">Or reach out directly:</p>
+              <div className="mt-10 pt-10 border-t border-prodyum-blue-500/20">
+                <p className="text-center text-gray-300 text-sm mb-4">Or reach out directly:</p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm">
-                  <a href="mailto:entertainment@prodyum.in" className="text-prodyum-blue-500 hover:text-prodyum-blue-400 transition-colors font-medium">
+                  <a href="mailto:entertainment@prodyum.in" className="text-prodyum-green-400 hover:text-prodyum-lime-400 transition-colors font-medium">
                     entertainment@prodyum.in
                   </a>
                   <span className="text-gray-600 hidden sm:inline">•</span>
-                  <a href="tel:+919949590033" className="text-prodyum-blue-500 hover:text-prodyum-blue-400 transition-colors font-medium">
+                  <a href="tel:+919949590033" className="text-prodyum-green-400 hover:text-prodyum-lime-400 transition-colors font-medium">
                     +91 99495 90033
                   </a>
                 </div>
