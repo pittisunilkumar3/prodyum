@@ -3,6 +3,57 @@
 export const projects = [
   {
     id: 1,
+    title: "ProDyum Entertainments",
+    type: "YouTube Channel",
+    year: "Active",
+    status: "Released",
+    category: "web-series",
+    logline: "Official YouTube channel of ProDyum Entertainments - Movies, Web Series, Short Films & more.",
+    synopsis: "Explore our official YouTube channel featuring trailers, behind-the-scenes content, short films, and exclusive content from ProDyum Entertainments productions.",
+    youtubeUrl: "https://www.youtube.com/@ProDyumEntertainments",
+    credits: {
+      producer: "ProDyum Entertainments",
+      director: "ProDyum Team",
+      cast: "Various Artists"
+    },
+    thumbnail: "https://yt3.googleusercontent.com/ytc/AIdro_kLJsOlhCfNE7Y24z_N9vQ2O6X3Wq_FtQY3QcN3hA=s176-c-k-c0x00ffffff-no-rj"
+  },
+  {
+    id: 2,
+    title: "Kavya's Tape Recorder",
+    type: "YouTube Channel",
+    year: "Active",
+    status: "Released",
+    category: "music-videos",
+    logline: "A creative YouTube channel featuring unique storytelling and entertainment content.",
+    synopsis: "Kavya's Tape Recorder brings you creative content, stories, and entertainment. Subscribe for engaging videos and unique storytelling experiences.",
+    youtubeUrl: "https://www.youtube.com/@kavyasistla",
+    credits: {
+      producer: "Kavya Sistla",
+      director: "Kavya Sistla",
+      cast: "Kavya Sistla"
+    },
+    thumbnail: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800"
+  },
+  {
+    id: 3,
+    title: "ProDyum Media",
+    type: "YouTube Channel",
+    year: "Active",
+    status: "Released",
+    category: "music-videos",
+    logline: "ProDyum Media - Your destination for premium digital content and media productions.",
+    synopsis: "ProDyum Media brings you the best in digital entertainment, music videos, promotional content, and media productions. Stay tuned for exciting content!",
+    youtubeUrl: "https://www.youtube.com/@ProDyumMedia",
+    credits: {
+      producer: "ProDyum Entertainments",
+      director: "ProDyum Media Team",
+      cast: "Various Artists"
+    },
+    thumbnail: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=800"
+  },
+  {
+    id: 4,
     title: "Shadows of the Past",
     type: "Movie",
     year: "2024",

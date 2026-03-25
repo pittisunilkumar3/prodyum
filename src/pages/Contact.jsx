@@ -10,7 +10,7 @@ const Contact = () => {
   const handleSubmit = async (formData) => {
     try {
       // Send form data to backend API
-      const response = await fetch('http://217.217.248.188:5000/api/send-email', {
+      const response = await fetch('/api/send-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -72,8 +72,8 @@ const Contact = () => {
                 <Phone className="h-7 w-7 text-prodyum-green-400" />
               </div>
               <h3 className="text-white font-semibold text-lg mb-2 group-hover:bg-gradient-to-r group-hover:from-prodyum-blue-400 group-hover:to-prodyum-green-400 group-hover:text-transparent group-hover:bg-clip-text transition-all">Phone</h3>
-              <a href="tel:+919949590033" className="text-gray-300 hover:text-prodyum-lime-400 transition-colors text-sm">
-                +91 99495 90033
+              <a href="tel:+919550989977" className="text-gray-300 hover:text-prodyum-lime-400 transition-colors text-sm">
+                +91-9550989977
               </a>
             </CardContent>
           </Card>

@@ -10,7 +10,7 @@ const Casting = () => {
   const handleSubmit = async (formData) => {
     try {
       // Send form data to backend API
-      const response = await fetch('http://217.217.248.188:5000/api/send-email', {
+      const response = await fetch('/api/send-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -132,8 +132,8 @@ const Casting = () => {
                     entertainment@prodyum.in
                   </a>
                   <span className="text-gray-600 hidden sm:inline">•</span>
-                  <a href="tel:+919949590033" className="text-prodyum-green-400 hover:text-prodyum-lime-400 transition-colors font-medium">
-                    +91 99495 90033
+                  <a href="tel:+919550989977" className="text-prodyum-green-400 hover:text-prodyum-lime-400 transition-colors font-medium">
+                    +91-9550989977
                   </a>
                 </div>
               </div>

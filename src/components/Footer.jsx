@@ -99,8 +99,8 @@ const Footer = () => {
               </li>
               <li className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-prodyum-green-400 flex-shrink-0" />
-                <a href="tel:+919949590033" className="text-gray-300 hover:text-prodyum-lime-400 transition-colors duration-300 text-sm">
-                  +91 99495 90033
+                <a href="tel:+919550989977" className="text-gray-300 hover:text-prodyum-lime-400 transition-colors duration-300 text-sm">
+                  +91-9550989977
                 </a>
               </li>
               <li className="flex items-center space-x-3">
@@ -117,7 +117,7 @@ const Footer = () => {
         <div className="mt-16 pt-8 border-t border-prodyum-blue-500/10">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-gray-500 text-sm">
-              © {currentYear} ProDyum Pvt Ltd. All Rights Reserved.
+              ©️ 2026 ProDyum Entertainments  All Rights Reserved.
             </p>
             <div className="flex items-center space-x-6">
               <Link to="/" className="text-gray-500 hover:text-prodyum-green-400 transition-colors duration-300 text-sm">
