@@ -1,27 +1,80 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Youtube, Instagram, Facebook } from 'lucide-react';
+import { Mail, Youtube, Instagram, Facebook } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
     <footer className="bg-black border-t border-white/5">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* Company Info */}
-          <div className="space-y-6">
-            <Link to="/" className="flex items-center space-x-3 group">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+          {/* Logo & Description */}
+          <div className="md:col-span-1">
+            <Link to="/entertainment" className="flex items-center space-x-3 group mb-4">
               <img 
                 src="/logo.png" 
                 alt="ProDyum Logo" 
                 className="h-10 w-10 object-contain" 
               />
-              <span className="text-xl font-bold text-white">ProDyum</span>
+              <span className="text-xl font-bold">
+                <span className="text-white">Pro</span>
+                <span className="bg-gradient-to-r from-prodyum-blue-500 to-prodyum-green-500 bg-clip-text text-transparent">Dyum</span>
+              </span>
             </Link>
-            <p className="text-gray-300 text-sm leading-relaxed">
-              We craft cinematic stories for Movies, Web Series & Short Films. From script to screen—ProDyum Entertainments builds premium Telugu and multilingual content.
+            <p className="text-gray-400 text-sm">
+              A growing ecosystem of digital technology, marketing, and entertainment solutions.
             </p>
+          </div>
+
+          {/* Links */}
+          <div>
+            <h4 className="text-white font-semibold mb-4">Links</h4>
+            <ul className="space-y-2">
+              <li>
+                <Link to="/it" className="text-gray-400 hover:text-prodyum-blue-400 transition-colors text-sm">
+                  ProDyum IT
+                </Link>
+              </li>
+              <li>
+                <Link to="/entertainment" className="text-gray-400 hover:text-prodyum-lime-400 transition-colors text-sm">
+                  ProDyum Entertainments
+                </Link>
+              </li>
+              <li>
+                <a href="#about" className="text-gray-400 hover:text-white transition-colors text-sm">
+                  About
+                </a>
+              </li>
+              <li>
+                <Link to="/entertainment/contact" className="text-gray-400 hover:text-white transition-colors text-sm">
+                  Contact
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Services */}
+          <div>
+            <h4 className="text-white font-semibold mb-4">Services</h4>
+            <ul className="space-y-2">
+              <li className="text-gray-400 text-sm">Film Production</li>
+              <li className="text-gray-400 text-sm">Web Series</li>
+              <li className="text-gray-400 text-sm">Music Content</li>
+              <li className="text-gray-400 text-sm">Digital Media</li>
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h4 className="text-white font-semibold mb-4">Contact</h4>
+            <div className="flex items-center space-x-2 text-gray-400 text-sm mb-4">
+              <Mail className="h-4 w-4 text-prodyum-green-400" />
+              <a href="mailto:hr@prodyum.in" className="hover:text-prodyum-lime-400 transition-colors">
+                hr@prodyum.in
+              </a>
+            </div>
+            {/* Social Links */}
             <div className="flex items-center space-x-4">
               <a
                 href="https://youtube.com/@prodyumentertainments?si=KsDM4KsQnfHdTIFI"
@@ -49,85 +102,13 @@ const Footer = () => {
               </a>
             </div>
           </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="bg-gradient-to-r from-prodyum-blue-400 to-prodyum-green-400 text-transparent bg-clip-text font-semibold mb-6 text-sm uppercase tracking-wider">Quick Links</h3>
-            <ul className="space-y-3">
-              <li>
-                <Link to="/projects" className="text-gray-300 hover:text-prodyum-green-400 transition-colors duration-300 text-sm">
-                  Projects
-                </Link>
-              </li>
-              <li>
-                <Link to="/services" className="text-gray-300 hover:text-prodyum-green-400 transition-colors duration-300 text-sm">
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link to="/investors" className="text-gray-300 hover:text-prodyum-green-400 transition-colors duration-300 text-sm">
-                  Investors
-                </Link>
-              </li>
-              <li>
-                <Link to="/casting" className="text-gray-300 hover:text-prodyum-green-400 transition-colors duration-300 text-sm">
-                  Casting & Crew
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Services */}
-          <div>
-            <h3 className="bg-gradient-to-r from-prodyum-blue-400 to-prodyum-green-400 text-transparent bg-clip-text font-semibold mb-6 text-sm uppercase tracking-wider">Our Services</h3>
-            <ul className="space-y-3">
-              <li className="text-gray-300 text-sm">Movies Production</li>
-              <li className="text-gray-300 text-sm">Web Series</li>
-              <li className="text-gray-300 text-sm">Short Films</li>
-              <li className="text-gray-300 text-sm">Post-Production</li>
-              <li className="text-gray-300 text-sm">VFX & Sound</li>
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h3 className="bg-gradient-to-r from-prodyum-blue-400 to-prodyum-green-400 text-transparent bg-clip-text font-semibold mb-6 text-sm uppercase tracking-wider">Contact Us</h3>
-            <ul className="space-y-4">
-              <li className="flex items-start space-x-3">
-                <MapPin className="h-5 w-5 text-prodyum-green-400 flex-shrink-0 mt-0.5" />
-                <span className="text-gray-300 text-sm">Hyderabad, Telangana, India</span>
-              </li>
-              <li className="flex items-center space-x-3">
-                <Phone className="h-5 w-5 text-prodyum-green-400 flex-shrink-0" />
-                <a href="tel:+919550989977" className="text-gray-300 hover:text-prodyum-lime-400 transition-colors duration-300 text-sm">
-                  +91-9550989977
-                </a>
-              </li>
-              <li className="flex items-center space-x-3">
-                <Mail className="h-5 w-5 text-prodyum-green-400 flex-shrink-0" />
-                <a href="mailto:entertainment@prodyum.in" className="text-gray-300 hover:text-prodyum-lime-400 transition-colors duration-300 text-sm break-all">
-                  entertainment@prodyum.in
-                </a>
-              </li>
-            </ul>
-          </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-16 pt-8 border-t border-prodyum-blue-500/10">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-gray-500 text-sm">
-              ©️ 2026 ProDyum Entertainments  All Rights Reserved.
-            </p>
-            <div className="flex items-center space-x-6">
-              <Link to="/" className="text-gray-500 hover:text-prodyum-green-400 transition-colors duration-300 text-sm">
-                Privacy Policy
-              </Link>
-              <Link to="/" className="text-gray-500 hover:text-prodyum-green-400 transition-colors duration-300 text-sm">
-                Terms of Service
-              </Link>
-            </div>
-          </div>
+        {/* Copyright */}
+        <div className="border-t border-white/5 pt-8 text-center">
+          <p className="text-gray-500 text-sm">
+            © {currentYear} ProDyum. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

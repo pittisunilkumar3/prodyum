@@ -16,7 +16,7 @@ export const projects = [
       director: "ProDyum Team",
       cast: "Various Artists"
     },
-    thumbnail: "https://yt3.googleusercontent.com/ytc/AIdro_kLJsOlhCfNE7Y24z_N9vQ2O6X3Wq_FtQY3QcN3hA=s176-c-k-c0x00ffffff-no-rj"
+    thumbnail: "https://picsum.photos/seed/prodyum1/800/450"
   },
   {
     id: 2,
@@ -33,7 +33,7 @@ export const projects = [
       director: "Kavya Sistla",
       cast: "Kavya Sistla"
     },
-    thumbnail: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800"
+    thumbnail: "https://picsum.photos/seed/kavya1/800/450"
   },
   {
     id: 3,
@@ -50,7 +50,7 @@ export const projects = [
       director: "ProDyum Media Team",
       cast: "Various Artists"
     },
-    thumbnail: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=800"
+    thumbnail: "https://picsum.photos/seed/media1/800/450"
   },
   {
     id: 4,
@@ -72,10 +72,10 @@ export const projects = [
       vfx: "Red Chillies VFX",
       sound: "Resul Pookutty"
     },
-    thumbnail: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=800"
+    thumbnail: "https://picsum.photos/seed/shadows1/800/450"
   },
   {
-    id: 2,
+    id: 5,
     title: "Urban Legends",
     type: "Web Series",
     year: "2024",
@@ -94,10 +94,10 @@ export const projects = [
       vfx: "ProDyum VFX",
       sound: "ProDyum Sound"
     },
-    thumbnail: "https://images.unsplash.com/photo-1518676590629-3dcbd9c5a5c9?w=800&q=80"
+    thumbnail: "https://picsum.photos/seed/urban1/800/450"
   },
   {
-    id: 3,
+    id: 6,
     title: "The Last Dance",
     type: "Short Film",
     year: "2023",
@@ -116,10 +116,10 @@ export const projects = [
       vfx: "TBD",
       sound: "ProDyum Sound"
     },
-    thumbnail: "https://images.unsplash.com/photo-1508807526345-15e9b5f4eaff?w=800"
+    thumbnail: "https://picsum.photos/seed/dance1/800/450"
   },
   {
-    id: 4,
+    id: 7,
     title: "Neon Nights",
     type: "Music Video",
     year: "2024",
@@ -136,10 +136,10 @@ export const projects = [
       vfx: "ProDyum VFX",
       sound: "ProDyum Sound"
     },
-    thumbnail: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800"
+    thumbnail: "https://picsum.photos/seed/neon1/800/450"
   },
   {
-    id: 5,
+    id: 8,
     title: "Echoes of Tomorrow",
     type: "Movie",
     year: "2025",
@@ -158,10 +158,10 @@ export const projects = [
       vfx: "Makuta VFX",
       sound: "TBD"
     },
-    thumbnail: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=800"
+    thumbnail: "https://picsum.photos/seed/echoes1/800/450"
   },
   {
-    id: 6,
+    id: 9,
     title: "Café Stories",
     type: "Web Series",
     year: "2025",
@@ -180,7 +180,7 @@ export const projects = [
       vfx: "ProDyum VFX",
       sound: "ProDyum Sound"
     },
-    thumbnail: "https://images.unsplash.com/photo-1511882150382-421056c89033?w=800"
+    thumbnail: "https://picsum.photos/seed/cafe1/800/450"
   }
 ];
 
@@ -249,21 +249,22 @@ export const teamMembers = [
     name: "Rajesh Kumar",
     role: "Founder & Producer",
     bio: "With over 15 years in the industry, Rajesh brings a wealth of experience in film production and distribution.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400"
+    image: "https://picsum.photos/seed/rajesh1/400/400",
+    thumbnail: "https://picsum.photos/seed/rajesh1/400/400"
   },
   {
     id: 2,
     name: "Priya Sharma",
     role: "Creative Director",
     bio: "Award-winning director with a passion for storytelling and a keen eye for visual aesthetics.",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400"
+    image: "https://picsum.photos/seed/priya1/400/400"
   },
   {
     id: 3,
     name: "Arun Reddy",
     role: "Head of Post-Production",
     bio: "Leading our technical team with expertise in DI, VFX, and sound design for premium content.",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400"
+    image: "https://picsum.photos/seed/arun1/400/400"
   }
 ];
 

@@ -126,7 +126,7 @@ const Home = () => {
                 size="lg"
                 className="bg-gradient-to-r from-prodyum-blue-500 via-prodyum-green-500 to-prodyum-lime-500 text-white hover:from-prodyum-blue-600 hover:via-prodyum-green-600 hover:to-prodyum-lime-600 font-bold px-8 py-6 text-lg transition-all duration-300 hover:shadow-2xl hover:shadow-prodyum-blue-500/50 hover:scale-105 group"
               >
-                <Link to="/projects">
+                <Link to="/entertainment/projects">
                   View Projects
                   <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
@@ -137,7 +137,7 @@ const Home = () => {
                 variant="outline"
                 className="border-2 border-prodyum-green-500/60 text-white hover:bg-prodyum-green-500/20 hover:border-prodyum-green-400 px-8 py-6 text-lg backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:shadow-prodyum-green-500/30 group"
               >
-                <Link to="/investors">
+                <Link to="/entertainment/investors">
                   <Play className="mr-2 h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
                   Investor Info
                 </Link>
@@ -217,7 +217,7 @@ const Home = () => {
                     size="lg"
                     className="bg-gradient-to-r from-prodyum-blue-500 to-prodyum-green-500 text-white hover:from-prodyum-blue-600 hover:to-prodyum-green-600 font-bold px-8 transition-all duration-300 hover:shadow-lg hover:shadow-prodyum-blue-500/50 hover:scale-105"
                   >
-                    <Link to="/services">
+                    <Link to="/entertainment/services">
                       Explore Services
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </Link>
@@ -227,7 +227,7 @@ const Home = () => {
               <div className="relative">
                 <div className="relative rounded-lg overflow-hidden">
                   <img
-                    src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=800"
+                    src="https://picsum.photos/seed/production1/800/500"
                     alt="Production"
                     className="w-full h-[500px] object-cover"
                   />
@@ -308,7 +308,7 @@ const Home = () => {
                     variant="ghost"
                     className="text-prodyum-lime-500 hover:text-prodyum-lime-400 hover:bg-prodyum-lime-500/10 p-0 h-auto font-semibold group/btn"
                   >
-                    <Link to={`/projects`}>
+                    <Link to={`/entertainment/projects`}>
                       Learn More
                       <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
                     </Link>
@@ -324,7 +324,7 @@ const Home = () => {
               size="lg"
               className="bg-gradient-to-r from-prodyum-blue-500 via-prodyum-green-500 to-prodyum-lime-500 text-white hover:from-prodyum-blue-600 hover:via-prodyum-green-600 hover:to-prodyum-lime-600 font-bold px-8 transition-all duration-300 hover:shadow-lg hover:shadow-prodyum-blue-500/50 hover:scale-105"
             >
-              <Link to="/projects">
+              <Link to="/entertainment/projects">
                 View All Projects
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
@@ -382,11 +382,175 @@ const Home = () => {
               variant="outline"
               className="border-2 border-prodyum-lime-500/60 text-white hover:bg-prodyum-lime-500/20 hover:border-prodyum-lime-400 px-8 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:shadow-prodyum-lime-500/30"
             >
-              <Link to="/services">
+              <Link to="/entertainment/services">
                 Explore All Services
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* PDF Presentation Section */}
+      <section id="section-presentation" className="py-32 bg-black relative overflow-hidden">
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-prodyum-lime-500 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-prodyum-blue-500 rounded-full blur-3xl" />
+        </div>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className={`text-center mb-12 transition-all duration-1000 ${
+            isVisible['section-presentation'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
+          }`}>
+            <span className="text-prodyum-lime-500 text-sm font-semibold uppercase tracking-wider">Company Overview</span>
+            <h2 className="text-5xl font-bold text-white mt-4 mb-6">ProDyum Entertainments <span className="text-prodyum-lime-500">Presentation</span></h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-prodyum-blue-500 to-prodyum-lime-500 mx-auto mb-6" />
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              Explore our comprehensive company presentation to learn more about our vision, projects, and investment opportunities.
+            </p>
+          </div>
+
+          {/* PDF Viewer */}
+          <div className={`max-w-5xl mx-auto transition-all duration-1000 ${
+            isVisible['section-presentation'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
+          }`}>
+            <Card className="bg-neutral-900/80 border-prodyum-lime-500/30 overflow-hidden backdrop-blur-md hover:border-prodyum-lime-500/60 transition-all duration-500 hover:shadow-2xl hover:shadow-prodyum-lime-500/20">
+              <CardContent className="p-0">
+                {/* PDF Header */}
+                <div className="bg-gradient-to-r from-prodyum-blue-500/20 via-prodyum-green-500/20 to-prodyum-lime-500/20 px-6 py-4 border-b border-white/10 flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-3 h-3 rounded-full bg-red-500" />
+                    <div className="w-3 h-3 rounded-full bg-yellow-500" />
+                    <div className="w-3 h-3 rounded-full bg-green-500" />
+                  </div>
+                  <span className="text-gray-400 text-sm font-medium">ProDyum Entertainments - Company Profile</span>
+                  <div className="w-24" /> {/* Spacer for alignment */}
+                </div>
+                
+                {/* PDF Content Area */}
+                <div className="relative bg-neutral-950" style={{ minHeight: '600px' }}>
+                  {/* Presentation Content Slides */}
+                  <div className="p-8 space-y-8">
+                    {/* Slide 1: Company Overview */}
+                    <div className="bg-gradient-to-br from-prodyum-blue-500/10 to-prodyum-green-500/10 rounded-xl p-8 border border-white/10">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div>
+                          <h3 className="text-3xl font-bold text-white mb-4">Welcome to <span className="text-prodyum-lime-500">ProDyum Entertainments</span></h3>
+                          <p className="text-gray-300 mb-6">A cinema-first studio producing movies, original web series, short films and high-impact music videos.</p>
+                          <div className="flex flex-wrap gap-3">
+                            <span className="px-4 py-2 bg-prodyum-blue-500/20 text-prodyum-blue-400 rounded-full text-sm">Film Production</span>
+                            <span className="px-4 py-2 bg-prodyum-green-500/20 text-prodyum-green-400 rounded-full text-sm">Web Series</span>
+                            <span className="px-4 py-2 bg-prodyum-lime-500/20 text-prodyum-lime-400 rounded-full text-sm">Music Content</span>
+                            <span className="px-4 py-2 bg-prodyum-blue-500/20 text-prodyum-blue-400 rounded-full text-sm">Digital Media</span>
+                          </div>
+                        </div>
+                        <div className="relative">
+                          <img 
+                            src="https://picsum.photos/seed/filmpost1/600/400" 
+                            alt="Film Production" 
+                            className="rounded-lg shadow-2xl"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-lg" />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Slide 2: Our Services */}
+                    <div className="bg-gradient-to-br from-prodyum-green-500/10 to-prodyum-lime-500/10 rounded-xl p-8 border border-white/10">
+                      <h3 className="text-2xl font-bold text-white mb-6 text-center">Our <span className="text-prodyum-green-500">Services</span></h3>
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        {[
+                          { icon: Film, title: 'Film Production', desc: 'Full-length feature films' },
+                          { icon: Film, title: 'Web Series', desc: 'Original digital content' },
+                          { icon: Volume2, title: 'Music Videos', desc: 'High-impact productions' },
+                          { icon: Palette, title: 'Post Production', desc: 'DI, VFX, Sound Design' }
+                        ].map((service, index) => (
+                          <div key={index} className="text-center p-4 rounded-lg bg-black/30 hover:bg-black/50 transition-colors">
+                            <service.icon className="h-10 w-10 text-prodyum-lime-500 mx-auto mb-3" />
+                            <h4 className="text-white font-semibold mb-1">{service.title}</h4>
+                            <p className="text-gray-400 text-xs">{service.desc}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Slide 3: Stats */}
+                    <div className="bg-gradient-to-br from-prodyum-lime-500/10 to-prodyum-blue-500/10 rounded-xl p-8 border border-white/10">
+                      <h3 className="text-2xl font-bold text-white mb-6 text-center">Our <span className="text-prodyum-lime-500">Achievements</span></h3>
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        {[
+                          { value: '15+', label: 'Projects Completed' },
+                          { value: '5+', label: 'Years Experience' },
+                          { value: '25+', label: 'Team Members' },
+                          { value: '8+', label: 'Awards Won' }
+                        ].map((stat, index) => (
+                          <div key={index} className="text-center">
+                            <div className="text-4xl font-bold text-prodyum-lime-500 mb-2">{stat.value}</div>
+                            <div className="text-gray-400 text-sm">{stat.label}</div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Slide 4: Why Partner */}
+                    <div className="bg-gradient-to-br from-prodyum-blue-500/10 to-prodyum-green-500/10 rounded-xl p-8 border border-white/10">
+                      <h3 className="text-2xl font-bold text-white mb-6 text-center">Why <span className="text-prodyum-blue-500">Partner</span> With Us?</h3>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div className="flex items-start space-x-4">
+                          <div className="w-12 h-12 rounded-full bg-prodyum-blue-500/20 flex items-center justify-center flex-shrink-0">
+                            <CheckCircle2 className="h-6 w-6 text-prodyum-blue-400" />
+                          </div>
+                          <div>
+                            <h4 className="text-white font-semibold mb-1">Transparent Budgeting</h4>
+                            <p className="text-gray-400 text-sm">Clear financial planning with detailed breakdowns</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start space-x-4">
+                          <div className="w-12 h-12 rounded-full bg-prodyum-green-500/20 flex items-center justify-center flex-shrink-0">
+                            <CheckCircle2 className="h-6 w-6 text-prodyum-green-400" />
+                          </div>
+                          <div>
+                            <h4 className="text-white font-semibold mb-1">Milestone Tracking</h4>
+                            <p className="text-gray-400 text-sm">Weekly updates and regular progress reports</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start space-x-4">
+                          <div className="w-12 h-12 rounded-full bg-prodyum-lime-500/20 flex items-center justify-center flex-shrink-0">
+                            <CheckCircle2 className="h-6 w-6 text-prodyum-lime-400" />
+                          </div>
+                          <div>
+                            <h4 className="text-white font-semibold mb-1">Experienced Team</h4>
+                            <p className="text-gray-400 text-sm">Seasoned professionals in filmmaking</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* CTA Slide */}
+                    <div className="bg-gradient-to-r from-prodyum-blue-500/20 via-prodyum-green-500/20 to-prodyum-lime-500/20 rounded-xl p-8 border border-white/10 text-center">
+                      <h3 className="text-2xl font-bold text-white mb-4">Ready to <span className="text-prodyum-lime-500">Collaborate</span>?</h3>
+                      <p className="text-gray-300 mb-6 max-w-2xl mx-auto">Whether you're an investor looking for premium content opportunities or talent seeking to join our team, we'd love to hear from you.</p>
+                      <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <Button
+                          asChild
+                          size="lg"
+                          className="bg-gradient-to-r from-prodyum-blue-500 to-prodyum-green-500 text-white hover:from-prodyum-blue-600 hover:to-prodyum-green-600 font-bold"
+                        >
+                          <Link to="/entertainment/investors">Investor Information</Link>
+                        </Button>
+                        <Button
+                          asChild
+                          size="lg"
+                          variant="outline"
+                          className="border-prodyum-lime-500/60 text-white hover:bg-prodyum-lime-500/20"
+                        >
+                          <Link to="/entertainment/contact">Contact Us</Link>
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
@@ -420,7 +584,7 @@ const Home = () => {
                 size="lg"
                 className="bg-gradient-to-r from-prodyum-blue-500 to-prodyum-green-500 text-white hover:from-prodyum-blue-600 hover:to-prodyum-green-600 font-bold px-8 py-6 text-lg transition-all duration-300 hover:shadow-2xl hover:shadow-prodyum-blue-500/50 hover:scale-105"
               >
-                <Link to="/investors">Investor Information</Link>
+                <Link to="/entertainment/investors">Investor Information</Link>
               </Button>
               <Button
                 asChild
@@ -428,7 +592,7 @@ const Home = () => {
                 variant="outline"
                 className="border-2 border-prodyum-green-500/60 text-white hover:bg-prodyum-green-500/20 hover:border-prodyum-green-400 px-8 py-6 text-lg backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:shadow-prodyum-green-500/30"
               >
-                <Link to="/casting">Apply: Cast & Crew</Link>
+                <Link to="/entertainment/casting">Apply: Cast & Crew</Link>
               </Button>
             </div>
           </div>

@@ -9,35 +9,35 @@ const TimelineSection = () => {
       title: 'Foundation',
       description: 'ProDyum Entertainments established with a vision to revolutionize Telugu cinema production.',
       icon: Sparkles,
-      image: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800'
+      image: 'https://picsum.photos/seed/timeline2020/800/600'
     },
     {
       year: '2021',
       title: 'First Productions',
       description: 'Launched our first web series and short film productions with critical acclaim.',
       icon: Film,
-      image: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=800'
+      image: 'https://picsum.photos/seed/timeline2021/800/600'
     },
     {
       year: '2022',
       title: 'Award Recognition',
       description: 'Received multiple awards for best cinematography and sound design at regional film festivals.',
       icon: Award,
-      image: 'https://images.unsplash.com/photo-1579547621113-e4bb2a19bdd6?w=800'
+      image: 'https://picsum.photos/seed/timeline2022/800/600'
     },
     {
       year: '2023',
       title: 'Expansion',
       description: 'Expanded post-production capabilities with state-of-the-art DI suite and VFX studio.',
       icon: TrendingUp,
-      image: 'https://images.unsplash.com/photo-1574267432644-f74f8ec1e93b?w=800'
+      image: 'https://picsum.photos/seed/timeline2023/800/600'
     },
     {
       year: '2024',
       title: 'Industry Leader',
       description: 'Established as a leading production house with 15+ successful projects and growing team.',
       icon: Users,
-      image: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=800'
+      image: 'https://picsum.photos/seed/timeline2024/800/600'
     }
   ];
 
@@ -78,6 +78,10 @@ const TimelineSection = () => {
                           src={milestone.image}
                           alt={milestone.title}
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = 'https://via.placeholder.com/800x600/1a1a1a/ffffff?text=' + milestone.year;
+                          }}
                         />
                         <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent" />
                         <div className="absolute top-6 left-6">
