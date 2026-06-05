@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../../components/ui/button';
-import { 
-  ArrowRight, 
-  ExternalLink, 
+import {
+  ArrowRight,
+  ExternalLink,
   Filter,
   Image,
   Globe,
   Video,
-  Palette
+  Palette,
 } from 'lucide-react';
-import ITHeader from '../../components/ITHeader';
-import ITFooter from '../../components/ITFooter';
+import TiltCard from '../../components/TiltCard';
+import ScrollReveal from '../../components/ScrollReveal';
 
 const ITPortfolio = () => {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -21,78 +21,24 @@ const ITPortfolio = () => {
     { id: 'logo', label: 'Logo Design' },
     { id: 'social', label: 'Social Media' },
     { id: 'website', label: 'Websites' },
-    { id: 'video', label: 'Video Projects' }
+    { id: 'video', label: 'Video Projects' },
   ];
 
   const projects = [
-    {
-      id: 1,
-      title: 'TechStart Logo Design',
-      category: 'logo',
-      description: 'Modern logo design for a tech startup focusing on AI solutions.',
-      tags: ['Logo', 'Branding']
-    },
-    {
-      id: 2,
-      title: 'Real Estate Website',
-      category: 'website',
-      description: 'Full-featured real estate listing website with advanced search.',
-      tags: ['Website', 'Real Estate']
-    },
-    {
-      id: 3,
-      title: 'Restaurant Social Media',
-      category: 'social',
-      description: 'Complete social media management and content creation.',
-      tags: ['Social Media', 'Marketing']
-    },
-    {
-      id: 4,
-      title: 'Product Launch Video',
-      category: 'video',
-      description: 'Promotional video for a new product launch.',
-      tags: ['Video', 'Promotional']
-    },
-    {
-      id: 5,
-      title: 'E-commerce Platform',
-      category: 'website',
-      description: 'Full e-commerce website with payment integration.',
-      tags: ['E-commerce', 'Website']
-    },
-    {
-      id: 6,
-      title: 'Fashion Brand Identity',
-      category: 'logo',
-      description: 'Complete brand identity design including logo.',
-      tags: ['Branding', 'Logo']
-    },
-    {
-      id: 7,
-      title: 'Corporate Video',
-      category: 'video',
-      description: 'Corporate overview video with interviews.',
-      tags: ['Corporate', 'Video']
-    },
-    {
-      id: 8,
-      title: 'Fitness Brand Social Media',
-      category: 'social',
-      description: 'Instagram and Facebook content creation.',
-      tags: ['Social Media', 'Fitness']
-    },
-    {
-      id: 9,
-      title: 'Education Portal',
-      category: 'website',
-      description: 'Online learning platform with course management.',
-      tags: ['Education', 'Website']
-    }
+    { id: 1, title: 'TechStart Logo Design', category: 'logo', description: 'Modern logo design for a tech startup focusing on AI solutions.', tags: ['Logo', 'Branding'] },
+    { id: 2, title: 'Real Estate Website', category: 'website', description: 'Full-featured real estate listing website with advanced search.', tags: ['Website', 'Real Estate'] },
+    { id: 3, title: 'Restaurant Social Media', category: 'social', description: 'Complete social media management and content creation.', tags: ['Social Media', 'Marketing'] },
+    { id: 4, title: 'Product Launch Video', category: 'video', description: 'Promotional video for a new product launch.', tags: ['Video', 'Promotional'] },
+    { id: 5, title: 'E-commerce Platform', category: 'website', description: 'Full e-commerce website with payment integration.', tags: ['E-commerce', 'Website'] },
+    { id: 6, title: 'Fashion Brand Identity', category: 'logo', description: 'Complete brand identity design including logo.', tags: ['Branding', 'Logo'] },
+    { id: 7, title: 'Corporate Video', category: 'video', description: 'Corporate overview video with interviews.', tags: ['Corporate', 'Video'] },
+    { id: 8, title: 'Fitness Brand Social Media', category: 'social', description: 'Instagram and Facebook content creation.', tags: ['Social Media', 'Fitness'] },
+    { id: 9, title: 'Education Portal', category: 'website', description: 'Online learning platform with course management.', tags: ['Education', 'Website'] },
   ];
 
-  const filteredProjects = activeFilter === 'all' 
-    ? projects 
-    : projects.filter(project => project.category === activeFilter);
+  const filteredProjects = activeFilter === 'all'
+    ? projects
+    : projects.filter((project) => project.category === activeFilter);
 
   const getCategoryIcon = (category) => {
     switch (category) {
@@ -106,29 +52,36 @@ const ITPortfolio = () => {
 
   return (
     <div className="min-h-screen bg-black">
-      <ITHeader />
-      
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 bg-gradient-to-br from-gray-900 via-black to-gray-900 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
             backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-            backgroundSize: '40px 40px'
+            backgroundSize: '40px 40px',
           }} />
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center space-x-2 bg-white/10 border border-white/20 rounded-full px-4 py-2 mb-6 backdrop-blur-sm">
-              <Image className="h-4 w-4 text-prodyum-green-400" />
-              <span className="text-gray-300 text-sm">Our Work</span>
-            </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
-              Our <span className="bg-gradient-to-r from-prodyum-blue-400 to-prodyum-green-400 bg-clip-text text-transparent">Portfolio</span>
-            </h1>
-            <p className="text-xl text-gray-300 leading-relaxed">
-              Explore our collection of successful projects across various industries and services.
-            </p>
+            <ScrollReveal animation="zoomIn">
+              <div className="inline-flex items-center space-x-2 bg-white/10 border border-white/20 rounded-full px-4 py-2 mb-6 backdrop-blur-sm">
+                <Image className="h-4 w-4 text-prodyum-green-400" />
+                <span className="text-gray-300 text-sm">Our Work</span>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal animation="fadeUp" delay={100}>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
+                Our{' '}
+                <span className="bg-gradient-to-r from-prodyum-blue-400 to-prodyum-green-400 bg-clip-text text-transparent">
+                  Portfolio
+                </span>
+              </h1>
+            </ScrollReveal>
+            <ScrollReveal animation="fadeUp" delay={200}>
+              <p className="text-xl text-gray-300 leading-relaxed">
+                Explore our collection of successful projects across various industries and services.
+              </p>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -144,7 +97,7 @@ const ITPortfolio = () => {
                 onClick={() => setActiveFilter(filter.id)}
                 className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
                   activeFilter === filter.id
-                    ? 'bg-gradient-to-r from-prodyum-blue-500 to-prodyum-green-500 text-white'
+                    ? 'bg-gradient-to-r from-prodyum-blue-500 to-prodyum-green-500 text-white shadow-lg shadow-prodyum-green-500/25'
                     : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'
                 }`}
               >
@@ -159,48 +112,42 @@ const ITPortfolio = () => {
       <section className="py-16 lg:py-24 bg-black">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project) => {
+            {filteredProjects.map((project, index) => {
               const CategoryIcon = getCategoryIcon(project.category);
               return (
-                <div
-                  key={project.id}
-                  className="group bg-gray-900/50 border border-white/10 rounded-2xl overflow-hidden hover:border-prodyum-blue-500/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-prodyum-blue-500/10"
-                >
-                  {/* Project Image Placeholder */}
-                  <div className="relative h-64 bg-gradient-to-br from-gray-800 to-gray-900 overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-prodyum-blue-500/80 to-prodyum-green-500/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <Button
-                        variant="outline"
-                        className="bg-white text-gray-900 hover:bg-gray-100 border-0"
-                      >
-                        View Project <ExternalLink className="h-4 w-4 ml-2" />
-                      </Button>
+                <ScrollReveal key={project.id} animation="flipUp" delay={index * 80}>
+                  <TiltCard
+                    tiltOptions={{ maxTilt: 8, scale: 1.02 }}
+                    className="group bg-gray-900/50 border border-white/10 rounded-2xl overflow-hidden hover:border-prodyum-blue-500/50 transition-all duration-500 h-full"
+                  >
+                    {/* Project Image Placeholder */}
+                    <div className="relative h-64 bg-gradient-to-br from-gray-800 to-gray-900 overflow-hidden">
+                      <div className="absolute inset-0 bg-gradient-to-br from-prodyum-blue-500/80 to-prodyum-green-500/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <Button variant="outline" className="bg-white text-gray-900 hover:bg-gray-100 border-0">
+                          View Project <ExternalLink className="h-4 w-4 ml-2" />
+                        </Button>
+                      </div>
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <CategoryIcon className="h-16 w-16 text-gray-600 group-hover:opacity-0 transition-opacity duration-300" />
+                      </div>
                     </div>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <CategoryIcon className="h-16 w-16 text-gray-600 group-hover:opacity-0 transition-opacity duration-300" />
+
+                    {/* Project Info */}
+                    <div className="p-6">
+                      <div className="flex items-center gap-2 mb-3">
+                        {project.tags.map((tag, i) => (
+                          <span key={i} className="text-xs font-medium px-3 py-1 rounded-full bg-white/5 text-gray-400">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <h3 className="text-xl font-bold text-white mb-2 group-hover:text-prodyum-blue-400 transition-colors duration-300">
+                        {project.title}
+                      </h3>
+                      <p className="text-gray-400 text-sm">{project.description}</p>
                     </div>
-                  </div>
-                  
-                  {/* Project Info */}
-                  <div className="p-6">
-                    <div className="flex items-center gap-2 mb-3">
-                      {project.tags.map((tag, index) => (
-                        <span
-                          key={index}
-                          className="text-xs font-medium px-3 py-1 rounded-full bg-white/5 text-gray-400"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-prodyum-blue-400 transition-colors duration-300">
-                      {project.title}
-                    </h3>
-                    <p className="text-gray-400 text-sm">
-                      {project.description}
-                    </p>
-                  </div>
-                </div>
+                  </TiltCard>
+                </ScrollReveal>
               );
             })}
           </div>
@@ -223,14 +170,16 @@ const ITPortfolio = () => {
               { value: '50+', label: 'Projects Completed' },
               { value: '100+', label: 'Happy Clients' },
               { value: '5+', label: 'Years Experience' },
-              { value: '15+', label: 'Team Members' }
+              { value: '15+', label: 'Team Members' },
             ].map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-prodyum-blue-500 to-prodyum-green-500 bg-clip-text text-transparent mb-2">
-                  {stat.value}
-                </div>
-                <p className="text-gray-400">{stat.label}</p>
-              </div>
+              <ScrollReveal key={index} animation="zoomIn" delay={index * 100}>
+                <TiltCard tiltOptions={{ maxTilt: 10, scale: 1.03 }} className="text-center p-6">
+                  <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-prodyum-blue-500 to-prodyum-green-500 bg-clip-text text-transparent mb-2">
+                    {stat.value}
+                  </div>
+                  <p className="text-gray-400">{stat.label}</p>
+                </TiltCard>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -238,26 +187,26 @@ const ITPortfolio = () => {
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-prodyum-blue-600 to-prodyum-green-600">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Have a Project in Mind?
-          </h2>
-          <p className="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
-            Let's discuss how we can bring your vision to life with our creative and technical expertise.
-          </p>
-          <Button
-            asChild
-            size="lg"
-            className="bg-white text-prodyum-blue-600 hover:bg-gray-100 font-bold px-8"
-          >
-            <Link to="/it/contact" className="flex items-center gap-2">
-              Start Your Project <ArrowRight className="h-5 w-5" />
-            </Link>
-          </Button>
-        </div>
+        <ScrollReveal animation="zoomIn">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              Have a Project in Mind?
+            </h2>
+            <p className="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
+              Let's discuss how we can bring your vision to life with our creative and technical expertise.
+            </p>
+            <Button
+              asChild
+              size="lg"
+              className="bg-white text-prodyum-blue-600 hover:bg-gray-100 font-bold px-8"
+            >
+              <Link to="/it/contact" className="flex items-center gap-2">
+                Start Your Project <ArrowRight className="h-5 w-5" />
+              </Link>
+            </Button>
+          </div>
+        </ScrollReveal>
       </section>
-
-      <ITFooter />
     </div>
   );
 };

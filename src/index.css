@@ -90,3 +90,99 @@ code {
     text-wrap: balance;
   }
 }
+
+/* ===== 21st.dev / Magic UI Animation Keyframes ===== */
+
+/* Fade In Up - used by hero content */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Shiny Text Shimmer */
+@keyframes shiny-text {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.animate-shiny-text {
+  animation: shiny-text var(--shiny-speed, 3s) linear infinite;
+}
+
+/* Border Beam Spin - orbits around the center of the parent */
+@keyframes border-beam-spin {
+  from {
+    transform: rotate(0deg) translateX(300%) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(300%) rotate(-360deg);
+  }
+}
+
+/* Background Beam */
+@keyframes beam-move {
+  0% {
+    transform: translateY(-100%) translateX(0);
+  }
+  50% {
+    transform: translateY(100vh) translateX(20px);
+  }
+  100% {
+    transform: translateY(-100%) translateX(0);
+  }
+}
+
+/* Gradient shift for animated gradient text */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient-shift {
+  animation: gradient-shift 4s ease infinite;
+}
+
+/* Float animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Pulse glow */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(30, 136, 229, 0.2), 0 0 20px rgba(30, 136, 229, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(30, 136, 229, 0.4), 0 0 40px rgba(30, 136, 229, 0.2);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}

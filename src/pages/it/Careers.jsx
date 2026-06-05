@@ -14,8 +14,8 @@ import {
   Send,
   CheckCircle2
 } from 'lucide-react';
-import ITHeader from '../../components/ITHeader';
-import ITFooter from '../../components/ITFooter';
+import TiltCard from '../../components/TiltCard';
+import ScrollReveal from '../../components/ScrollReveal';
 
 const ITCareers = () => {
   const [selectedJob, setSelectedJob] = useState(null);
@@ -95,7 +95,6 @@ const ITCareers = () => {
 
   return (
     <div className="min-h-screen bg-black">
-      <ITHeader />
       
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 bg-gradient-to-br from-gray-900 via-black to-gray-900 overflow-hidden">
@@ -108,13 +107,17 @@ const ITCareers = () => {
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center space-x-2 bg-white/10 border border-white/20 rounded-full px-4 py-2 mb-6 backdrop-blur-sm">
-              <Briefcase className="h-4 w-4 text-prodyum-green-400" />
-              <span className="text-gray-300 text-sm">Join Our Team</span>
-            </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
-              Work With <span className="bg-gradient-to-r from-prodyum-blue-400 to-prodyum-green-400 bg-clip-text text-transparent">Us</span>
-            </h1>
+            <ScrollReveal animation="zoomIn">
+              <div className="inline-flex items-center space-x-2 bg-white/10 border border-white/20 rounded-full px-4 py-2 mb-6 backdrop-blur-sm">
+                <Briefcase className="h-4 w-4 text-prodyum-green-400" />
+                <span className="text-gray-300 text-sm">Join Our Team</span>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal animation="fadeUp" delay={100}>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
+                Work With <span className="bg-gradient-to-r from-prodyum-blue-400 to-prodyum-green-400 bg-clip-text text-transparent">Us</span>
+              </h1>
+            </ScrollReveal>
             <p className="text-xl text-gray-300 leading-relaxed">
               Join ProDyum IT Pvt Ltd and be part of a growing team working in Digital Marketing, 
               Technology, and Creative Media.
@@ -127,13 +130,17 @@ const ITCareers = () => {
       <section className="py-16 lg:py-24 bg-gray-900">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-flex items-center space-x-2 bg-prodyum-blue-500/10 border border-prodyum-blue-500/20 rounded-full px-4 py-2 mb-6">
-              <Heart className="h-4 w-4 text-prodyum-blue-400" />
-              <span className="text-prodyum-blue-400 text-sm font-medium">Why Join Us</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Build Your Career With Us
-            </h2>
+            <ScrollReveal animation="fadeUp">
+              <div className="inline-flex items-center space-x-2 bg-prodyum-blue-500/10 border border-prodyum-blue-500/20 rounded-full px-4 py-2 mb-6">
+                <Heart className="h-4 w-4 text-prodyum-blue-400" />
+                <span className="text-prodyum-blue-400 text-sm font-medium">Why Join Us</span>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal animation="fadeUp" delay={100}>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                Build Your Career With Us
+              </h2>
+            </ScrollReveal>
             <p className="text-xl text-gray-400">
               We are always looking for passionate individuals who want to build innovative 
               digital solutions and grow their careers.
@@ -142,16 +149,15 @@ const ITCareers = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {benefits.map((benefit, index) => (
-              <div
-                key={index}
-                className="bg-black/50 border border-white/10 rounded-2xl p-8 text-center hover:border-prodyum-blue-500/50 transition-all duration-300 group"
-              >
-                <div className="h-16 w-16 bg-gradient-to-br from-prodyum-blue-500/20 to-prodyum-green-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <benefit.icon className="h-8 w-8 text-prodyum-blue-400" />
-                </div>
-                <h3 className="text-xl font-bold text-white mb-3">{benefit.title}</h3>
-                <p className="text-gray-400">{benefit.description}</p>
-              </div>
+              <ScrollReveal key={index} animation="flipUp" delay={index * 100}>
+                <TiltCard className="bg-black/50 border border-white/10 rounded-2xl p-8 text-center hover:border-prodyum-blue-500/50 transition-all duration-300 group h-full">
+                  <div className="h-16 w-16 bg-gradient-to-br from-prodyum-blue-500/20 to-prodyum-green-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <benefit.icon className="h-8 w-8 text-prodyum-blue-400" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3">{benefit.title}</h3>
+                  <p className="text-gray-400">{benefit.description}</p>
+                </TiltCard>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -174,9 +180,9 @@ const ITCareers = () => {
           </div>
 
           <div className="max-w-4xl mx-auto space-y-6">
-            {jobs.map((job) => (
+            {jobs.map((job, idx) => (
+              <ScrollReveal key={job.id} animation="fadeUp" delay={idx * 100}>
               <div
-                key={job.id}
                 className="bg-gray-900/50 border border-white/10 rounded-2xl overflow-hidden hover:border-prodyum-green-500/50 transition-all duration-300"
               >
                 <div
@@ -256,6 +262,7 @@ const ITCareers = () => {
                   </div>
                 )}
               </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -324,7 +331,6 @@ const ITCareers = () => {
         </div>
       </section>
 
-      <ITFooter />
     </div>
   );
 };

@@ -110,6 +110,235 @@
   font-weight: 900;
 }
 
+/* Ripple / Vibration wave animation for circular cards */
+@keyframes ripple {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+/* Ball drops from top-left, bounces off BOTTOM, goes HIGH, settles at center */
+@keyframes bounceInLeft {
+  0%   { transform: translate(-42vw, -48vh); opacity: 0; }
+  3%   { opacity: 1; }
+  9%   { transform: translate(-42vw, 40vh) scaleX(0.82) scaleY(1.18); }
+  10%  { transform: translate(-42vw, 42vh) scaleX(1.6) scaleY(0.4); }
+  15%  { transform: translate(-36vw, -20vh) scaleX(0.82) scaleY(1.18); }
+  17%  { transform: translate(-36vw, -60vh) scaleX(1) scaleY(1); }
+  19%  { transform: translate(-36vw, -25vh) scaleX(0.85) scaleY(1.15); }
+  20%  { transform: translate(-36vw, 42vh) scaleX(1.5) scaleY(0.5); }
+  24%  { transform: translate(-30vw, -18vh) scaleX(0.85) scaleY(1.15); }
+  26%  { transform: translate(-30vw, -48vh) scaleX(1) scaleY(1); }
+  28%  { transform: translate(-30vw, -20vh) scaleX(0.88) scaleY(1.12); }
+  29%  { transform: translate(-30vw, 42vh) scaleX(1.42) scaleY(0.58); }
+  33%  { transform: translate(-24vw, -15vh) scaleX(0.88) scaleY(1.12); }
+  35%  { transform: translate(-24vw, -38vh) scaleX(1) scaleY(1); }
+  37%  { transform: translate(-24vw, -15vh) scaleX(0.9) scaleY(1.1); }
+  38%  { transform: translate(-24vw, 42vh) scaleX(1.35) scaleY(0.65); }
+  42%  { transform: translate(-18vw, -11vh) scaleX(0.9) scaleY(1.1); }
+  44%  { transform: translate(-18vw, -28vh) scaleX(1) scaleY(1); }
+  46%  { transform: translate(-18vw, -11vh) scaleX(0.92) scaleY(1.08); }
+  47%  { transform: translate(-18vw, 42vh) scaleX(1.28) scaleY(0.72); }
+  51%  { transform: translate(-13vw, -8vh) scaleX(0.92) scaleY(1.08); }
+  53%  { transform: translate(-13vw, -20vh) scaleX(1) scaleY(1); }
+  55%  { transform: translate(-13vw, -8vh) scaleX(0.94) scaleY(1.06); }
+  56%  { transform: translate(-13vw, 42vh) scaleX(1.22) scaleY(0.78); }
+  60%  { transform: translate(-9vw, -5.5vh) scaleX(0.94) scaleY(1.06); }
+  62%  { transform: translate(-9vw, -14vh) scaleX(1) scaleY(1); }
+  64%  { transform: translate(-9vw, -5.5vh) scaleX(0.95) scaleY(1.05); }
+  65%  { transform: translate(-9vw, 42vh) scaleX(1.16) scaleY(0.84); }
+  69%  { transform: translate(-5.5vw, -3.5vh) scaleX(0.95) scaleY(1.05); }
+  71%  { transform: translate(-5.5vw, -9vh) scaleX(1) scaleY(1); }
+  73%  { transform: translate(-5.5vw, -3.5vh) scaleX(0.96) scaleY(1.04); }
+  74%  { transform: translate(-5.5vw, 42vh) scaleX(1.1) scaleY(0.9); }
+  78%  { transform: translate(-3vw, -2vh) scaleX(0.96) scaleY(1.04); }
+  80%  { transform: translate(-3vw, -5vh) scaleX(1) scaleY(1); }
+  82%  { transform: translate(-3vw, -2vh) scaleX(0.97) scaleY(1.03); }
+  83%  { transform: translate(-3vw, 42vh) scaleX(1.06) scaleY(0.94); }
+  86%  { transform: translate(-1.2vw, -1vh) scaleX(0.97) scaleY(1.03); }
+  88%  { transform: translate(-1.2vw, -2.5vh) scaleX(1) scaleY(1); }
+  90%  { transform: translate(-1.2vw, -0.8vh) scaleX(0.98) scaleY(1.02); }
+  91%  { transform: translate(-1.2vw, 42vh) scaleX(1.03) scaleY(0.97); }
+  94%  { transform: translate(0, -5vh); }
+  96%  { transform: translate(0, 2vh); }
+  98%  { transform: translate(0, -0.5vh); }
+  100% { transform: translate(0, 0) scaleX(1) scaleY(1); opacity: 1; }
+}
+
+/* Ball drops from top-right, bounces off BOTTOM, goes HIGH, settles at center */
+@keyframes bounceInRight {
+  0%   { transform: translate(42vw, -48vh); opacity: 0; }
+  3%   { opacity: 1; }
+  9%   { transform: translate(42vw, 40vh) scaleX(0.82) scaleY(1.18); }
+  10%  { transform: translate(42vw, 42vh) scaleX(1.6) scaleY(0.4); }
+  15%  { transform: translate(36vw, -20vh) scaleX(0.82) scaleY(1.18); }
+  17%  { transform: translate(36vw, -60vh) scaleX(1) scaleY(1); }
+  19%  { transform: translate(36vw, -25vh) scaleX(0.85) scaleY(1.15); }
+  20%  { transform: translate(36vw, 42vh) scaleX(1.5) scaleY(0.5); }
+  24%  { transform: translate(30vw, -18vh) scaleX(0.85) scaleY(1.15); }
+  26%  { transform: translate(30vw, -48vh) scaleX(1) scaleY(1); }
+  28%  { transform: translate(30vw, -20vh) scaleX(0.88) scaleY(1.12); }
+  29%  { transform: translate(30vw, 42vh) scaleX(1.42) scaleY(0.58); }
+  33%  { transform: translate(24vw, -15vh) scaleX(0.88) scaleY(1.12); }
+  35%  { transform: translate(24vw, -38vh) scaleX(1) scaleY(1); }
+  37%  { transform: translate(24vw, -15vh) scaleX(0.9) scaleY(1.1); }
+  38%  { transform: translate(24vw, 42vh) scaleX(1.35) scaleY(0.65); }
+  42%  { transform: translate(18vw, -11vh) scaleX(0.9) scaleY(1.1); }
+  44%  { transform: translate(18vw, -28vh) scaleX(1) scaleY(1); }
+  46%  { transform: translate(18vw, -11vh) scaleX(0.92) scaleY(1.08); }
+  47%  { transform: translate(18vw, 42vh) scaleX(1.28) scaleY(0.72); }
+  51%  { transform: translate(13vw, -8vh) scaleX(0.92) scaleY(1.08); }
+  53%  { transform: translate(13vw, -20vh) scaleX(1) scaleY(1); }
+  55%  { transform: translate(13vw, -8vh) scaleX(0.94) scaleY(1.06); }
+  56%  { transform: translate(13vw, 42vh) scaleX(1.22) scaleY(0.78); }
+  60%  { transform: translate(9vw, -5.5vh) scaleX(0.94) scaleY(1.06); }
+  62%  { transform: translate(9vw, -14vh) scaleX(1) scaleY(1); }
+  64%  { transform: translate(9vw, -5.5vh) scaleX(0.95) scaleY(1.05); }
+  65%  { transform: translate(9vw, 42vh) scaleX(1.16) scaleY(0.84); }
+  69%  { transform: translate(5.5vw, -3.5vh) scaleX(0.95) scaleY(1.05); }
+  71%  { transform: translate(5.5vw, -9vh) scaleX(1) scaleY(1); }
+  73%  { transform: translate(5.5vw, -3.5vh) scaleX(0.96) scaleY(1.04); }
+  74%  { transform: translate(5.5vw, 42vh) scaleX(1.1) scaleY(0.9); }
+  78%  { transform: translate(3vw, -2vh) scaleX(0.96) scaleY(1.04); }
+  80%  { transform: translate(3vw, -5vh) scaleX(1) scaleY(1); }
+  82%  { transform: translate(3vw, -2vh) scaleX(0.97) scaleY(1.03); }
+  83%  { transform: translate(3vw, 42vh) scaleX(1.06) scaleY(0.94); }
+  86%  { transform: translate(1.2vw, -1vh) scaleX(0.97) scaleY(1.03); }
+  88%  { transform: translate(1.2vw, -2.5vh) scaleX(1) scaleY(1); }
+  90%  { transform: translate(1.2vw, -0.8vh) scaleX(0.98) scaleY(1.02); }
+  91%  { transform: translate(1.2vw, 42vh) scaleX(1.03) scaleY(0.97); }
+  94%  { transform: translate(0, -5vh); }
+  96%  { transform: translate(0, 2vh); }
+  98%  { transform: translate(0, -0.5vh); }
+  100% { transform: translate(0, 0) scaleX(1) scaleY(1); opacity: 1; }
+}
+
+/* Glow pulse behind cards */
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
+/* Full page flash bang effect */
+@keyframes flashBang {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  15% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  70% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+
+/* Screen shake */
+@keyframes screenShake {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  10% { transform: translate(-8px, -6px) rotate(-0.5deg); }
+  20% { transform: translate(8px, 4px) rotate(0.5deg); }
+  30% { transform: translate(-6px, 8px) rotate(-0.3deg); }
+  40% { transform: translate(6px, -8px) rotate(0.3deg); }
+  50% { transform: translate(-4px, 6px) rotate(-0.2deg); }
+  60% { transform: translate(4px, -4px) rotate(0.2deg); }
+  70% { transform: translate(-2px, 2px) rotate(-0.1deg); }
+  80% { transform: translate(2px, -2px) rotate(0.1deg); }
+  90% { transform: translate(-1px, 1px); }
+}
+
+/* Shockwave ring expand */
+@keyframes shockwaveExpand {
+  0% {
+    width: 20px;
+    height: 20px;
+    opacity: 1;
+  }
+  100% {
+    width: 200vw;
+    height: 200vw;
+    opacity: 0;
+  }
+}
+
+/* Light ray shoot outward */
+@keyframes rayShoot {
+  0% {
+    height: 0;
+    opacity: 1;
+  }
+  40% {
+    height: 50vh;
+    opacity: 0.8;
+  }
+  100% {
+    height: 120vh;
+    opacity: 0;
+  }
+}
+
+/* clip-path circle expand from click point */
+@keyframes circleExpand {
+  0% {
+    clip-path: circle(0% at var(--cx, 50%) var(--cy, 50%));
+  }
+  100% {
+    clip-path: circle(150% at var(--cx, 50%) var(--cy, 50%));
+  }
+}
+
+/* Final white flash */
+@keyframes whiteFlash {
+  0% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Flash ring expanding outward */
+@keyframes flashRing {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  30% {
+    transform: scale(0.5);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
 /* Smooth Scrolling */
 html {
   scroll-behavior: smooth;

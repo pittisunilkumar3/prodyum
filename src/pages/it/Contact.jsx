@@ -14,8 +14,8 @@ import {
   Facebook,
   AlertCircle
 } from 'lucide-react';
-import ITHeader from '../../components/ITHeader';
-import ITFooter from '../../components/ITFooter';
+import TiltCard from '../../components/TiltCard';
+import ScrollReveal from '../../components/ScrollReveal';
 
 const ITContact = () => {
   const [formData, setFormData] = useState({
@@ -117,7 +117,6 @@ const ITContact = () => {
 
   return (
     <div className="min-h-screen bg-black">
-      <ITHeader />
       
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 bg-gradient-to-br from-gray-900 via-black to-gray-900 overflow-hidden">
@@ -130,16 +129,22 @@ const ITContact = () => {
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center space-x-2 bg-white/10 border border-white/20 rounded-full px-4 py-2 mb-6 backdrop-blur-sm">
-              <MessageSquare className="h-4 w-4 text-prodyum-green-400" />
-              <span className="text-gray-300 text-sm">Get In Touch</span>
-            </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
-              Contact <span className="bg-gradient-to-r from-prodyum-blue-400 to-prodyum-green-400 bg-clip-text text-transparent">Us</span>
-            </h1>
-            <p className="text-xl text-gray-300 leading-relaxed">
-              Have a project in mind? Let's discuss how we can help you achieve your digital goals.
-            </p>
+            <ScrollReveal animation="zoomIn">
+              <div className="inline-flex items-center space-x-2 bg-white/10 border border-white/20 rounded-full px-4 py-2 mb-6 backdrop-blur-sm">
+                <MessageSquare className="h-4 w-4 text-prodyum-green-400" />
+                <span className="text-gray-300 text-sm">Get In Touch</span>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal animation="fadeUp" delay={100}>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
+                Contact <span className="bg-gradient-to-r from-prodyum-blue-400 to-prodyum-green-400 bg-clip-text text-transparent">Us</span>
+              </h1>
+            </ScrollReveal>
+            <ScrollReveal animation="fadeUp" delay={200}>
+              <p className="text-xl text-gray-300 leading-relaxed">
+                Have a project in mind? Let's discuss how we can help you achieve your digital goals.
+              </p>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -160,11 +165,9 @@ const ITContact = () => {
               {/* Contact Cards */}
               <div className="space-y-6">
                 {contactInfo.map((item, index) => (
-                  <div
-                    key={index}
-                    className="bg-gray-900/50 border border-white/10 rounded-2xl p-6 hover:border-prodyum-blue-500/50 transition-all duration-300"
-                  >
-                    <div className="flex items-start gap-4">
+                  <ScrollReveal key={index} animation="fadeLeft" delay={index * 100}>
+                    <TiltCard tiltOptions={{ maxTilt: 5, scale: 1.01 }} className="bg-gray-900/50 border border-white/10 rounded-2xl p-6 hover:border-prodyum-blue-500/50 transition-all duration-300">
+                      <div className="flex items-start gap-4">
                       <div className="h-12 w-12 bg-gradient-to-br from-prodyum-blue-500/20 to-prodyum-green-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
                         <item.icon className="h-6 w-6 text-prodyum-blue-400" />
                       </div>
@@ -185,7 +188,8 @@ const ITContact = () => {
                         ))}
                       </div>
                     </div>
-                  </div>
+                    </TiltCard>
+                  </ScrollReveal>
                 ))}
               </div>
 
@@ -400,7 +404,6 @@ const ITContact = () => {
         </div>
       </section>
 
-      <ITFooter />
     </div>
   );
 };

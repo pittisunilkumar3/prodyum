@@ -3,8 +3,7 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import ITHeader from './components/ITHeader';
-import ITFooter from './components/ITFooter';
+import ITPageWrapper from './components/ITPageWrapper';
 import ScrollToTop from './components/ScrollToTop';
 import { Toaster } from './components/ui/toaster';
 
@@ -35,14 +34,7 @@ const EntertainmentLayout = ({ children }) => (
   </>
 );
 
-// Layout component for IT section
-const ITLayout = ({ children }) => (
-  <>
-    <ITHeader />
-    {children}
-    <ITFooter />
-  </>
-);
+
 
 function App() {
   return (
@@ -54,15 +46,15 @@ function App() {
           <Route path="/" element={<Landing />} />
           
           {/* IT Prodyum - Main Website */}
-          <Route path="/it" element={<ITHome />} />
-          <Route path="/it/services" element={<ITServices />} />
-          <Route path="/it/portfolio" element={<ITPortfolio />} />
-          <Route path="/it/about" element={<ITAbout />} />
-          <Route path="/it/careers" element={<ITCareers />} />
-          <Route path="/it/contact" element={<ITContact />} />
+          <Route path="/it" element={<ITPageWrapper><ITHome /></ITPageWrapper>} />
+          <Route path="/it/services" element={<ITPageWrapper><ITServices /></ITPageWrapper>} />
+          <Route path="/it/portfolio" element={<ITPageWrapper><ITPortfolio /></ITPageWrapper>} />
+          <Route path="/it/about" element={<ITPageWrapper><ITAbout /></ITPageWrapper>} />
+          <Route path="/it/careers" element={<ITPageWrapper><ITCareers /></ITPageWrapper>} />
+          <Route path="/it/contact" element={<ITPageWrapper><ITContact /></ITPageWrapper>} />
           
           {/* Legacy IT route redirect */}
-          <Route path="/it-prodyum" element={<ITHome />} />
+          <Route path="/it-prodyum" element={<ITPageWrapper><ITHome /></ITPageWrapper>} />
           
           {/* Prodyum Entertainments - Main Website */}
           <Route path="/entertainment" element={<EntertainmentLayout><Home /></EntertainmentLayout>} />

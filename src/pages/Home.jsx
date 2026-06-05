@@ -7,7 +7,7 @@ import { projects, services } from '../mock';
 import TestimonialSection from '../components/TestimonialSection';
 import TeamSection from '../components/TeamSection';
 import TimelineSection from '../components/TimelineSection';
-
+import { AnimatedShinyText, NumberTicker, TextGenerateEffect, SparklesCore, BorderBeam, Spotlight, ScrollRevealPro } from '../components/animations';
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isVisible, setIsVisible] = useState({});
@@ -48,7 +48,7 @@ const Home = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section with Slider */}
+      {/* Hero Section with Slider + Sparkles + Spotlight */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Background Slider */}
         {heroProjects.map((project, index) => (
@@ -58,7 +58,7 @@ const Home = () => {
               index === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-110'
             }`}
           >
-            <div className="absolute inset-0 bg-black/60 z-10" />
+            <div className="absolute inset-0 bg-black/60" />
             <img
               src={project.thumbnail}
               alt={project.title}
@@ -68,28 +68,53 @@ const Home = () => {
           </div>
         ))}
 
+        {/* Sparkles on top of slider - 21st.dev style */}
+        <div className="absolute inset-0 z-[5] pointer-events-none">
+          <SparklesCore
+            particleCount={80}
+            particleColor="#4CAF50"
+            minSize={0.3}
+            maxSize={1.2}
+            speed={0.5}
+            className="w-full h-full"
+          />
+        </div>
+
+        {/* Spotlight on top - 21st.dev style */}
+        <Spotlight
+          className="z-[6]"
+          fill="rgba(30, 136, 229, 0.08)"
+          gradientSize={400}
+        />
+
         {/* Content */}
         <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-5xl mx-auto text-center space-y-8">
-            {/* Animated Badge */}
+            {/* Animated Badge with Shiny Text - 21st.dev style */}
             <div 
-              className="inline-flex items-center space-x-2 bg-prodyum-lime-500/10 border border-prodyum-lime-500/20 rounded-full px-4 py-2 backdrop-blur-sm animate-fade-in"
-              style={{ animationDelay: '0.2s', opacity: 0, animation: 'fadeInUp 1s ease-out 0.2s forwards' }}
+              className="inline-flex items-center space-x-2 bg-prodyum-lime-500/10 border border-prodyum-lime-500/20 rounded-full px-4 py-2 backdrop-blur-sm"
+              style={{ animation: 'fadeInUp 1s ease-out 0.2s forwards', opacity: 0 }}
             >
               <Sparkles className="h-4 w-4 text-prodyum-lime-500" />
-              <span className="text-prodyum-lime-500 text-sm font-medium">Premium Content Production</span>
+              <AnimatedShinyText className="text-prodyum-lime-500 text-sm font-medium" speed={4}>
+                Premium Content Production
+              </AnimatedShinyText>
             </div>
 
-            {/* Main Heading with Reveal Effect */}
+            {/* Main Heading with Text Generate Effect - 21st.dev style */}
             <div className="overflow-hidden">
               <h1 
                 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight"
-                style={{ opacity: 0, animation: 'revealText 1.5s ease-out 0.5s forwards' }}
               >
                 <span className="block text-white mb-2 spotlight-text">SPOTLIGHT</span>
                 <span className="block text-6xl sm:text-7xl lg:text-8xl xl:text-9xl">
                   <span className="spotlight-gradient">
-                    {heroProjects[currentSlide].title.toUpperCase()}
+                    <TextGenerateEffect
+                      words={heroProjects[currentSlide].title.toUpperCase()}
+                      duration={0.8}
+                      delay={0.5}
+                      type="character"
+                    />
                   </span>
                 </span>
               </h1>
@@ -236,13 +261,17 @@ const Home = () => {
                 <div className="absolute -bottom-6 -right-6 grid grid-cols-2 gap-4">
                   <Card className="bg-black/90 border-prodyum-green-500/30 backdrop-blur-md">
                     <CardContent className="p-4 text-center">
-                      <div className="text-3xl font-bold text-prodyum-green-500">15+</div>
+                      <div className="text-3xl font-bold text-prodyum-green-500">
+                        <NumberTicker value={15} suffix="+" duration={2} delay={0.5} />
+                      </div>
                       <div className="text-xs text-gray-400">Projects</div>
                     </CardContent>
                   </Card>
                   <Card className="bg-black/90 border-prodyum-lime-500/30 backdrop-blur-md">
                     <CardContent className="p-4 text-center">
-                      <div className="text-3xl font-bold text-prodyum-lime-500">100%</div>
+                      <div className="text-3xl font-bold text-prodyum-lime-500">
+                        <NumberTicker value={100} suffix="%" duration={2} delay={0.7} />
+                      </div>
                       <div className="text-xs text-gray-400">Quality</div>
                     </CardContent>
                   </Card>
@@ -269,13 +298,24 @@ const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {latestProjects.map((project, index) => (
-              <Card
+              <ScrollRevealPro
                 key={project.id}
-                className={`bg-neutral-900 border-white/10 overflow-hidden group hover:border-prodyum-lime-500/50 transition-all duration-700 hover:shadow-2xl hover:shadow-prodyum-lime-500/20 ${
-                  isVisible['section-projects'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
-                }`}
-                style={{ transitionDelay: `${index * 150}ms` }}
+                effect="fade-up"
+                duration={0.6}
+                delay={index * 0.15}
+                className="h-full"
               >
+              <Card
+                className="relative bg-neutral-900 border-white/10 overflow-hidden group hover:border-prodyum-lime-500/50 transition-all duration-700 hover:shadow-2xl hover:shadow-prodyum-lime-500/20 h-full"
+              >
+                {/* BorderBeam - 21st.dev style */}
+                <BorderBeam
+                  size={120}
+                  duration={10}
+                  colorFrom="#1E88E5"
+                  colorTo="#8BC34A"
+                  borderWidth={2}
+                />
                 <div className="relative overflow-hidden aspect-video">
                   <img
                     src={project.thumbnail}
@@ -315,6 +355,7 @@ const Home = () => {
                   </Button>
                 </CardContent>
               </Card>
+              </ScrollRevealPro>
             ))}
           </div>
 
@@ -349,13 +390,23 @@ const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {featuredServices.map((service, index) => (
-              <Card
+              <ScrollRevealPro
                 key={service.id}
-                className={`bg-black border-white/10 hover:border-prodyum-green-500/50 transition-all duration-500 hover:shadow-xl hover:shadow-prodyum-green-500/10 group ${
-                  isVisible['section-services'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
-                }`}
-                style={{ transitionDelay: `${index * 100}ms` }}
+                effect="zoom-in"
+                duration={0.5}
+                delay={index * 0.1}
               >
+              <Card
+                className="relative bg-black border-white/10 hover:border-prodyum-green-500/50 transition-all duration-500 hover:shadow-xl hover:shadow-prodyum-green-500/10 group h-full"
+              >
+                {/* BorderBeam - 21st.dev style */}
+                <BorderBeam
+                  size={80}
+                  duration={12}
+                  colorFrom="#4CAF50"
+                  colorTo="#8BC34A"
+                  borderWidth={1.5}
+                />
                 <CardContent className="p-8 text-center">
                   <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-prodyum-green-500/20 mb-6 group-hover:bg-prodyum-green-500/30 transition-all duration-300 group-hover:scale-110">
                     {index === 0 && <Film className="h-8 w-8 text-prodyum-green-500" />}
@@ -372,6 +423,7 @@ const Home = () => {
                   <p className="text-gray-400 text-sm leading-relaxed">{service.description}</p>
                 </CardContent>
               </Card>
+              </ScrollRevealPro>
             ))}
           </div>
 
@@ -473,18 +525,20 @@ const Home = () => {
                       </div>
                     </div>
 
-                    {/* Slide 3: Stats */}
+                    {/* Slide 3: Stats with NumberTicker - 21st.dev style */}
                     <div className="bg-gradient-to-br from-prodyum-lime-500/10 to-prodyum-blue-500/10 rounded-xl p-8 border border-white/10">
                       <h3 className="text-2xl font-bold text-white mb-6 text-center">Our <span className="text-prodyum-lime-500">Achievements</span></h3>
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                         {[
-                          { value: '15+', label: 'Projects Completed' },
-                          { value: '5+', label: 'Years Experience' },
-                          { value: '25+', label: 'Team Members' },
-                          { value: '8+', label: 'Awards Won' }
+                          { value: 15, suffix: '+', label: 'Projects Completed' },
+                          { value: 5, suffix: '+', label: 'Years Experience' },
+                          { value: 25, suffix: '+', label: 'Team Members' },
+                          { value: 8, suffix: '+', label: 'Awards Won' }
                         ].map((stat, index) => (
                           <div key={index} className="text-center">
-                            <div className="text-4xl font-bold text-prodyum-lime-500 mb-2">{stat.value}</div>
+                            <div className="text-4xl font-bold text-prodyum-lime-500 mb-2">
+                              <NumberTicker value={stat.value} suffix={stat.suffix} duration={2} delay={index * 0.2} />
+                            </div>
                             <div className="text-gray-400 text-sm">{stat.label}</div>
                           </div>
                         ))}
