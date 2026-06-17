@@ -8,12 +8,20 @@ import SmokeCursor from './SmokeCursor';
 
 const ITPageWrapper = ({ children }) => {
   const [loading, setLoading] = useState(true);
+  const [fadeIn, setFadeIn] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
     setLoading(true);
+    setFadeIn(false);
     const timer = setTimeout(() => {
       setLoading(false);
+      // Trigger fade-in after a frame
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setFadeIn(true);
+        });
+      });
     }, 1000);
     return () => clearTimeout(timer);
   }, [location.pathname]);
@@ -33,7 +41,13 @@ const ITPageWrapper = ({ children }) => {
   }
 
   return (
-    <>
+    <div
+      style={{
+        opacity: fadeIn ? 1 : 0,
+        transform: fadeIn ? 'translateY(0)' : 'translateY(8px)',
+        transition: 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+      }}
+    >
       <SmokeCursor />
       <ITBackground3D />
       <div className="relative" style={{ zIndex: 2 }}>
@@ -41,7 +55,7 @@ const ITPageWrapper = ({ children }) => {
         {children}
         <ITFooter />
       </div>
-    </>
+    </div>
   );
 };
 

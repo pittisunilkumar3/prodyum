@@ -16,6 +16,9 @@ import {
 } from 'lucide-react';
 import TiltCard from '../../components/TiltCard';
 import ScrollReveal from '../../components/ScrollReveal';
+import { AnimatedShinyText, SparklesCore, BackgroundBeams, MorphingBlob, StaggeredList, MagneticButton, RippleHover } from '../../components/animations';
+import Spotlight from '../../components/animations/Spotlight';
+import DotPattern from '../../components/animations/DotPattern';
 
 const ITContact = () => {
   const [formData, setFormData] = useState({
@@ -125,6 +128,8 @@ const ITContact = () => {
             backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
             backgroundSize: '40px 40px'
           }} />
+        <SparklesCore particleCount={30} particleColor="#1E88E5" className="absolute inset-0 w-full h-full" background="transparent" />
+        <MorphingBlob color="rgba(76,175,80,0.05)" size={300} speed={7} className="absolute -bottom-10 -right-10" />
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -132,7 +137,7 @@ const ITContact = () => {
             <ScrollReveal animation="zoomIn">
               <div className="inline-flex items-center space-x-2 bg-white/10 border border-white/20 rounded-full px-4 py-2 mb-6 backdrop-blur-sm">
                 <MessageSquare className="h-4 w-4 text-prodyum-green-400" />
-                <span className="text-gray-300 text-sm">Get In Touch</span>
+                <AnimatedShinyText className="text-gray-300 text-sm">Get In Touch</AnimatedShinyText>
               </div>
             </ScrollReveal>
             <ScrollReveal animation="fadeUp" delay={100}>
@@ -163,10 +168,9 @@ const ITContact = () => {
               </div>
 
               {/* Contact Cards */}
-              <div className="space-y-6">
+              <StaggeredList className="space-y-6" staggerDelay={150} animation="fadeLeft">
                 {contactInfo.map((item, index) => (
-                  <ScrollReveal key={index} animation="fadeLeft" delay={index * 100}>
-                    <TiltCard tiltOptions={{ maxTilt: 5, scale: 1.01 }} className="bg-gray-900/50 border border-white/10 rounded-2xl p-6 hover:border-prodyum-blue-500/50 transition-all duration-300">
+                    <TiltCard key={index} tiltOptions={{ maxTilt: 5, scale: 1.01 }} className="bg-gray-900/50 border border-white/10 rounded-2xl p-6 hover:border-prodyum-blue-500/50 transition-all duration-300">
                       <div className="flex items-start gap-4">
                       <div className="h-12 w-12 bg-gradient-to-br from-prodyum-blue-500/20 to-prodyum-green-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
                         <item.icon className="h-6 w-6 text-prodyum-blue-400" />
@@ -189,9 +193,8 @@ const ITContact = () => {
                       </div>
                     </div>
                     </TiltCard>
-                  </ScrollReveal>
                 ))}
-              </div>
+              </StaggeredList>
 
               {/* Social Links */}
               <div className="pt-8 border-t border-white/10">
@@ -219,7 +222,8 @@ const ITContact = () => {
 
             {/* Contact Form */}
             <div className="lg:col-span-2">
-              <div className="bg-gray-900/50 border border-white/10 rounded-3xl p-8 md:p-10">
+              <RippleHover className="bg-gray-900/50 border border-white/10 rounded-3xl p-8 md:p-10 relative overflow-hidden" rippleColor="rgba(30,136,229,0.1)">
+                <Spotlight className="absolute inset-0" fill="rgba(30,136,229,0.03)" />
                 <h2 className="text-2xl font-bold text-white mb-6">Send Us a Message</h2>
                 
                 {isSubmitted && (
@@ -346,14 +350,16 @@ const ITContact = () => {
                     )}
                   </Button>
                 </form>
-              </div>
+              </RippleHover>
             </div>
           </div>
         </div>
       </section>
 
       {/* Map Section */}
-      <section className="py-16 bg-gray-900">
+      <section className="py-16 bg-gray-900 relative overflow-hidden">
+        <BackgroundBeams className="absolute inset-0" beamColor="rgba(30,136,229,0.15)" beamCount={4} speed={3} />
+        <DotPattern className="absolute inset-0 opacity-20" dotSize={1} gap={30} color="#1E88E5" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-black/50 border border-white/10 rounded-3xl overflow-hidden h-96 flex items-center justify-center">
             <div className="text-center">
@@ -373,7 +379,7 @@ const ITContact = () => {
             <p className="text-gray-400">Quick answers to common questions</p>
           </div>
 
-          <div className="max-w-3xl mx-auto space-y-6">
+          <StaggeredList className="max-w-3xl mx-auto space-y-6" staggerDelay={100} animation="fadeUp">
             {[
               {
                 question: 'How long does it take to complete a website?',
@@ -400,7 +406,7 @@ const ITContact = () => {
                 <p className="text-gray-400">{faq.answer}</p>
               </div>
             ))}
-          </div>
+          </StaggeredList>
         </div>
       </section>
 

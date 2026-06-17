@@ -518,3 +518,72 @@ button:hover {
   pointer-events: none;
   z-index: 100;
 }
+
+/* Glitch animation keyframes */
+@keyframes glitch-shift-subtle {
+  0% { clip-path: inset(40% 0 61% 0); transform: translate(-2px, 2px); }
+  20% { clip-path: inset(92% 0 1% 0); transform: translate(1px, -1px); }
+  40% { clip-path: inset(43% 0 1% 0); transform: translate(-1px, 3px); }
+  60% { clip-path: inset(25% 0 58% 0); transform: translate(3px, 1px); }
+  80% { clip-path: inset(54% 0 7% 0); transform: translate(-2px, -2px); }
+  100% { clip-path: inset(58% 0 43% 0); transform: translate(2px, -1px); }
+}
+
+@keyframes glitch-shift-medium {
+  0% { clip-path: inset(10% 0 85% 0); transform: translate(-5px, 3px); }
+  20% { clip-path: inset(75% 0 5% 0); transform: translate(4px, -2px); }
+  40% { clip-path: inset(30% 0 50% 0); transform: translate(-3px, 5px); }
+  60% { clip-path: inset(55% 0 20% 0); transform: translate(5px, -3px); }
+  80% { clip-path: inset(5% 0 70% 0); transform: translate(-4px, 2px); }
+  100% { clip-path: inset(65% 0 10% 0); transform: translate(3px, -4px); }
+}
+
+@keyframes glitch-shift-intense {
+  0% { clip-path: inset(5% 0 80% 0); transform: translate(-8px, 5px); }
+  20% { clip-path: inset(80% 0 2% 0); transform: translate(7px, -4px); }
+  40% { clip-path: inset(20% 0 60% 0); transform: translate(-6px, 8px); }
+  60% { clip-path: inset(60% 0 10% 0); transform: translate(9px, -5px); }
+  80% { clip-path: inset(2% 0 80% 0); transform: translate(-7px, 3px); }
+  100% { clip-path: inset(70% 0 5% 0); transform: translate(5px, -7px); }
+}
+
+/* Ripple expand animation */
+@keyframes ripple-expand {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+/* Gradient text shift animation */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient-shift {
+  animation: gradient-shift 4s ease infinite;
+}
+
+/* Shiny text animation */
+@keyframes shiny-text {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Pulse glow for dot patterns */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+/* Border beam spin */
+@keyframes border-beam-spin {
+  from { transform: translate(-50%, -50%) rotate(0deg) translateX(200%); }
+  to { transform: translate(-50%, -50%) rotate(360deg) translateX(200%); }
+}

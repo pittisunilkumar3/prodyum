@@ -24,6 +24,9 @@ import {
 } from 'lucide-react';
 import TiltCard from '../../components/TiltCard';
 import ScrollReveal from '../../components/ScrollReveal';
+import { NumberTicker, AnimatedShinyText, SparklesCore, BorderBeam, BackgroundBeams, TypingText, MagneticButton, MorphingBlob, StaggeredList, GlitchText } from '../../components/animations';
+import Spotlight from '../../components/animations/Spotlight';
+import DotPattern from '../../components/animations/DotPattern';
 
 const ITHome = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -121,6 +124,9 @@ const ITHome = () => {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900">
         {/* Animated grid floor */}
         <div className="absolute inset-0 overflow-hidden">
+          <SparklesCore particleCount={40} particleColor="#4CAF50" className="absolute inset-0 w-full h-full" background="transparent" />
+          <MorphingBlob color="rgba(30, 136, 229, 0.06)" size={500} speed={6} className="absolute -top-20 -right-20" />
+          <MorphingBlob color="rgba(76, 175, 80, 0.05)" size={400} speed={8} className="absolute -bottom-20 -left-20" />
           <div
             className="absolute inset-0 opacity-[0.07]"
             style={{
@@ -148,7 +154,7 @@ const ITHome = () => {
             <ScrollReveal animation="zoomIn" duration={800}>
               <div className="inline-flex items-center space-x-2 bg-white/10 border border-white/20 rounded-full px-4 py-2 mb-8 backdrop-blur-sm">
                 <Zap className="h-4 w-4 text-prodyum-green-400" />
-                <span className="text-gray-300 text-sm">Digital Solutions Partner</span>
+                <AnimatedShinyText className="text-gray-300 text-sm">Digital Solutions Partner</AnimatedShinyText>
               </div>
             </ScrollReveal>
 
@@ -156,10 +162,14 @@ const ITHome = () => {
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
                 <span className="text-white">Helping Businesses Grow Through</span>
                 <br />
-                <span className="bg-gradient-to-r from-prodyum-blue-400 via-prodyum-green-400 to-prodyum-lime-400 bg-clip-text text-transparent">
+                <GlitchText className="bg-gradient-to-r from-prodyum-blue-400 via-prodyum-green-400 to-prodyum-lime-400 bg-clip-text text-transparent" glitchOnHover={true} intensity="subtle">
                   Digital Marketing & Technology
-                </span>
+                </GlitchText>
               </h1>
+            </ScrollReveal>
+
+            <ScrollReveal animation="fadeUp" delay={300}>
+              <p className="text-lg text-prodyum-green-400 font-mono mt-2"><TypingText text="Digital Marketing • Branding • Web Development • Video Production" speed={35} delay={800} /></p>
             </ScrollReveal>
 
             <ScrollReveal animation="fadeUp" delay={400}>
@@ -171,6 +181,7 @@ const ITHome = () => {
 
             <ScrollReveal animation="flipUp" delay={600}>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <MagneticButton>
                 <Button
                   asChild
                   size="lg"
@@ -180,6 +191,8 @@ const ITHome = () => {
                     Our Services <ArrowRight className="h-5 w-5" />
                   </Link>
                 </Button>
+                </MagneticButton>
+                <MagneticButton>
                 <Button
                   asChild
                   size="lg"
@@ -188,6 +201,7 @@ const ITHome = () => {
                 >
                   <Link to="/it/contact">Contact Us</Link>
                 </Button>
+                </MagneticButton>
               </div>
             </ScrollReveal>
           </div>
@@ -257,7 +271,7 @@ const ITHome = () => {
                       <div className="h-12 w-12 bg-prodyum-blue-500/20 rounded-xl flex items-center justify-center mb-4">
                         <Users className="h-6 w-6 text-prodyum-blue-400" />
                       </div>
-                      <h3 className="text-2xl font-bold text-white mb-2">100+</h3>
+                      <h3 className="text-2xl font-bold text-white mb-2"><NumberTicker value={100} duration={2} suffix="+" /></h3>
                       <p className="text-gray-400">Happy Clients</p>
                     </TiltCard>
                   </ScrollReveal>
@@ -266,7 +280,7 @@ const ITHome = () => {
                       <div className="h-12 w-12 bg-white/20 rounded-xl flex items-center justify-center mb-4">
                         <Award className="h-6 w-6 text-white" />
                       </div>
-                      <h3 className="text-2xl font-bold text-white mb-2">50+</h3>
+                      <h3 className="text-2xl font-bold text-white mb-2"><NumberTicker value={50} duration={2} suffix="+" /></h3>
                       <p className="text-white/80">Projects Delivered</p>
                     </TiltCard>
                   </ScrollReveal>
@@ -277,7 +291,7 @@ const ITHome = () => {
                       <div className="h-12 w-12 bg-prodyum-green-500/20 rounded-xl flex items-center justify-center mb-4">
                         <Target className="h-6 w-6 text-prodyum-green-400" />
                       </div>
-                      <h3 className="text-2xl font-bold text-white mb-2">5+</h3>
+                      <h3 className="text-2xl font-bold text-white mb-2"><NumberTicker value={5} duration={2} suffix="+" /></h3>
                       <p className="text-gray-400">Years Experience</p>
                     </TiltCard>
                   </ScrollReveal>
@@ -286,7 +300,7 @@ const ITHome = () => {
                       <div className="h-12 w-12 bg-prodyum-lime-500/20 rounded-xl flex items-center justify-center mb-4">
                         <Zap className="h-6 w-6 text-prodyum-lime-400" />
                       </div>
-                      <h3 className="text-2xl font-bold text-white mb-2">24/7</h3>
+                      <h3 className="text-2xl font-bold text-white mb-2"><NumberTicker value={24} duration={2} suffix="/7" /></h3>
                       <p className="text-gray-400">Support Available</p>
                     </TiltCard>
                   </ScrollReveal>
@@ -347,6 +361,7 @@ const ITHome = () => {
                       </ul>
                     </div>
                   </div>
+                  <BorderBeam size={100} duration={12} colorFrom="#1E88E5" colorTo="#4CAF50" />
                 </TiltCard>
               </ScrollReveal>
             ))}
@@ -388,10 +403,10 @@ const ITHome = () => {
             </ScrollReveal>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+          <StaggeredList className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6" staggerDelay={100} animation="scaleIn">
             {industries.map((industry, index) => (
-              <ScrollReveal key={index} animation="zoomIn" delay={index * 100}>
                 <TiltCard
+                  key={index}
                   tiltOptions={{ maxTilt: 15, scale: 1.05 }}
                   className="group bg-white/5 border border-white/10 rounded-2xl p-6 text-center hover:bg-white/10 hover:border-prodyum-green-500/50 transition-all duration-300 cursor-default"
                 >
@@ -400,15 +415,15 @@ const ITHome = () => {
                   </div>
                   <h3 className="text-white font-medium text-sm">{industry.name}</h3>
                 </TiltCard>
-              </ScrollReveal>
             ))}
-          </div>
+          </StaggeredList>
         </div>
       </section>
 
       {/* Why Choose Us Section */}
       <section className="py-20 lg:py-32 bg-gray-900">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <Spotlight className="absolute inset-0 rounded-3xl" fill="rgba(76, 175, 80, 0.08)" gradientSize={400} />
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <ScrollReveal animation="fadeLeft">
@@ -493,6 +508,8 @@ const ITHome = () => {
                   }}
                 />
               </div>
+              <BackgroundBeams className="absolute inset-0 rounded-3xl" beamColor="rgba(255,255,255,0.04)" beamCount={6} />
+              <DotPattern className="absolute inset-0" gap={20} color="rgba(255,255,255,0.05)" animated={false} />
 
               <div className="relative z-10">
                 <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">

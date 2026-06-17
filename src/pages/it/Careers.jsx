@@ -16,6 +16,9 @@ import {
 } from 'lucide-react';
 import TiltCard from '../../components/TiltCard';
 import ScrollReveal from '../../components/ScrollReveal';
+import { AnimatedShinyText, SparklesCore, BorderBeam, BackgroundBeams, MorphingBlob, MagneticButton, StaggeredList, TypingText } from '../../components/animations';
+import Spotlight from '../../components/animations/Spotlight';
+import DotPattern from '../../components/animations/DotPattern';
 
 const ITCareers = () => {
   const [selectedJob, setSelectedJob] = useState(null);
@@ -98,6 +101,18 @@ const ITCareers = () => {
       
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 bg-gradient-to-br from-gray-900 via-black to-gray-900 overflow-hidden">
+        <SparklesCore
+          particleCount={30}
+          particleColor="#4CAF50"
+          className="absolute inset-0 w-full h-full"
+          background="transparent"
+        />
+        <MorphingBlob
+          color="rgba(30,136,229,0.05)"
+          size={300}
+          speed={8}
+          className="absolute -top-10 -left-10"
+        />
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
             backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
@@ -110,7 +125,7 @@ const ITCareers = () => {
             <ScrollReveal animation="zoomIn">
               <div className="inline-flex items-center space-x-2 bg-white/10 border border-white/20 rounded-full px-4 py-2 mb-6 backdrop-blur-sm">
                 <Briefcase className="h-4 w-4 text-prodyum-green-400" />
-                <span className="text-gray-300 text-sm">Join Our Team</span>
+                <AnimatedShinyText className="text-sm">Join Our Team</AnimatedShinyText>
               </div>
             </ScrollReveal>
             <ScrollReveal animation="fadeUp" delay={100}>
@@ -122,12 +137,16 @@ const ITCareers = () => {
               Join ProDyum IT Pvt Ltd and be part of a growing team working in Digital Marketing, 
               Technology, and Creative Media.
             </p>
+            <p className="text-gray-400 font-mono text-sm mt-4">
+              <TypingText text="We are hiring! Check out our open positions below." speed={30} delay={600} />
+            </p>
           </div>
         </div>
       </section>
 
       {/* Why Join Us */}
-      <section className="py-16 lg:py-24 bg-gray-900">
+      <section className="py-16 lg:py-24 bg-gray-900 relative">
+        <Spotlight className="absolute inset-0" fill="rgba(30,136,229,0.03)" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <ScrollReveal animation="fadeUp">
@@ -147,24 +166,28 @@ const ITCareers = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <StaggeredList className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" staggerDelay={100} animation="scaleIn">
             {benefits.map((benefit, index) => (
-              <ScrollReveal key={index} animation="flipUp" delay={index * 100}>
-                <TiltCard className="bg-black/50 border border-white/10 rounded-2xl p-8 text-center hover:border-prodyum-blue-500/50 transition-all duration-300 group h-full">
-                  <div className="h-16 w-16 bg-gradient-to-br from-prodyum-blue-500/20 to-prodyum-green-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <benefit.icon className="h-8 w-8 text-prodyum-blue-400" />
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-3">{benefit.title}</h3>
-                  <p className="text-gray-400">{benefit.description}</p>
-                </TiltCard>
-              </ScrollReveal>
+              <TiltCard key={index} className="bg-black/50 border border-white/10 rounded-2xl p-8 text-center hover:border-prodyum-blue-500/50 transition-all duration-300 group h-full">
+                <div className="h-16 w-16 bg-gradient-to-br from-prodyum-blue-500/20 to-prodyum-green-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <benefit.icon className="h-8 w-8 text-prodyum-blue-400" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">{benefit.title}</h3>
+                <p className="text-gray-400">{benefit.description}</p>
+              </TiltCard>
             ))}
-          </div>
+          </StaggeredList>
         </div>
       </section>
 
       {/* Current Openings */}
-      <section className="py-16 lg:py-24 bg-black">
+      <section className="py-16 lg:py-24 bg-black relative overflow-hidden">
+        <MorphingBlob
+          color="rgba(76,175,80,0.04)"
+          size={350}
+          speed={10}
+          className="absolute -bottom-20 -right-20"
+        />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <div className="inline-flex items-center space-x-2 bg-prodyum-green-500/10 border border-prodyum-green-500/20 rounded-full px-4 py-2 mb-6">
@@ -311,23 +334,27 @@ const ITCareers = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-prodyum-blue-600 to-prodyum-green-600">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="py-20 bg-gradient-to-r from-prodyum-blue-600 to-prodyum-green-600 relative overflow-hidden">
+        <BackgroundBeams className="absolute inset-0" beamColor="rgba(255,255,255,0.08)" beamCount={5} speed={3} />
+        <DotPattern className="absolute inset-0 opacity-10" dotSize={2} gap={30} color="white" animated />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Don't See the Right Role?
           </h2>
           <p className="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
             We're always looking for talented individuals. Send us your resume!
           </p>
-          <Button
-            asChild
-            size="lg"
-            className="bg-white text-prodyum-blue-600 hover:bg-gray-100 font-bold px-8"
-          >
-            <a href="mailto:hr@prodyum.in" className="flex items-center gap-2">
-              Send Your Resume <ArrowRight className="h-5 w-5" />
-            </a>
-          </Button>
+          <MagneticButton strength={0.3} radius={150}>
+            <Button
+              asChild
+              size="lg"
+              className="bg-white text-prodyum-blue-600 hover:bg-gray-100 font-bold px-8"
+            >
+              <a href="mailto:hr@prodyum.in" className="flex items-center gap-2">
+                Send Your Resume <ArrowRight className="h-5 w-5" />
+              </a>
+            </Button>
+          </MagneticButton>
         </div>
       </section>
 

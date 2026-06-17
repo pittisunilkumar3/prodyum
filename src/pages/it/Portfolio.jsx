@@ -12,6 +12,8 @@ import {
 } from 'lucide-react';
 import TiltCard from '../../components/TiltCard';
 import ScrollReveal from '../../components/ScrollReveal';
+import { NumberTicker, AnimatedShinyText, SparklesCore, BorderBeam, BackgroundBeams, MorphingBlob, StaggeredList } from '../../components/animations';
+import DotPattern from '../../components/animations/DotPattern';
 
 const ITPortfolio = () => {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -60,13 +62,16 @@ const ITPortfolio = () => {
             backgroundSize: '40px 40px',
           }} />
         </div>
+        <SparklesCore particleCount={35} particleColor="#4CAF50" className="absolute inset-0 w-full h-full" background="transparent" />
+        <MorphingBlob color="rgba(30, 136, 229, 0.06)" size={300} speed={9} className="absolute -bottom-10 -left-10" />
+
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <ScrollReveal animation="zoomIn">
               <div className="inline-flex items-center space-x-2 bg-white/10 border border-white/20 rounded-full px-4 py-2 mb-6 backdrop-blur-sm">
                 <Image className="h-4 w-4 text-prodyum-green-400" />
-                <span className="text-gray-300 text-sm">Our Work</span>
+                <AnimatedShinyText className="text-gray-300 text-sm">Our Work</AnimatedShinyText>
               </div>
             </ScrollReveal>
             <ScrollReveal animation="fadeUp" delay={100}>
@@ -111,14 +116,14 @@ const ITPortfolio = () => {
       {/* Portfolio Grid */}
       <section className="py-16 lg:py-24 bg-black">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <StaggeredList className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" staggerDelay={80} animation="fadeUp">
             {filteredProjects.map((project, index) => {
               const CategoryIcon = getCategoryIcon(project.category);
               return (
-                <ScrollReveal key={project.id} animation="flipUp" delay={index * 80}>
                   <TiltCard
+                    key={project.id}
                     tiltOptions={{ maxTilt: 8, scale: 1.02 }}
-                    className="group bg-gray-900/50 border border-white/10 rounded-2xl overflow-hidden hover:border-prodyum-blue-500/50 transition-all duration-500 h-full"
+                    className="group bg-gray-900/50 border border-white/10 rounded-2xl overflow-hidden hover:border-prodyum-blue-500/50 transition-all duration-500 h-full relative"
                   >
                     {/* Project Image Placeholder */}
                     <div className="relative h-64 bg-gradient-to-br from-gray-800 to-gray-900 overflow-hidden">
@@ -146,11 +151,11 @@ const ITPortfolio = () => {
                       </h3>
                       <p className="text-gray-400 text-sm">{project.description}</p>
                     </div>
+                    <BorderBeam size={80} duration={14} colorFrom="#1E88E5" colorTo="#4CAF50" />
                   </TiltCard>
-                </ScrollReveal>
               );
             })}
-          </div>
+          </StaggeredList>
 
           {filteredProjects.length === 0 && (
             <div className="text-center py-16">
@@ -167,15 +172,15 @@ const ITPortfolio = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { value: '50+', label: 'Projects Completed' },
-              { value: '100+', label: 'Happy Clients' },
-              { value: '5+', label: 'Years Experience' },
-              { value: '15+', label: 'Team Members' },
+              { tickerValue: 50, label: 'Projects Completed' },
+              { tickerValue: 100, label: 'Happy Clients' },
+              { tickerValue: 5, label: 'Years Experience' },
+              { tickerValue: 15, label: 'Team Members' },
             ].map((stat, index) => (
               <ScrollReveal key={index} animation="zoomIn" delay={index * 100}>
                 <TiltCard tiltOptions={{ maxTilt: 10, scale: 1.03 }} className="text-center p-6">
                   <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-prodyum-blue-500 to-prodyum-green-500 bg-clip-text text-transparent mb-2">
-                    {stat.value}
+                    <NumberTicker value={stat.tickerValue} duration={2} suffix="+" />
                   </div>
                   <p className="text-gray-400">{stat.label}</p>
                 </TiltCard>
@@ -186,7 +191,10 @@ const ITPortfolio = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-prodyum-blue-600 to-prodyum-green-600">
+      <section className="py-20 bg-gradient-to-r from-prodyum-blue-600 to-prodyum-green-600 relative overflow-hidden">
+        <BackgroundBeams className="absolute inset-0" />
+        <DotPattern className="absolute inset-0 opacity-20" />
+        <div className="relative z-10">
         <ScrollReveal animation="zoomIn">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
@@ -206,6 +214,7 @@ const ITPortfolio = () => {
             </Button>
           </div>
         </ScrollReveal>
+        </div>
       </section>
     </div>
   );

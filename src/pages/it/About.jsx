@@ -17,6 +17,9 @@ import {
 } from 'lucide-react';
 import TiltCard from '../../components/TiltCard';
 import ScrollReveal from '../../components/ScrollReveal';
+import { NumberTicker, AnimatedShinyText, SparklesCore, BorderBeam, BackgroundBeams, MorphingBlob, StaggeredList, TypingText } from '../../components/animations';
+import Spotlight from '../../components/animations/Spotlight';
+import DotPattern from '../../components/animations/DotPattern';
 
 const ITAbout = () => {
   const values = [
@@ -41,19 +44,21 @@ const ITAbout = () => {
     <div className="min-h-screen bg-black">
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 bg-gradient-to-br from-gray-900 via-black to-gray-900 overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-            backgroundSize: '40px 40px',
-          }} />
-        </div>
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute inset-0" style={{
+              backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
+              backgroundSize: '40px 40px',
+            }} />
+          </div>
+          <SparklesCore particleCount={30} particleColor="#1E88E5" className="absolute inset-0 w-full h-full" background="transparent" />
+          <MorphingBlob color="rgba(76, 175, 80, 0.05)" size={350} speed={7} className="absolute top-10 right-10" />
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <ScrollReveal animation="zoomIn">
               <div className="inline-flex items-center space-x-2 bg-white/10 border border-white/20 rounded-full px-4 py-2 mb-6 backdrop-blur-sm">
                 <Building2 className="h-4 w-4 text-prodyum-green-400" />
-                <span className="text-gray-300 text-sm">About Us</span>
+                <AnimatedShinyText className="text-gray-300 text-sm">About Us</AnimatedShinyText>
               </div>
             </ScrollReveal>
             <ScrollReveal animation="fadeUp" delay={100}>
@@ -128,19 +133,19 @@ const ITAbout = () => {
                   </p>
                   <div className="grid grid-cols-2 gap-4">
                     <div className="bg-white/10 rounded-xl p-4 text-center">
-                      <div className="text-3xl font-bold mb-1">100+</div>
+                      <div className="text-3xl font-bold mb-1"><NumberTicker value={100} suffix="+" /></div>
                       <div className="text-sm text-white/80">Happy Clients</div>
                     </div>
                     <div className="bg-white/10 rounded-xl p-4 text-center">
-                      <div className="text-3xl font-bold mb-1">50+</div>
+                      <div className="text-3xl font-bold mb-1"><NumberTicker value={50} suffix="+" /></div>
                       <div className="text-sm text-white/80">Projects</div>
                     </div>
                     <div className="bg-white/10 rounded-xl p-4 text-center">
-                      <div className="text-3xl font-bold mb-1">15+</div>
+                      <div className="text-3xl font-bold mb-1"><NumberTicker value={15} suffix="+" /></div>
                       <div className="text-sm text-white/80">Team Members</div>
                     </div>
                     <div className="bg-white/10 rounded-xl p-4 text-center">
-                      <div className="text-3xl font-bold mb-1">5+</div>
+                      <div className="text-3xl font-bold mb-1"><NumberTicker value={5} suffix="+" /></div>
                       <div className="text-sm text-white/80">Years</div>
                     </div>
                   </div>
@@ -187,7 +192,7 @@ const ITAbout = () => {
       </section>
 
       {/* Core Values */}
-      <section className="py-16 lg:py-24 bg-black">
+      <section className="py-16 lg:py-24 bg-black relative">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <ScrollReveal animation="fadeUp">
@@ -203,26 +208,26 @@ const ITAbout = () => {
               <p className="text-xl text-gray-400">Our core values guide everything we do</p>
             </ScrollReveal>
           </div>
+          <Spotlight className="absolute inset-0" fill="rgba(30, 136, 229, 0.03)" />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <StaggeredList className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" staggerDelay={100} animation="fadeUp">
             {values.map((value, index) => (
-              <ScrollReveal key={index} animation="flipUp" delay={index * 100}>
-                <TiltCard className="group bg-gray-900/50 border border-white/10 rounded-2xl p-8 hover:border-prodyum-blue-500/50 transition-all duration-300 h-full">
-                  <div className="h-14 w-14 bg-gradient-to-br from-prodyum-blue-500/20 to-prodyum-green-500/20 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <value.icon className="h-7 w-7 text-prodyum-blue-400" />
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-3">{value.title}</h3>
-                  <p className="text-gray-400">{value.description}</p>
-                </TiltCard>
-              </ScrollReveal>
+              <TiltCard key={index} className="group bg-gray-900/50 border border-white/10 rounded-2xl p-8 hover:border-prodyum-blue-500/50 transition-all duration-300 h-full">
+                <div className="h-14 w-14 bg-gradient-to-br from-prodyum-blue-500/20 to-prodyum-green-500/20 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <value.icon className="h-7 w-7 text-prodyum-blue-400" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">{value.title}</h3>
+                <p className="text-gray-400">{value.description}</p>
+              </TiltCard>
             ))}
-          </div>
+          </StaggeredList>
         </div>
       </section>
 
       {/* Timeline */}
-      <section className="py-16 lg:py-24 bg-gradient-to-b from-gray-900 to-black">
+      <section className="py-16 lg:py-24 bg-gradient-to-b from-gray-900 to-black relative overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <MorphingBlob className="absolute top-1/2 left-1/4" color="rgba(30,136,229,0.04)" />
           <div className="text-center max-w-3xl mx-auto mb-16">
             <ScrollReveal animation="fadeUp">
               <div className="inline-flex items-center space-x-2 bg-white/10 rounded-full px-4 py-2 mb-6">
@@ -275,7 +280,9 @@ const ITAbout = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-prodyum-blue-600 to-prodyum-green-600">
+      <section className="py-20 bg-gradient-to-r from-prodyum-blue-600 to-prodyum-green-600 relative overflow-hidden">
+        <BackgroundBeams className="absolute inset-0" beamColor="rgba(255,255,255,0.15)" />
+        <DotPattern className="absolute inset-0" dotSize={1} gap={20} color="rgba(255,255,255,0.1)" />
         <ScrollReveal animation="zoomIn">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">

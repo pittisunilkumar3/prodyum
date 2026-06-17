@@ -26,6 +26,9 @@ import {
 } from 'lucide-react';
 import TiltCard from '../../components/TiltCard';
 import ScrollReveal from '../../components/ScrollReveal';
+import { AnimatedShinyText, SparklesCore, BorderBeam, BackgroundBeams, MagneticButton, MorphingBlob, StaggeredList } from '../../components/animations';
+import DotPattern from '../../components/animations/DotPattern';
+import Spotlight from '../../components/animations/Spotlight';
 
 const ITServices = () => {
   const [activeService, setActiveService] = useState('digital-marketing');
@@ -94,13 +97,15 @@ const ITServices = () => {
             backgroundSize: '40px 40px',
           }} />
         </div>
+        <SparklesCore particleCount={30} particleColor="#1E88E5" className="absolute inset-0 w-full h-full" background="transparent" />
+        <MorphingBlob color="rgba(76, 175, 80, 0.05)" size={350} speed={7} className="absolute -top-10 -right-10" />
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <ScrollReveal animation="zoomIn">
               <div className="inline-flex items-center space-x-2 bg-white/10 border border-white/20 rounded-full px-4 py-2 mb-6 backdrop-blur-sm">
                 <Megaphone className="h-4 w-4 text-prodyum-green-400" />
-                <span className="text-gray-300 text-sm">What We Offer</span>
+                <AnimatedShinyText className="text-gray-300 text-sm">What We Offer</AnimatedShinyText>
               </div>
             </ScrollReveal>
             <ScrollReveal animation="fadeUp" delay={100}>
@@ -144,8 +149,9 @@ const ITServices = () => {
       </section>
 
       {/* Service Content */}
-      <section className="py-16 lg:py-24 bg-black">
+      <section className="py-16 lg:py-24 bg-black relative">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <Spotlight className="absolute inset-0" fill="rgba(30, 136, 229, 0.06)" gradientSize={350} />
           <ScrollReveal animation="fadeUp">
             <div className="max-w-4xl mx-auto text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -174,6 +180,7 @@ const ITServices = () => {
                       <p className="text-gray-400 leading-relaxed">{service.description}</p>
                     </div>
                   </div>
+                  <BorderBeam size={120} duration={10} colorFrom="#1E88E5" colorTo="#4CAF50" />
                 </TiltCard>
               </ScrollReveal>
             ))}
@@ -181,6 +188,7 @@ const ITServices = () => {
 
           <ScrollReveal animation="fadeUp" delay={400}>
             <div className="text-center mt-16">
+              <MagneticButton>
               <Button
                 asChild
                 size="lg"
@@ -190,6 +198,7 @@ const ITServices = () => {
                   Get a Quote <ArrowRight className="h-5 w-5" />
                 </Link>
               </Button>
+              </MagneticButton>
             </div>
           </ScrollReveal>
         </div>
@@ -207,28 +216,28 @@ const ITServices = () => {
             </div>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <StaggeredList className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" staggerDelay={120} animation="scaleIn">
             {Object.entries(services).map(([key, service], index) => (
-              <ScrollReveal key={key} animation="flipUp" delay={index * 150}>
-                <TiltCard className="bg-black/50 border border-white/10 rounded-2xl p-6 hover:border-prodyum-green-500/50 transition-all duration-300 h-full">
-                  <h3 className="text-lg font-bold text-white mb-4">{service.title}</h3>
-                  <ul className="space-y-3">
-                    {service.services.map((item, i) => (
-                      <li key={i} className="flex items-start gap-2">
-                        <CheckCircle2 className="h-5 w-5 text-prodyum-green-500 flex-shrink-0 mt-0.5" />
-                        <span className="text-gray-400 text-sm">{item.title}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </TiltCard>
-              </ScrollReveal>
+              <TiltCard key={key} className="bg-black/50 border border-white/10 rounded-2xl p-6 hover:border-prodyum-green-500/50 transition-all duration-300 h-full">
+                <h3 className="text-lg font-bold text-white mb-4">{service.title}</h3>
+                <ul className="space-y-3">
+                  {service.services.map((item, i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <CheckCircle2 className="h-5 w-5 text-prodyum-green-500 flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-400 text-sm">{item.title}</span>
+                    </li>
+                  ))}
+                </ul>
+              </TiltCard>
             ))}
-          </div>
+          </StaggeredList>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-prodyum-blue-600 to-prodyum-green-600">
+      <section className="py-20 bg-gradient-to-r from-prodyum-blue-600 to-prodyum-green-600 relative overflow-hidden">
+        <BackgroundBeams className="absolute inset-0" beamColor="rgba(255,255,255,0.03)" beamCount={5} />
+        <DotPattern className="absolute inset-0" gap={24} color="rgba(255,255,255,0.04)" animated={false} />
         <ScrollReveal animation="zoomIn">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
@@ -237,6 +246,7 @@ const ITServices = () => {
             <p className="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
               Let's discuss how our services can help you achieve your business goals.
             </p>
+            <MagneticButton>
             <Button
               asChild
               size="lg"
@@ -246,6 +256,7 @@ const ITServices = () => {
                 Contact Us <ArrowRight className="h-5 w-5" />
               </Link>
             </Button>
+            </MagneticButton>
           </div>
         </ScrollReveal>
       </section>
