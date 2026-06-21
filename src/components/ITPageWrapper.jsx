@@ -4,7 +4,6 @@ import ITHeader from './ITHeader';
 import ITFooter from './ITFooter';
 import ConcentricRingsLoader from './ConcentricRingsLoader';
 import ITBackground3D from './ITBackground3D';
-import SmokeCursor from './SmokeCursor';
 
 const ITPageWrapper = ({ children }) => {
   const [loading, setLoading] = useState(true);
@@ -48,7 +47,6 @@ const ITPageWrapper = ({ children }) => {
         transition: 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
       }}
     >
-      <SmokeCursor />
       <ITBackground3D />
       <div className="relative" style={{ zIndex: 2 }}>
         <ITHeader />

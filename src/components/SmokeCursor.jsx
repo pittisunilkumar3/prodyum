@@ -1,9 +1,18 @@
 import React, { useEffect, useRef } from 'react';
 
 /**
- * SmokeCursor - Premium smoke trail effect that follows the mouse cursor
- * Creates realistic smoke particles with turbulence, fade-out, and expansion
- * Designed for the ProDyum IT website
+ * SmokeCursor - Realistic smoke trail that follows the mouse cursor.
+ *
+ * Realism techniques used:
+ *  - Trail accumulation: instead of clearing the canvas each frame we fade the
+ *    existing pixels with `destination-out`. This makes particles linger, merge
+ *    into soft puffs and dissipate gradually — exactly how real smoke behaves.
+ *  - `mix-blend-mode: screen` on the canvas so the smoke reads as illuminated
+ *    wisps over the dark IT background.
+ *  - Buoyancy: smoke rises, accelerating as the "hot" particle ages.
+ *  - Curl-like turbulence (multiple sine frequencies) for organic swirling eddies.
+ *  - Expansion: puffs grow & thin out as they fade.
+ *  - DPR-aware canvas for crisp, smooth edges.
  */
 const SmokeCursor = () => {
   const canvasRef = useRef(null);
@@ -11,231 +20,174 @@ const SmokeCursor = () => {
   const prevMouseRef = useRef({ x: -100, y: -100 });
   const particlesRef = useRef([]);
   const animFrameRef = useRef(null);
-  const isTouchRef = useRef(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
 
-    let w, h;
+    let w = 0;
+    let h = 0;
 
     const resize = () => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
       w = window.innerWidth;
       h = window.innerHeight;
-      canvas.width = w;
-      canvas.height = h;
+      canvas.width = Math.floor(w * dpr);
+      canvas.height = Math.floor(h * dpr);
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
     resize();
     window.addEventListener('resize', resize);
 
-    // Mouse tracking (global — works across the whole page)
-    const onMouseMove = (e) => {
-      if (isTouchRef.current) return;
+    const updateMouse = (clientX, clientY) => {
       prevMouseRef.current = { ...mouseRef.current };
-      mouseRef.current = { x: e.clientX, y: e.clientY };
+      mouseRef.current = { x: clientX, y: clientY };
     };
 
-    // Touch support
+    const onMouseMove = (e) => updateMouse(e.clientX, e.clientY);
     const onTouchMove = (e) => {
-      isTouchRef.current = true;
-      const touch = e.touches[0];
-      if (touch) {
-        prevMouseRef.current = { ...mouseRef.current };
-        mouseRef.current = { x: touch.clientX, y: touch.clientY };
-      }
-    };
-
-    const onTouchEnd = () => {
-      isTouchRef.current = false;
+      const t = e.touches[0];
+      if (t) updateMouse(t.clientX, t.clientY);
     };
 
     window.addEventListener('mousemove', onMouseMove, { passive: true });
     window.addEventListener('touchmove', onTouchMove, { passive: true });
-    window.addEventListener('touchend', onTouchEnd);
 
     const particles = particlesRef.current;
 
-    // Smoke color palette — blue/green IT brand colors
-    const smokeColors = [
-      { r: 30, g: 136, b: 229 },   // prodyum-blue
-      { r: 76, g: 175, b: 80 },    // prodyum-green
-      { r: 139, g: 195, b: 74 },   // prodyum-lime
-      { r: 100, g: 180, b: 255 },  // light blue
-      { r: 150, g: 220, b: 130 },  // light green
-      { r: 200, g: 220, b: 255 },  // white-blue
+    // Cool, desaturated tints so it reads as SMOKE while keeping the IT
+    // brand tone (blues / mint). Mostly white with a subtle hue.
+    const tints = [
+      [195, 215, 245], // pale blue-white
+      [200, 230, 235], // mint-white
+      [185, 205, 240], // cool steel-blue white
+      [225, 235, 250], // near white
+      [210, 225, 245],
+      [205, 240, 225], // soft green-white
     ];
 
-    const emitParticles = (x, y, prevX, prevY) => {
-      // Interpolate between previous and current position for smooth trails
+    const emit = (x, y, prevX, prevY) => {
       const dx = x - prevX;
       const dy = y - prevY;
       const dist = Math.sqrt(dx * dx + dy * dy);
-      const steps = Math.max(1, Math.floor(dist / 4));
+      // interpolate between frames so fast moves still produce a continuous trail
+      const steps = Math.max(1, Math.min(8, Math.floor(dist / 5)));
+      // faster cursor => slightly denser, larger puffs
+      const speedFactor = Math.min(1.5, 0.5 + dist * 0.035);
 
       for (let s = 0; s < steps; s++) {
         const t = s / steps;
         const ix = prevX + dx * t;
         const iy = prevY + dy * t;
 
-        // Main smoke particles
-        const count = 2 + Math.floor(Math.random() * 2);
+        const count = 1 + Math.floor(Math.random() * 2);
         for (let i = 0; i < count; i++) {
-          const angle = Math.random() * Math.PI * 2;
-          const speed = Math.random() * 0.8 + 0.2;
-          const color = smokeColors[Math.floor(Math.random() * smokeColors.length)];
-
+          const ang = Math.random() * Math.PI * 2;
+          const sp = Math.random() * 0.5 * speedFactor;
+          const tint = tints[(Math.random() * tints.length) | 0];
           particles.push({
-            x: ix + (Math.random() - 0.5) * 4,
-            y: iy + (Math.random() - 0.5) * 4,
-            vx: Math.cos(angle) * speed * 0.6,
-            vy: Math.sin(angle) * speed * 0.4 - Math.random() * 0.5, // slight upward drift
-            size: Math.random() * 8 + 3,
-            maxSize: Math.random() * 35 + 20,
-            growSpeed: Math.random() * 0.4 + 0.15,
-            life: 1.0,
-            decay: Math.random() * 0.008 + 0.004,
-            color,
-            turbulenceFreq: Math.random() * 0.02 + 0.008,
-            turbulenceAmp: Math.random() * 0.8 + 0.3,
-            phase: Math.random() * Math.PI * 2,
-            time: 0,
-          });
-        }
-
-        // Occasional bright spark
-        if (Math.random() < 0.15) {
-          const color = smokeColors[Math.floor(Math.random() * smokeColors.length)];
-          particles.push({
-            x: ix,
-            y: iy,
-            vx: (Math.random() - 0.5) * 2,
-            vy: (Math.random() - 0.5) * 2,
-            size: Math.random() * 2 + 1,
-            maxSize: Math.random() * 3 + 2,
-            growSpeed: 0,
-            life: 1.0,
-            decay: Math.random() * 0.03 + 0.02,
-            color: { r: 255, g: 255, b: 255 },
-            sparkColor: color,
-            turbulenceFreq: 0,
-            turbulenceAmp: 0,
-            phase: 0,
-            time: 0,
-            isSpark: true,
+            x: ix + (Math.random() - 0.5) * 6,
+            y: iy + (Math.random() - 0.5) * 6,
+            // inherit a touch of cursor momentum + small random spread, biased up
+            vx: Math.cos(ang) * sp + dx * 0.02,
+            vy: Math.sin(ang) * sp + dy * 0.02 - Math.random() * 0.4,
+            size: Math.random() * 6 + 4,
+            maxSize: Math.random() * 45 + 35,
+            grow: Math.random() * 0.35 + 0.2,
+            life: 1,
+            decay: Math.random() * 0.006 + 0.0035,
+            tint,
+            // curl-turbulence params
+            f1: Math.random() * 0.03 + 0.01,
+            f2: Math.random() * 0.02 + 0.006,
+            a1: Math.random() * 0.9 + 0.4,
+            a2: Math.random() * 0.7 + 0.3,
+            ph: Math.random() * Math.PI * 2,
+            t: 0,
           });
         }
       }
     };
 
-    let frame = 0;
-
     const animate = () => {
-      ctx.clearRect(0, 0, w, h);
-      frame++;
+      // --- Fade existing pixels to create the lingering, dissipating trail ---
+      // destination-out with low alpha erases a little each frame, so puffs
+      // soften into each other and drift away instead of vanishing instantly.
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.06)';
+      ctx.fillRect(0, 0, w, h);
+      ctx.globalCompositeOperation = 'source-over';
 
       const { x: mx, y: my } = mouseRef.current;
       const { x: px, y: py } = prevMouseRef.current;
+      const movedDist = Math.sqrt((mx - px) ** 2 + (my - py) ** 2);
 
-      // Only emit if mouse has actually moved
-      const mouseDist = Math.sqrt((mx - px) ** 2 + (my - py) ** 2);
-      if (mouseDist > 1 && mx > 0 && my > 0) {
-        emitParticles(mx, my, px, py);
+      if (movedDist > 0.5 && mx > 0 && my > 0) {
+        emit(mx, my, px, py);
       }
 
-      // Cap particles to prevent memory issues
-      if (particles.length > 600) {
-        particles.splice(0, particles.length - 600);
+      // safety cap
+      if (particles.length > 700) {
+        particles.splice(0, particles.length - 700);
       }
 
-      // Update and draw particles
       for (let i = particles.length - 1; i >= 0; i--) {
         const p = particles[i];
-
-        // Update life
         p.life -= p.decay;
         if (p.life <= 0) {
           particles.splice(i, 1);
           continue;
         }
+        p.t++;
 
-        p.time++;
+        // --- organic swirl via overlapping sine fields (curl-noise-ish) ---
+        const tx =
+          Math.sin(p.t * p.f1 + p.ph) * p.a1 +
+          Math.sin(p.t * p.f2 * 1.7) * p.a2 * 0.5;
+        const ty =
+          Math.cos(p.t * p.f1 * 0.8 + p.ph) * p.a1 * 0.6 +
+          Math.cos(p.t * p.f2 * 2.3) * p.a2 * 0.4;
 
-        // Turbulence — organic smoke movement
-        const turbulenceX = Math.sin(p.time * p.turbulenceFreq + p.phase) * p.turbulenceAmp;
-        const turbulenceY = Math.cos(p.time * p.turbulenceFreq * 0.7 + p.phase) * p.turbulenceAmp * 0.6;
+        // buoyancy: hot smoke rises faster as it ages, drags sideways velocity
+        const age = 1 - p.life;
+        const buoy = 0.25 + age * 0.7;
+        p.vx = p.vx * 0.96 + tx * 0.05;
+        p.vy = p.vy * 0.96 + ty * 0.05 - buoy * 0.02;
 
-        // Apply velocity + turbulence + slight upward drift
-        p.x += p.vx + turbulenceX;
-        p.y += p.vy + turbulenceY - 0.15;
+        p.x += p.vx + tx * 0.3;
+        p.y += p.vy - buoy * 0.4; // strong, accelerating rise
 
-        // Slow down velocity over time
-        p.vx *= 0.985;
-        p.vy *= 0.985;
+        // expand (diffuse) faster late in life
+        if (p.size < p.maxSize) p.size += p.grow * (1 + age * 1.5);
 
-        // Grow smoke (expand as it fades)
-        if (p.size < p.maxSize) {
-          p.size += p.growSpeed;
-        }
+        // --- soft smoke puff ---
+        const size = Math.max(0.5, p.size);
+        const alpha = p.life * p.life; // ease-out fade
+        const [r, g, b] = p.tint;
 
-        const alpha = p.life;
-        const size = Math.max(0.1, p.size);
-
-        if (p.isSpark) {
-          // Bright spark particle
-          ctx.save();
-          ctx.globalAlpha = alpha;
-          ctx.fillStyle = `rgb(${p.sparkColor.r}, ${p.sparkColor.g}, ${p.sparkColor.b})`;
-          ctx.shadowColor = `rgba(${p.sparkColor.r}, ${p.sparkColor.g}, ${p.sparkColor.b}, 0.8)`;
-          ctx.shadowBlur = 10;
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, Math.max(0.1, size * 0.5), 0, Math.PI * 2);
-          ctx.fill();
-          // White hot center
-          ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, Math.max(0.1, size * 0.2), 0, Math.PI * 2);
-          ctx.fill();
-          ctx.restore();
-        } else {
-          // Smoke particle — soft radial gradient
-          ctx.save();
-
-          // Outer glow (larger, very soft)
-          const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, Math.max(0.1, size));
-          grad.addColorStop(0, `rgba(${p.color.r}, ${p.color.g}, ${p.color.b}, ${alpha * 0.3})`);
-          grad.addColorStop(0.4, `rgba(${p.color.r}, ${p.color.g}, ${p.color.b}, ${alpha * 0.15})`);
-          grad.addColorStop(1, `rgba(${p.color.r}, ${p.color.g}, ${p.color.b}, 0)`);
-
-          ctx.globalAlpha = 1;
-          ctx.fillStyle = grad;
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, Math.max(0.1, size), 0, Math.PI * 2);
-          ctx.fill();
-
-          // Inner bright core (smaller, more vivid)
-          const coreGrad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, Math.max(0.1, size * 0.3));
-          coreGrad.addColorStop(0, `rgba(255, 255, 255, ${alpha * 0.4})`);
-          coreGrad.addColorStop(1, `rgba(${p.color.r}, ${p.color.g}, ${p.color.b}, 0)`);
-
-          ctx.fillStyle = coreGrad;
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, Math.max(0.1, size * 0.3), 0, Math.PI * 2);
-          ctx.fill();
-
-          ctx.restore();
-        }
+        const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, size);
+        grad.addColorStop(0, `rgba(${r}, ${g}, ${b}, ${alpha * 0.34})`);
+        grad.addColorStop(0.35, `rgba(${r}, ${g}, ${b}, ${alpha * 0.17})`);
+        grad.addColorStop(0.7, `rgba(${r}, ${g}, ${b}, ${alpha * 0.06})`);
+        grad.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, size, 0, Math.PI * 2);
+        ctx.fill();
       }
 
-      // Draw a subtle cursor glow at current mouse position
+      // --- a subtle glowing "ember" at the source (where the mouse is) ---
       if (mx > 0 && my > 0) {
-        const glowGrad = ctx.createRadialGradient(mx, my, 0, mx, my, 30);
-        glowGrad.addColorStop(0, 'rgba(76, 175, 80, 0.15)');
-        glowGrad.addColorStop(0.5, 'rgba(30, 136, 229, 0.05)');
-        glowGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
-        ctx.fillStyle = glowGrad;
+        const eg = ctx.createRadialGradient(mx, my, 0, mx, my, 22);
+        eg.addColorStop(0, 'rgba(180, 215, 255, 0.22)');
+        eg.addColorStop(0.5, 'rgba(120, 180, 240, 0.07)');
+        eg.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        ctx.fillStyle = eg;
         ctx.beginPath();
-        ctx.arc(mx, my, 30, 0, Math.PI * 2);
+        ctx.arc(mx, my, 22, 0, Math.PI * 2);
         ctx.fill();
       }
 
@@ -248,7 +200,6 @@ const SmokeCursor = () => {
       window.removeEventListener('resize', resize);
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('touchmove', onTouchMove);
-      window.removeEventListener('touchend', onTouchEnd);
       if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
     };
   }, []);
@@ -257,7 +208,8 @@ const SmokeCursor = () => {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none"
-      style={{ zIndex: 9999 }}
+      // screen blend makes the smoke glow softly over the dark IT background
+      style={{ zIndex: 9999, mixBlendMode: 'screen' }}
     />
   );
 };

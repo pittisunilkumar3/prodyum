@@ -24,6 +24,7 @@ import ITPortfolio from './pages/it/Portfolio';
 import ITAbout from './pages/it/About';
 import ITCareers from './pages/it/Careers';
 import ITContact from './pages/it/Contact';
+import SmokeyCursorEffect from './components/ui/smokey-cursor-effect';
 
 // Layout component for Entertainment section
 const EntertainmentLayout = ({ children }) => (
@@ -46,7 +47,7 @@ function App() {
           <Route path="/" element={<Landing />} />
           
           {/* IT Prodyum - Main Website */}
-          <Route path="/it" element={<ITPageWrapper><ITHome /></ITPageWrapper>} />
+          <Route path="/it" element={<SmokeyCursorEffect />} />
           <Route path="/it/services" element={<ITPageWrapper><ITServices /></ITPageWrapper>} />
           <Route path="/it/portfolio" element={<ITPageWrapper><ITPortfolio /></ITPageWrapper>} />
           <Route path="/it/about" element={<ITPageWrapper><ITAbout /></ITPageWrapper>} />
