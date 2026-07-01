@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import ITHeader from '../../components/ITHeader';
 import ITFooter from '../../components/ITFooter';
+import ScrollVideoBackground from '../../components/ScrollVideoBackground';
 import ServicesSection from './Services';
 import PortfolioSection from './Portfolio';
 import AboutSection from './About';
@@ -52,10 +53,22 @@ const ITHome = () => {
 
   return (
     <div className="min-h-screen bg-black">
+      {/* Scroll-scrubbed background video, fixed behind all page content. */}
+      <ScrollVideoBackground
+        sources={[
+          { src: '/video/one.webm', type: 'video/webm; codecs="av1"' },
+          { src: '/video/one.mp4', type: 'video/mp4' }
+        ]}
+        poster="/video/one.jpg"
+        scrim="medium"
+      />
+
+      {/* All content sits above the fixed video (z-10). */}
+      <div className="relative z-10">
       <ITHeader />
 
       {/* Hero Section */}
-      <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900 scroll-mt-24">
+      <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden scroll-mt-24">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -122,7 +135,7 @@ const ITHome = () => {
       <ServicesSection />
 
       {/* Industries Section */}
-      <section className="py-20 lg:py-32 bg-gradient-to-b from-black to-gray-900">
+      <section className="py-20 lg:py-32 bg-black/30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <div className="inline-flex items-center space-x-2 bg-white/10 rounded-full px-4 py-2 mb-6">
@@ -160,7 +173,7 @@ const ITHome = () => {
       <AboutSection />
 
       {/* Why Choose Us Section */}
-      <section className="py-20 lg:py-32 bg-gray-900">
+      <section className="py-20 lg:py-32 bg-black/30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -220,6 +233,7 @@ const ITHome = () => {
       <ContactSection />
 
       <ITFooter />
+      </div>
     </div>
   );
 };

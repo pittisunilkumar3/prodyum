@@ -24,7 +24,7 @@ const ITFooter = () => {
   ];
 
   return (
-    <footer className="bg-gray-900 border-t border-gray-800">
+    <footer className="bg-gray-900/80 border-t border-gray-800">
       {/* CTA Section */}
       <div className="bg-gradient-to-r from-prodyum-blue-600 to-prodyum-green-600">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
