@@ -5,12 +5,14 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import ITPageWrapper from './components/ITPageWrapper';
 import ScrollToTop from './components/ScrollToTop';
+import Loader from './components/Loader';
 import { Toaster } from './components/ui/toaster';
 
 // Entertainment Pages
 import Landing from './pages/Landing';
 import ComingSoon from './pages/ComingSoon';
 import Home from './pages/Home';
+import HomeClassic from './pages/HomeClassic';
 import Projects from './pages/Projects';
 import Services from './pages/Services';
 import Investors from './pages/Investors';
@@ -24,11 +26,15 @@ import ITPortfolio from './pages/it/Portfolio';
 import ITAbout from './pages/it/About';
 import ITCareers from './pages/it/Careers';
 import ITContact from './pages/it/Contact';
+import Experience from './pages/it/Experience';
 import SmokeyCursorEffect from './components/ui/smokey-cursor-effect';
 
 // Layout component for Entertainment section
+// Loader is scoped here so the loading animation only plays on the
+// entertainment site — it never interferes with the /it pages.
 const EntertainmentLayout = ({ children }) => (
   <>
+    <Loader />
     <Header />
     {children}
     <Footer />
@@ -55,10 +61,16 @@ function App() {
           <Route path="/it/contact" element={<ITPageWrapper><ITContact /></ITPageWrapper>} />
           
           {/* Legacy IT route redirect */}
+          {/* 3D interactive showcase built with react-bits components */}
+          <Route path="/it/experience" element={<Experience />} />
+
+          {/* Legacy IT route redirect */}
           <Route path="/it-prodyum" element={<ITPageWrapper><ITHome /></ITPageWrapper>} />
           
           {/* Prodyum Entertainments - Main Website */}
           <Route path="/entertainment" element={<EntertainmentLayout><Home /></EntertainmentLayout>} />
+          {/* Backup of the pre-lightning entertainment hero */}
+          <Route path="/entertainment/classic" element={<EntertainmentLayout><HomeClassic /></EntertainmentLayout>} />
           <Route path="/entertainment/projects" element={<EntertainmentLayout><Projects /></EntertainmentLayout>} />
           <Route path="/entertainment/services" element={<EntertainmentLayout><Services /></EntertainmentLayout>} />
           <Route path="/entertainment/investors" element={<EntertainmentLayout><Investors /></EntertainmentLayout>} />

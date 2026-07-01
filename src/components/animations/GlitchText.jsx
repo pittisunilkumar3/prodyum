@@ -59,7 +59,7 @@ const GlitchText = ({
       style={{ position: 'relative' }}
     >
       {/* Main text */}
-      <span className="relative z-10" style={{ position: 'relative' }}>
+      <span className={cn('relative z-10', className)} style={{ position: 'relative' }}>
         {children}
       </span>
 

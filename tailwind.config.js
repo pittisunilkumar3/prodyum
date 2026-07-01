@@ -109,11 +109,35 @@ module.exports = {
   				to: {
   					height: '0'
   				}
+  			},
+  			'text': {
+  				'0%': {
+  					backgroundPosition: '0 0'
+  				},
+  				'50%': {
+  					backgroundPosition: '200px'
+  				},
+  				'100%': {
+  					backgroundPosition: '0 0'
+  				}
+  			},
+  			'textReverse': {
+  				'0%': {
+  					backgroundPosition: '0 0'
+  				},
+  				'50%': {
+  					backgroundPosition: '-200px'
+  				},
+  				'100%': {
+  					backgroundPosition: '0 0'
+  				}
   			}
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
-  			'accordion-up': 'accordion-up 0.2s ease-out'
+  			'accordion-up': 'accordion-up 0.2s ease-out',
+  			'text': 'text 5s ease-in-out infinite',
+  			'text-reverse': 'textReverse 5s ease-in-out infinite'
   		}
   	}
   },

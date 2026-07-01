@@ -24,7 +24,7 @@ import {
 } from 'lucide-react';
 import TiltCard from '../../components/TiltCard';
 import ScrollReveal from '../../components/ScrollReveal';
-import { NumberTicker, AnimatedShinyText, SparklesCore, BorderBeam, BackgroundBeams, TypingText, MagneticButton, MorphingBlob, StaggeredList, GlitchText } from '../../components/animations';
+import { NumberTicker, AnimatedShinyText, SparklesCore, BorderBeam, BackgroundBeams, TypingText, MagneticButton, MorphingBlob, StaggeredList, FlyingText } from '../../components/animations';
 import Spotlight from '../../components/animations/Spotlight';
 import DotPattern from '../../components/animations/DotPattern';
 
@@ -162,9 +162,10 @@ const ITHome = () => {
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
                 <span className="text-white">Helping Businesses Grow Through</span>
                 <br />
-                <GlitchText className="bg-gradient-to-r from-prodyum-blue-400 via-prodyum-green-400 to-prodyum-lime-400 bg-clip-text text-transparent" glitchOnHover={true} intensity="subtle">
-                  Digital Marketing & Technology
-                </GlitchText>
+                <FlyingText
+                  text="Digital Marketing & Technology"
+                  className="bg-gradient-to-r from-prodyum-blue-400 via-prodyum-green-400 to-prodyum-lime-400 bg-clip-text text-transparent"
+                />
               </h1>
             </ScrollReveal>
 

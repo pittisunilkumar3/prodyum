@@ -28,8 +28,13 @@ const ConcentricRingsLoader = ({
       for (let i = 0; i < rings; i++) {
         const baseRadius = size * 0.1 + i * (size * 0.15);
         const pulse = Math.sin(time * 0.03 - i * 0.5) * (size * 0.05);
-        const radius = Math.min(baseRadius + pulse, size / 2 - 2);
-        const opacity = 0.2 + Math.sin(time * 0.03 - i * 0.5) * 0.3;
+        // Clamp radius so it is always a safe positive value.
+        const radius = Math.max(2, Math.min(baseRadius + pulse, size / 2 - 2));
+        // Clamp opacity to [0.15, 0.85] so it is ALWAYS a valid alpha.
+        // (Previously it could go negative → invalid hex like "#4CAF50-1a"
+        // → browser dropped the stroke → rings were invisible.)
+        const opacity = Math.max(0.15, Math.min(0.85,
+          0.5 + Math.sin(time * 0.03 - i * 0.5) * 0.35));
 
         ctx.beginPath();
         ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);

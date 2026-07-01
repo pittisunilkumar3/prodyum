@@ -1,0 +1,430 @@
+/* ============================================================
+   ProDyum 3D Lab — Experience page
+   Full-bleed cinematic showcase for the react-bits components
+   ============================================================ */
+
+.exp-root {
+  position: relative;
+  background: #050507;
+  color: #f1f5f9;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* ---------- Top bar ---------- */
+.exp-topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 2rem;
+  background: linear-gradient(to bottom, rgba(5, 5, 7, 0.7), transparent);
+  backdrop-filter: blur(6px);
+}
+.exp-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+.exp-logo-mark {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #1e88e5, #4caf50);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.95rem;
+  box-shadow: 0 6px 20px rgba(30, 136, 229, 0.4);
+}
+.exp-logo-accent {
+  background: linear-gradient(90deg, #1e88e5, #4caf50);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.exp-topbar-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.exp-topbar-links a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.exp-topbar-links a:hover {
+  color: #fff;
+}
+@media (max-width: 640px) {
+  .exp-topbar-links a:not(:last-child) {
+    display: none;
+  }
+}
+
+/* ---------- Side dot navigation ---------- */
+.exp-dots {
+  position: fixed;
+  top: 50%;
+  right: 1.5rem;
+  transform: translateY(-50%);
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.exp-dot {
+  position: relative;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+.exp-dot:hover {
+  border-color: #4caf50;
+}
+.exp-dot--active {
+  background: linear-gradient(135deg, #1e88e5, #4caf50);
+  border-color: transparent;
+  transform: scale(1.35);
+  box-shadow: 0 0 14px rgba(76, 175, 80, 0.6);
+}
+.exp-dot-label {
+  position: absolute;
+  right: 22px;
+  top: 50%;
+  transform: translateY(-50%) translateX(6px);
+  white-space: nowrap;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #e2e8f0;
+  background: rgba(15, 15, 20, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.25s ease;
+}
+.exp-dot:hover .exp-dot-label {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+@media (max-width: 900px) {
+  .exp-dots {
+    display: none;
+  }
+}
+
+/* ---------- Section shell ---------- */
+.exp-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 7rem 1.5rem 5rem;
+}
+.exp-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.exp-bg > * {
+  position: absolute;
+  inset: 0;
+}
+.exp-bg-vignette {
+  background:
+    radial-gradient(ellipse at center, transparent 30%, rgba(5, 5, 7, 0.55) 100%),
+    linear-gradient(to bottom, rgba(5, 5, 7, 0.35) 0%, transparent 25%, transparent 60%, rgba(5, 5, 7, 0.85) 100%);
+}
+.exp-bg-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 40vh;
+  z-index: 1;
+  pointer-events: none;
+}
+.exp-bg-fade--bottom {
+  bottom: 0;
+  background: linear-gradient(to bottom, transparent, #050507);
+}
+.exp-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 35%, rgba(5, 5, 7, 0.7) 100%);
+}
+
+/* ---------- Content wrappers ---------- */
+.exp-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+.exp-content--left {
+  max-width: 720px;
+  margin-left: 6vw;
+  text-align: left;
+}
+.exp-content--center {
+  max-width: 760px;
+}
+
+/* ---------- Reveal animation ---------- */
+.exp-reveal {
+  opacity: 0;
+  transform: translateY(34px);
+  filter: blur(8px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.exp-reveal--shown {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* ---------- Pills & kickers ---------- */
+.exp-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(15, 15, 20, 0.4);
+  backdrop-filter: blur(10px);
+  font-size: 0.85rem;
+  margin-bottom: 1.75rem;
+}
+.exp-pill-icon {
+  width: 16px;
+  height: 16px;
+  color: #4caf50;
+}
+.exp-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #4caf50;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.exp-kicker--center {
+  justify-content: center;
+}
+
+/* ---------- Typography ---------- */
+.exp-display {
+  font-size: clamp(2.6rem, 8vw, 6rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  margin: 0 0 1.5rem;
+  color: #fff;
+}
+.exp-display-md {
+  font-size: clamp(2rem, 5.5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: #fff;
+  margin: 0 0 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 0.3em;
+}
+.exp-display-sm {
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: #fff;
+  margin: 0 0 1.5rem;
+}
+.exp-gradient-word {
+  display: inline-flex;
+  font-size: inherit;
+  font-weight: 800;
+}
+.exp-decrypt {
+  color: #fff;
+  font-weight: 800;
+}
+.exp-lede {
+  max-width: 640px;
+  margin: 0 auto 2.5rem;
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
+  line-height: 1.6;
+  color: #cbd5e1;
+}
+.exp-body {
+  max-width: 540px;
+  font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+  line-height: 1.7;
+  color: #94a3b8;
+}
+.exp-body--center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---------- CTAs ---------- */
+.exp-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+.exp-ctas--center {
+  justify-content: center;
+}
+.exp-btn-primary {
+  background: linear-gradient(135deg, #1e88e5, #4caf50) !important;
+  color: #fff !important;
+  border: none;
+  font-weight: 700;
+  padding: 0.85rem 1.6rem !important;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 10px 30px rgba(30, 136, 229, 0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.exp-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 40px rgba(76, 175, 80, 0.45);
+}
+.exp-btn-ghost {
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  color: #e2e8f0 !important;
+  background: transparent !important;
+  font-weight: 600;
+  padding: 0.85rem 1.6rem !important;
+}
+.exp-btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* ---------- Scroll hint ---------- */
+.exp-scroll-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 3rem;
+  color: #64748b;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  animation: exp-hint-bob 2.2s ease-in-out infinite;
+}
+@keyframes exp-hint-bob {
+  0%, 100% { transform: translateY(0); opacity: 0.7; }
+  50% { transform: translateY(8px); opacity: 1; }
+}
+
+/* ---------- Tilt cards row ---------- */
+.exp-cards-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(30, 136, 229, 0.12), transparent 45%),
+    radial-gradient(circle at 80% 70%, rgba(76, 175, 80, 0.1), transparent 45%),
+    #050507;
+}
+.exp-cards-content {
+  z-index: 2;
+}
+.exp-tilt-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem;
+  margin-top: 3.5rem;
+}
+.exp-tilt-item {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.exp-tilt-title {
+  margin-top: 1.5rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* ---------- Chroma grid ---------- */
+.exp-chroma {
+  background: linear-gradient(to bottom, #050507, #0a0a12);
+}
+.exp-chroma-content {
+  z-index: 2;
+}
+.exp-chroma-wrap {
+  margin-top: 3.5rem;
+  padding: 0 1rem;
+}
+.exp-outro {
+  margin-top: 6rem;
+  padding-top: 4rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.exp-outro-title {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 800;
+  margin: 0 0 1.25rem;
+  display: flex;
+  justify-content: center;
+}
+
+/* ---------- Hero content alignment ---------- */
+.exp-hero-content {
+  padding-top: 4rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  .exp-section {
+    padding: 6rem 1.25rem 4rem;
+  }
+  .exp-content--left {
+    margin-left: 0;
+    text-align: center;
+  }
+  .exp-tilt-row {
+    gap: 1.5rem;
+  }
+}

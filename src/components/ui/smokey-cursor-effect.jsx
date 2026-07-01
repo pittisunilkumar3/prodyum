@@ -1240,43 +1240,7 @@ const FluidCursorEffect = () => {
         />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 p-6 sm:p-12 lg:p-20 text-white font-sans pointer-events-auto w-full">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold mb-6 lg:mb-8">
-            Smokey Cursor Effect
-          </h1>
-          
-          <p className="text-base sm:text-lg lg:text-xl leading-relaxed mb-8 lg:mb-12 text-gray-300 max-w-3xl mx-auto">
-            Move your mouse around to create beautiful fluid smoke effects. The simulation uses WebGL shaders to create realistic fluid dynamics in real-time.
-          </p>
-
-          {/* Demo Controls */}
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
-            <button
-              onClick={resetSimulation}
-              className="bg-white/10 border border-white/30 text-white px-6 py-3 rounded-lg 
-                       hover:bg-white/20 transition-all duration-300 text-sm sm:text-base
-                       focus:outline-none focus:ring-2 focus:ring-white/50"
-            >
-              Reset Simulation
-            </button>
-            
-            <button
-              onClick={() => window.location.reload()}
-              className="bg-white/10 border border-white/30 text-white px-6 py-3 rounded-lg 
-                       hover:bg-white/20 transition-all duration-300 text-sm sm:text-base
-                       focus:outline-none focus:ring-2 focus:ring-white/50"
-            >
-              Restart
-            </button>
-          </div>
-
-        
-        </div>
-      </div>
-
-      {/* Status indicator */}
+{/* Status indicator */}
       {!isInitialized && (
         <div className="fixed top-4 right-4 z-50 bg-blue-500/20 text-blue-200 px-4 py-2 rounded-lg border border-blue-500/30">
           Initializing WebGL...

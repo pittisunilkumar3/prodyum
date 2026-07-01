@@ -576,6 +576,21 @@ button:hover {
   100% { background-position: -200% 0; }
 }
 
+/* Hero text — flowing gradient for clipped text */
+@keyframes hero-gradient-flow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Hero text — sweeping shine pass */
+@keyframes hero-shine {
+  0%   { left: -33%; opacity: 0; }
+  20%  { opacity: 1; }
+  60%  { left: 133%; opacity: 0; }
+  100% { left: 133%; opacity: 0; }
+}
+
 /* Pulse glow for dot patterns */
 @keyframes pulse-glow {
   0%, 100% { opacity: 0.3; }
@@ -586,4 +601,58 @@ button:hover {
 @keyframes border-beam-spin {
   from { transform: translate(-50%, -50%) rotate(0deg) translateX(200%); }
   to { transform: translate(-50%, -50%) rotate(360deg) translateX(200%); }
+}
+/* =========================================================================
+   FlyingText — word-by-word fly-in from different directions + gentle hover
+   Used by the hero heading "Digital Marketing & Technology".
+   Pure CSS (no JS dependency) so the text is ALWAYS visible & readable.
+   ========================================================================= */
+
+/* One-time fly-in per word. Off-screen origin is supplied via CSS vars
+   (--fx, --fy, --fr) so every word can approach from a different angle. */
+@keyframes flyingTextFlyIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(var(--fx, -420px), var(--fy, -300px), 0)
+               rotate(var(--fr, -30deg)) scale(0.5);
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+}
+
+/* Gentle infinite hover so words keep "flying" softly in place.
+   Reads from --ftr (tiny tilt) so each word bobs a little differently. */
+@keyframes flyingTextFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(-5px) rotate(var(--ftr, 0.6deg)); }
+}
+
+/* Outer animated wrapper */
+.flying-text-word {
+  display: inline-block;
+  opacity: 1; /* default visible — shown even if the animation never runs */
+  animation: flyingTextFlyIn 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+
+/* Inner floating wrapper — starts its hover only after the fly-in finishes,
+   controlled by animation-delay in JS. */
+.flying-text-float {
+  display: inline-block;
+  animation: flyingTextFloat 4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flying-text-word,
+  .flying-text-float {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
 }

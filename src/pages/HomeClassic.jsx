@@ -49,15 +49,44 @@ const Home = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section with Lightning Text background */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden bg-black">
-        {/* Lightning Text Background */}
-        <div className="absolute inset-0 z-0">
-          <LightningText text="PRODYUM" interactive={false} />
+      {/* Hero Section with Slider + Sparkles + Spotlight */}
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        {/* Background Slider */}
+        {heroProjects.map((project, index) => (
+          <div
+            key={project.id}
+            className={`absolute inset-0 transition-all duration-1000 ${
+              index === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-110'
+            }`}
+          >
+            <div className="absolute inset-0 bg-black/60" />
+            <img
+              src={project.thumbnail}
+              alt={project.title}
+              className="w-full h-full object-cover"
+              style={{ filter: 'brightness(0.7)' }}
+            />
+          </div>
+        ))}
+
+        {/* Sparkles on top of slider - 21st.dev style */}
+        <div className="absolute inset-0 z-[5] pointer-events-none">
+          <SparklesCore
+            particleCount={80}
+            particleColor="#4CAF50"
+            minSize={0.3}
+            maxSize={1.2}
+            speed={0.5}
+            className="w-full h-full"
+          />
         </div>
 
-        {/* Dark vignette so foreground content stays readable */}
-        <div className="absolute inset-0 z-[1] pointer-events-none bg-gradient-to-b from-black/70 via-black/40 to-black/80" />
+        {/* Spotlight on top - 21st.dev style */}
+        <Spotlight
+          className="z-[6]"
+          fill="rgba(30, 136, 229, 0.08)"
+          gradientSize={400}
+        />
 
         {/* Content */}
         <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8">
