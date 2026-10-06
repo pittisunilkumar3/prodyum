@@ -79,8 +79,7 @@ export default function Footer({ onOpenProjectModal }) {
               </span>
             </div>
             <p className="font-jakarta text-xs sm:text-sm text-slate-400 max-w-xl">
-              A synergistic powerhouse uniting enterprise digital architecture, mathematical performance marketing, 
-              and cinematic film production under the visionary direction of Srikanth Singam.
+              ProDyum helps businesses build their presence through social media, advertising, websites, branding and video content. Based in Hyderabad, we also create entertainment and media content through our dedicated brands — ProDyum IT, ProDyum Entertainments and ProDyum Media.
             </p>
 
             {/* Social icons — admin-managed (Settings → Social Media URLs) */}
@@ -161,11 +160,11 @@ export default function Footer({ onOpenProjectModal }) {
               Entertainments
             </span>
             <ul className="space-y-2.5 text-slate-400">
-              <li><a href="#film-slate" className="hover:text-white transition-colors">Chronicles of Deccan (Series)</a></li>
-              <li><a href="#film-slate" className="hover:text-white transition-colors">Echoes of Silence (Short)</a></li>
-              <li><a href="#film-slate" className="hover:text-white transition-colors">Project Kukatpally (Feature)</a></li>
-              <li><a href="#film-slate" className="hover:text-white transition-colors">Rhythm of Telangana (Music)</a></li>
-              <li><a href="#casting" className="hover:text-white transition-colors">Talent Casting & Auditions</a></li>
+              <li><a href="https://www.youtube.com/@prodyumentertainments" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">YouTube Channel</a></li>
+              <li><a href="https://www.instagram.com/prodyumentertainments/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Instagram</a></li>
+              <li><a href="https://www.facebook.com/profile.php?id=61575092141948" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Facebook</a></li>
+              <li><a href="https://x.com/ProdyumE49496" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">X (Twitter)</a></li>
+              <li><a href={`mailto:${COMPANY_INFO.entertainmentEmail}`} className="hover:text-white transition-colors">Production Enquiries</a></li>
             </ul>
           </div>
 
@@ -177,10 +176,10 @@ export default function Footer({ onOpenProjectModal }) {
             </span>
             <ul className="space-y-2.5 text-slate-400">
               <li><a href="#careers" className="hover:text-white transition-colors">Open Positions (Hiring)</a></li>
-              <li><a href="#ecosystem" className="hover:text-white transition-colors">Synergistic Dual Model</a></li>
-              <li><a href="#contact" className="hover:text-white transition-colors">Kukatpally Studio Hub</a></li>
-              <li><a href={`mailto:${COMPANY_INFO.email}`} className="hover:text-white transition-colors">Press & Media Inquiries</a></li>
-              <li><a href="#contact" className="hover:text-white transition-colors">Investor & Studio Relations</a></li>
+              <li><a href="#ecosystem" className="hover:text-white transition-colors">Our Three Brands</a></li>
+              <li><a href="#services" className="hover:text-white transition-colors">Services</a></li>
+              <li><a href={`mailto:${COMPANY_INFO.careersEmail}`} className="hover:text-white transition-colors">Careers (hr@prodyum.in)</a></li>
+              <li><a href={`mailto:${COMPANY_INFO.itEmail}`} className="hover:text-white transition-colors">Business Enquiries</a></li>
             </ul>
           </div>
 
@@ -191,16 +190,18 @@ export default function Footer({ onOpenProjectModal }) {
               Governance & HQ
             </span>
             <div className="space-y-2 text-slate-400">
-              <p className="text-white font-medium">Prodyum Private Limited</p>
-              <p>CIN / Enterprise Reg: Hyderabad</p>
-              <p>Kukatpally, Hyderabad - 500072</p>
-              <p>Telangana, Republic of India</p>
+              <p className="text-white font-medium">ProDyum IT Private Limited</p>
+              <p>CIN: {COMPANY_INFO.cin}</p>
+              {COMPANY_INFO.addressLines.map((line, i) => (
+                <p key={i}>{line}</p>
+              ))}
+              <p>{COMPANY_INFO.hours}</p>
               <div className="pt-2">
                 <button
                   onClick={onOpenProjectModal}
                   className="px-3.5 py-1.5 rounded-lg bg-white/[0.08] hover:bg-white/15 text-white text-[11px] font-mono transition-colors"
                 >
-                  Initiate Booking
+                  Let’s discuss your project
                 </button>
               </div>
             </div>
@@ -211,7 +212,7 @@ export default function Footer({ onOpenProjectModal }) {
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-jakarta text-slate-500">
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-center sm:text-left">
             <span>
-              © {new Date().getFullYear()} Srikanth Singam & Prodyum Pvt. Ltd. All rights reserved.
+              © {new Date().getFullYear()} ProDyum IT Private Limited. All rights reserved.
             </span>
             <a href="/privacy-policy" className="hover:text-cyan-accent transition-colors">Privacy Policy</a>
             <a href="/terms-conditions" className="hover:text-cyan-accent transition-colors">Terms & Conditions</a>

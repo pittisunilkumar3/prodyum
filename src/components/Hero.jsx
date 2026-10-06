@@ -6,9 +6,9 @@ import HeroCommunity from './HeroCommunity';
 import './Hero.css';
 
 const highlights = [
-  { value: '150+', label: 'Enterprise projects' },
-  { value: '3', label: 'Creative verticals' },
-  { value: 'End-to-End', label: 'Solutions' },
+  { value: '3', label: 'Brand verticals' },
+  { value: '8', label: 'Core services' },
+  { value: '2024', label: 'Incorporated' },
   { value: 'Hyderabad', label: 'Our home. Your launchpad.' },
 ];
 
@@ -31,10 +31,13 @@ export default function Hero({ activeVertical = 'all', onResetVertical, onExplor
             </div>
           )}
           <p className="hero-eyebrow">One brand. <span>Three verticals.</span> One ecosystem.</p>
-          <h1 id="hero-heading" className="hero-wordmark" aria-label="ProDyum">
-            <span aria-hidden="true">PR</span>
-            <span className="hero-brand-o" aria-hidden="true"><Play /></span>
-            <span aria-hidden="true">DYUM</span>
+          <div className="hero-wordmark" aria-hidden="true">
+            <span>PR</span>
+            <span className="hero-brand-o"><Play /></span>
+            <span>DYUM</span>
+          </div>
+          <h1 id="hero-heading" className="sr-only">
+            Digital Marketing and Creative Services for Growing Businesses
           </h1>
           <p className="hero-vertical-names">
             <span>IT</span><i aria-hidden="true">•</i>
@@ -43,18 +46,17 @@ export default function Hero({ activeVertical = 'all', onResetVertical, onExplor
           </p>
           <h2 className="hero-tagline">Build. Promote. Grow. Entertain.</h2>
           <p className="hero-description">
-            ProDyum brings together technology, digital marketing, creative services,
-            media, content creation and entertainment production under one ecosystem.
-            We help businesses grow, creators reach wider audiences, and stories find
-            their place in the world.
+            ProDyum helps businesses build their presence through social media,
+            advertising, websites, branding and video content. Based in Hyderabad,
+            we also create entertainment and media content through our dedicated brands.
           </p>
           <div className="hero-actions">
-            <button type="button" className="hero-button hero-button-primary" onClick={exploreVerticals}>
-              Explore ProDyum <ArrowRight aria-hidden="true" />
-            </button>
-            <a className="hero-button hero-button-secondary" href={COMPANY_INFO.socials.youtube} target="_blank" rel="noopener noreferrer">
+            <a className="hero-button hero-button-primary" href="#contact">
+              Discuss Your Project <ArrowRight aria-hidden="true" />
+            </a>
+            <a className="hero-button hero-button-secondary" href="#services">
               <span className="hero-play-icon"><Play aria-hidden="true" /></span>
-              Watch Our Videos<span className="sr-only"> on YouTube (opens in a new tab)</span>
+              View Our Work
             </a>
           </div>
           <dl className="hero-highlights">

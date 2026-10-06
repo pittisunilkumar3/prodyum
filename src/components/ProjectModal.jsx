@@ -174,19 +174,20 @@ export default function ProjectModal({ isOpen, onClose, onShowToast }) {
               >
                 {selectedVertical === 'it' ? (
                   <>
-                    <option value="High-Performance Web App">High-Performance Web App (React/Node)</option>
-                    <option value="Meta & Google Performance Ads">Meta & Google Performance Ads (+340% ROAS)</option>
-                    <option value="Strategic SEO & Entity Domination">Strategic SEO & Entity Domination</option>
-                    <option value="Brand Identity & 3D Spatial UI">Brand Identity & 3D Spatial UI</option>
-                    <option value="Custom Enterprise Software">Custom Enterprise Architecture</option>
+                    <option value="Social Media Management">Social Media Management</option>
+                    <option value="Graphic Design & Branding">Graphic Design &amp; Branding</option>
+                    <option value="Video Editing & Reels">Video Editing &amp; Reels</option>
+                    <option value="Product Photography & Video">Product Photography &amp; Video</option>
+                    <option value="Meta & Google Ads">Meta &amp; Google Ads</option>
+                    <option value="SEO & Website Optimisation">SEO &amp; Website Optimisation</option>
+                    <option value="Website Development">Website Development</option>
+                    <option value="YouTube Management">YouTube Management</option>
                   </>
                 ) : (
                   <>
-                    <option value="Feature Film Co-Production">Feature Film Co-Production</option>
-                    <option value="OTT Web Series Pitch & Execution">OTT Web Series Pitch & Execution</option>
-                    <option value="Commercial / Brand Film Production">Commercial / Brand Film Production</option>
-                    <option value="Cinematic Music Video">Cinematic Music Video (4K 60FPS)</option>
-                    <option value="Line Production Hyderabad">Line Production Services (Telangana/AP)</option>
+                    <option value="Film / Media Production">Film / Media Production (ProDyum Entertainments)</option>
+                    <option value="Commercial / Brand Film">Commercial / Brand Film</option>
+                    <option value="Music Video">Music Video</option>
                   </>
                 )}
               </select>
@@ -201,10 +202,10 @@ export default function ProjectModal({ isOpen, onClose, onShowToast }) {
                 onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
                 className="w-full px-4 py-2.5 rounded-xl bg-[#0C101A] border border-white/15 focus:border-cyan-accent focus:outline-none text-white text-base sm:text-xs"
               >
-                <option value="Immediate (Next 14 Days)">Immediate (Next 14 Days)</option>
-                <option value="1 - 3 Months">1 - 3 Months</option>
-                <option value="Q3/Q4 2026 Strategy">Q3/Q4 2026 Strategy</option>
-                <option value="Long-Term Institutional">Long-Term Institutional Partnership</option>
+                <option value="Immediate">Immediate</option>
+                <option value="Within one month">Within one month</option>
+                <option value="Within three months">Within three months</option>
+                <option value="Exploring">Exploring</option>
               </select>
             </div>
           </div>

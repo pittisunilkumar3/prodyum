@@ -14,50 +14,37 @@ import {
   Building2,
   ShieldCheck,
   Compass,
+  MessageCircle,
 } from 'lucide-react';
-import { COMPANY_INFO } from '../data/content';
+import { COMPANY_INFO, ENQUIRY_SERVICES, BUDGET_OPTIONS_IT, TIMELINE_OPTIONS } from '../data/content';
 import { submitToApi } from '../lib/api';
 
 export default function ContactBooking({ onShowToast }) {
   const [category, setCategory] = useState('it');
-  const [budgetIndex, setBudgetIndex] = useState(2);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     company: '',
-    timeline: 'Within 30 Days',
+    service: '',
+    timeline: 'Immediate',
+    budget: '',
     message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const budgetTiersIT = [
-    '₹2,50,000 - ₹5,00,000 ($3k - $6k)',
-    '₹5,00,000 - ₹12,00,000 ($6k - $15k)',
-    '₹12,00,000 - ₹25,00,000 ($15k - $30k)',
-    '₹25,00,000 - ₹50,00,000+ ($30k - $65k+)',
-    'Enterprise Custom Retainer',
-  ];
-
-  const budgetTiersFilm = [
-    '₹5,00,000 - ₹15,00,000 (Shorts & Indie)',
-    '₹15,00,000 - ₹35,00,000 (Music Video & Commercial)',
-    '₹35,00,000 - ₹1,00,00,000 (Web Series Slate)',
-    '₹1,00,00,000 - ₹5,00,00,000+ (Feature Co-Production)',
-    'Institutional / Studio Slate Investment',
-  ];
-
-  const activeBudgetTiers = category === 'it' ? budgetTiersIT : budgetTiersFilm;
+  const activeBudgetTiers =
+    category === 'it' ? BUDGET_OPTIONS_IT : ['To be discussed during our call'];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    const verticalName = category === 'it' ? 'IT & Growth Strategy' : 'Entertainments & Film Production';
+    const verticalName = category === 'it' ? 'IT & Digital Marketing' : 'Entertainments & Media Production';
 
     const newInquiry = {
       category,
       categoryName: verticalName,
-      budgetTier: activeBudgetTiers[budgetIndex],
+      budgetTier: formData.budget || activeBudgetTiers[0],
       ...formData,
     };
 
@@ -67,8 +54,8 @@ export default function ContactBooking({ onShowToast }) {
 
     onShowToast(
       result.persisted === 'server'
-        ? `Thank you ${formData.name || 'Partner'}! Your ${verticalName} proposal was dispatched to Srikanth Singam & Leadership.`
-        : `Server offline — your ${verticalName} inquiry was saved on this device instead.`,
+        ? `Thank you ${formData.name || 'there'}! Your enquiry has been sent — we will get back to you soon.`
+        : `Server offline — your enquiry was saved on this device instead.`,
       result.persisted === 'server' ? 'success' : 'info'
     );
 
@@ -77,7 +64,9 @@ export default function ContactBooking({ onShowToast }) {
       email: '',
       phone: '',
       company: '',
-      timeline: 'Within 30 Days',
+      service: '',
+      timeline: 'Immediate',
+      budget: '',
       message: '',
     });
   };
@@ -92,11 +81,11 @@ export default function ContactBooking({ onShowToast }) {
             Executive Inquiries & Engagements
           </div>
           <h2 className="font-syne font-extrabold text-2xl sm:text-4xl md:text-5xl text-white tracking-tight">
-            Initiate Collaboration
+            Let’s discuss your project
           </h2>
         </div>
         <p className="font-jakarta text-xs sm:text-sm text-slate-400 max-w-md">
-          Ready to scale market share or produce high-impact cinema? Reach out directly to our Hyderabad headquarters.
+          Tell us what your business needs — social media, ads, website, design or video. We reply with a clear scope and estimate.
         </p>
       </div>
 
@@ -118,11 +107,34 @@ export default function ContactBooking({ onShowToast }) {
             </div>
 
             <h3 className="font-syne font-bold text-xl sm:text-2xl md:text-3xl text-white mb-1.5 sm:mb-2">
-              Prodyum Pvt. Ltd.
+              ProDyum IT Private Limited
             </h3>
-            <p className="font-jakarta text-[11px] sm:text-xs uppercase tracking-wider sm:tracking-widest text-slate-400 font-mono mb-6 sm:mb-8">
+            <p className="font-jakarta text-[11px] sm:text-xs uppercase tracking-wider sm:tracking-widest text-slate-400 font-mono mb-1.5 sm:mb-2">
               Founder & Director: {COMPANY_INFO.founder}
             </p>
+            <p className="font-mono text-[10px] sm:text-[11px] text-slate-500 mb-6 sm:mb-8">
+              CIN: {COMPANY_INFO.cin}
+            </p>
+
+            {/* Quick contact actions — WhatsApp & Call */}
+            <div className="grid grid-cols-2 gap-3 mb-6 sm:mb-8">
+              <a
+                href={`https://wa.me/${COMPANY_INFO.itWhatsapp}?text=${encodeURIComponent('Hi ProDyum, I would like to discuss a project.')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 py-3 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/40 text-emerald-300 font-jakarta font-bold text-xs uppercase tracking-wider transition-all"
+              >
+                <MessageCircle className="w-4 h-4" />
+                WhatsApp Us
+              </a>
+              <a
+                href={`tel:+${COMPANY_INFO.itWhatsapp}`}
+                className="flex items-center justify-center gap-2 py-3 rounded-xl bg-cyan-accent/15 hover:bg-cyan-accent/25 border border-cyan-accent/40 text-cyan-accent font-jakarta font-bold text-xs uppercase tracking-wider transition-all"
+              >
+                <Phone className="w-4 h-4" />
+                Call Now
+              </a>
+            </div>
 
             {/* Location & Contact Meta Cards */}
             <div className="space-y-4 mb-8">
@@ -132,14 +144,21 @@ export default function ContactBooking({ onShowToast }) {
                 </div>
                 <div>
                   <span className="font-mono text-[10px] uppercase text-slate-400 block mb-0.5">
-                    Studio & Office Address
+                    Office Address
                   </span>
                   <p className="font-jakarta text-sm text-white font-medium">
-                    {COMPANY_INFO.headquarters}
+                    {COMPANY_INFO.addressLines.map((line, i) => (
+                      <span key={i} className="block">{line}</span>
+                    ))}
                   </p>
-                  <span className="font-mono text-xs text-cyan-accent block mt-1">
-                    PIN: {COMPANY_INFO.pincode} • Telangana, India
-                  </span>
+                  <a
+                    href={COMPANY_INFO.mapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-mono text-xs text-cyan-accent block mt-1.5 hover:underline"
+                  >
+                    Get Directions on Google Maps →
+                  </a>
                 </div>
               </div>
 
@@ -149,19 +168,25 @@ export default function ContactBooking({ onShowToast }) {
                 </div>
                 <div>
                   <span className="font-mono text-[10px] uppercase text-slate-400 block mb-0.5">
-                    Direct Executive Emails
+                    Emails
                   </span>
                   <a
-                    href={`mailto:${COMPANY_INFO.email}`}
+                    href={`mailto:${COMPANY_INFO.itEmail}`}
                     className="font-jakarta text-sm text-white hover:text-cyan-accent block transition-colors"
                   >
-                    {COMPANY_INFO.email}
+                    Business: {COMPANY_INFO.itEmail}
                   </a>
                   <a
-                    href={`mailto:${COMPANY_INFO.castingEmail}`}
+                    href={`mailto:${COMPANY_INFO.careersEmail}`}
                     className="font-jakarta text-xs text-slate-400 hover:text-amber-accent block transition-colors mt-0.5"
                   >
-                    Casting: {COMPANY_INFO.castingEmail}
+                    Careers / HR: {COMPANY_INFO.careersEmail}
+                  </a>
+                  <a
+                    href={`mailto:${COMPANY_INFO.entertainmentEmail}`}
+                    className="font-jakarta text-xs text-slate-400 hover:text-amber-accent block transition-colors mt-0.5"
+                  >
+                    Entertainments: {COMPANY_INFO.entertainmentEmail}
                   </a>
                 </div>
               </div>
@@ -235,10 +260,10 @@ export default function ContactBooking({ onShowToast }) {
         <div className="lg:col-span-7 glass-card p-5 sm:p-8 md:p-10 rounded-3xl relative overflow-hidden border border-white/10">
           <div className="mb-5 sm:mb-6">
             <h3 className="font-syne font-bold text-xl sm:text-2xl md:text-3xl text-white mb-1.5 sm:mb-2">
-              Dispatch Project Brief
+              Send Enquiry
             </h3>
             <p className="font-jakarta text-xs sm:text-sm text-slate-400">
-              Select your inquiry domain to calibrate appropriate engineering and creative leadership.
+              Fill this short form and we will get back to you with scope, deliverables and a clear estimate.
             </p>
           </div>
 
@@ -291,34 +316,62 @@ export default function ContactBooking({ onShowToast }) {
               </div>
             </div>
 
-            {/* Budget Slider */}
-            <div>
-              <div className="flex justify-between items-center mb-2">
-                <label className="text-[11px] sm:text-xs font-mono uppercase text-slate-300">
-                  Estimated Capital Allocation
+            {/* Service + Timeline */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+              <div>
+                <label htmlFor="enquiry-service" className="block text-xs font-mono uppercase text-slate-300 mb-1">
+                  Service Needed {category === 'it' ? '*' : '(optional)'}
                 </label>
-                <span
-                  className={`font-mono text-[11px] sm:text-xs font-bold truncate max-w-[50%] text-right ${
-                    category === 'it' ? 'text-cyan-accent' : 'text-amber-accent'
-                  }`}
+                <select
+                  id="enquiry-service"
+                  required={category === 'it'}
+                  value={formData.service}
+                  onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                  className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-white/[0.04] border border-white/15 focus:border-cyan-accent focus:outline-none text-white text-base sm:text-sm"
                 >
-                  {activeBudgetTiers[budgetIndex]}
-                </span>
+                  <option value="">Select a service…</option>
+                  {ENQUIRY_SERVICES.map((s) => (
+                    <option key={s} value={s}>{s}</option>
+                  ))}
+                  {category === 'film' && <option value="Film / Media Production">Film / Media Production</option>}
+                </select>
               </div>
-              <input
-                type="range"
-                min="0"
-                max={activeBudgetTiers.length - 1}
-                step="1"
-                value={budgetIndex}
-                onChange={(e) => setBudgetIndex(parseInt(e.target.value))}
-                className="w-full accent-cyan-accent cursor-pointer h-2 bg-white/10 rounded-lg appearance-none"
-              />
-              <div className="flex justify-between text-[9px] sm:text-[10px] font-mono text-slate-500 mt-1.5">
-                <span>Essential Scope</span>
-                <span>Mid-Tier</span>
-                <span>Flagship Enterprise</span>
+              <div>
+                <label htmlFor="enquiry-timeline" className="block text-xs font-mono uppercase text-slate-300 mb-1">
+                  Timeline
+                </label>
+                <select
+                  id="enquiry-timeline"
+                  value={formData.timeline}
+                  onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
+                  className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-white/[0.04] border border-white/15 focus:border-cyan-accent focus:outline-none text-white text-base sm:text-sm"
+                >
+                  {TIMELINE_OPTIONS.map((t) => (
+                    <option key={t} value={t}>{t}</option>
+                  ))}
+                </select>
               </div>
+            </div>
+
+            {/* Budget (optional) */}
+            <div>
+              <label htmlFor="enquiry-budget" className="block text-xs font-mono uppercase text-slate-300 mb-1">
+                Budget — optional
+              </label>
+              <select
+                id="enquiry-budget"
+                value={formData.budget}
+                onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+                className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-white/[0.04] border border-white/15 focus:border-cyan-accent focus:outline-none text-white text-base sm:text-sm"
+              >
+                <option value="">Select a range…</option>
+                {activeBudgetTiers.map((b) => (
+                  <option key={b} value={b}>{b}</option>
+                ))}
+              </select>
+              <p className="mt-1.5 font-jakarta text-[10px] sm:text-[11px] text-slate-500">
+                Estimates are project-based unless agreed otherwise. Advertising spend is separate and billed by the platform.
+              </p>
             </div>
 
             {/* Inputs Grid */}
@@ -339,7 +392,7 @@ export default function ContactBooking({ onShowToast }) {
 
               <div>
                 <label className="block text-xs font-mono uppercase text-slate-300 mb-1">
-                  Corporate / Entity Name
+                  Business Name
                 </label>
                 <input
                   type="text"
@@ -352,21 +405,20 @@ export default function ContactBooking({ onShowToast }) {
 
               <div>
                 <label className="block text-xs font-mono uppercase text-slate-300 mb-1">
-                  Business Email *
+                  Email (optional)
                 </label>
                 <input
                   type="email"
-                  required
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  placeholder="vikram@nexus.com"
+                  placeholder="you@company.com"
                   className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-white/[0.04] border border-white/15 focus:border-cyan-accent focus:outline-none text-white text-base sm:text-sm"
                 />
               </div>
 
               <div>
                 <label className="block text-xs font-mono uppercase text-slate-300 mb-1">
-                  Direct Phone / WhatsApp *
+                  Phone or WhatsApp *
                 </label>
                 <input
                   type="tel"
@@ -382,14 +434,14 @@ export default function ContactBooking({ onShowToast }) {
             {/* Message Textarea */}
             <div>
               <label className="block text-xs font-mono uppercase text-slate-300 mb-1">
-                Project Scope & Deliverable Objectives *
+                Short Message *
               </label>
               <textarea
                 rows={3}
                 required
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                placeholder="Outline your target KPIs, technical prerequisites, script premise, or marketing objectives..."
+                placeholder="Tell us briefly what you need — e.g. Instagram management for my boutique…"
                 className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-white/[0.04] border border-white/15 focus:border-cyan-accent focus:outline-none text-white text-base sm:text-sm"
               />
             </div>
@@ -405,14 +457,21 @@ export default function ContactBooking({ onShowToast }) {
               }`}
             >
               {isSubmitting ? (
-                <span>Routing to Hyderabad Desk...</span>
+                <span>Sending…</span>
               ) : (
                 <>
                   <Send className="w-4 h-4" />
-                  <span>Transmit Official Proposal</span>
+                  <span>Send Enquiry</span>
                 </>
               )}
             </button>
+
+            {/* Privacy notice (Meta lead-ads requirement) */}
+            <p className="font-jakarta text-[11px] text-slate-500 leading-relaxed">
+              ProDyum IT Private Limited will use the details you submit to respond to your
+              enquiry and follow up about the requested services.{' '}
+              <a href="/privacy-policy" className="text-cyan-accent hover:underline">Read our Privacy Policy</a>.
+            </p>
           </form>
         </div>
       </div>

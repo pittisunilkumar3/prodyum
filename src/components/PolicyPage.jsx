@@ -98,7 +98,7 @@ export default function PolicyPage({ slug }) {
           <article>
             <div className="mb-10 pb-8 border-b border-white/10">
               <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-cyan-accent mb-3">
-                {siteName} Pvt. Ltd. — Legal
+                ProDyum IT Private Limited — Legal
               </p>
               <h1 className="font-syne text-3xl sm:text-4xl font-bold leading-tight">
                 {state.page.title}
@@ -124,7 +124,7 @@ export default function PolicyPage({ slug }) {
       <footer className="border-t border-white/10 mt-10">
         <div className="max-w-5xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs font-jakarta text-slate-500">
-            © {new Date().getFullYear()} Srikanth Singam &amp; {siteName} Pvt. Ltd. All rights reserved.
+            © {new Date().getFullYear()} ProDyum IT Private Limited. All rights reserved.
           </p>
           <nav className="flex items-center gap-5 text-xs font-jakarta text-slate-400">
             <a href="/privacy-policy" className="hover:text-cyan-accent transition-colors">Privacy Policy</a>

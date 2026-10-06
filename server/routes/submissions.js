@@ -15,6 +15,7 @@ router.post('/inquiries', async (req, res, next) => {
     const {
       category = 'it',
       categoryName = '',
+      service = '',
       budgetTier = '',
       name = '',
       email = '',
@@ -24,21 +25,23 @@ router.post('/inquiries', async (req, res, next) => {
       message = '',
     } = req.body || {};
 
-    if (!name.trim() || !isEmail(email) || !phone.trim() || !message.trim()) {
+    // Client brief: email is optional; validate only when provided
+    if (!name.trim() || (email && !isEmail(email)) || !phone.trim() || !message.trim()) {
       return res
         .status(400)
-        .json({ ok: false, error: 'Name, valid email, phone and message are required.' });
+        .json({ ok: false, error: 'Name, phone and message are required. Email must be valid if provided.' });
     }
 
     const id = newId('INQ');
     await pool.query(
       `INSERT INTO inquiries
-        (id, category, category_name, budget_tier, name, email, phone, company, timeline, message)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        (id, category, category_name, service, budget_tier, name, email, phone, company, timeline, message)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         id,
         category === 'film' ? 'film' : 'it',
         String(categoryName).slice(0, 120),
+        String(service).slice(0, 150),
         String(budgetTier).slice(0, 150),
         String(name).slice(0, 150),
         String(email).slice(0, 200),
@@ -50,7 +53,7 @@ router.post('/inquiries', async (req, res, next) => {
     );
 
     // Automated emails (fire-and-forget — submission never waits on SMTP)
-    fireTemplateEmail('inquiry_acknowledgement', email, {
+    if (email) fireTemplateEmail('inquiry_acknowledgement', email, {
       name: name.trim(),
       category_name: categoryName,
       company: company,

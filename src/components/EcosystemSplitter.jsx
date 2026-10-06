@@ -57,15 +57,14 @@ export default function EcosystemSplitter({ activeVertical = 'all', onSelectIT, 
         <div>
           <div className="inline-flex items-center gap-2 font-mono text-[11px] sm:text-xs uppercase tracking-[0.16em] sm:tracking-[0.2em] text-cyan-accent mb-2 sm:mb-3">
             <Layers className="w-3.5 h-3.5" />
-            Dual-Vertical Synergistic Architecture
+            Three Brands. One Ecosystem.
           </div>
           <h2 className="font-syne font-extrabold text-2xl sm:text-4xl md:text-5xl text-white tracking-tight">
-            Two Pillars. One Singular Vision.
+            Three Brands. One Singular Vision.
           </h2>
         </div>
         <p className="font-jakarta text-xs sm:text-sm text-slate-400 max-w-md">
-          Whether scaling enterprise revenue through ruthless algorithmic performance or crafting timeless 
-          cinema for global audiences, Prodyum operates at the bleeding edge.
+          ProDyum IT, ProDyum Entertainments and ProDyum Media — three focused brands helping businesses grow and stories reach their audiences.
         </p>
       </div>
 
@@ -96,7 +95,7 @@ export default function EcosystemSplitter({ activeVertical = 'all', onSelectIT, 
               </div>
               <span className="font-mono text-[11px] sm:text-xs text-emerald-400 flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-400 animate-pulse" />
-                99.98% SLA Uptime
+                Serving Hyderabad & beyond
               </span>
             </div>
 
@@ -104,37 +103,16 @@ export default function EcosystemSplitter({ activeVertical = 'all', onSelectIT, 
               ProDyum IT & Creative
             </h3>
             <p className="font-jakarta text-xs sm:text-sm text-slate-300 mb-6 sm:mb-8 leading-relaxed">
-              Engineered for aggressive scale. We construct proprietary web infrastructure, execute high-ROAS Meta & Google advertising, and design award-winning brand systems.
+              Practical digital marketing and web services for growing businesses — social media, advertising, websites, branding and video content, with clear scope and reporting.
             </p>
 
-            {/* Micro-Metric Interactive Matrix */}
-            <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8">
-              <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white/[0.04] border border-white/[0.08] group-hover:border-cyan-accent/30 transition-colors">
-                <span className="font-mono text-xl sm:text-3xl font-bold text-cyan-accent">
-                  +340%
-                </span>
-                <span className="block font-jakarta text-[10px] sm:text-xs text-slate-400 uppercase tracking-wider mt-1">
-                  Average Client ROAS
-                </span>
-              </div>
-
-              <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white/[0.04] border border-white/[0.08] group-hover:border-cyan-accent/30 transition-colors">
-                <span className="font-mono text-xl sm:text-3xl font-bold text-white">
-                  &lt;100ms
-                </span>
-                <span className="block font-jakarta text-[10px] sm:text-xs text-slate-400 uppercase tracking-wider mt-1">
-                  Edge Global Latency
-                </span>
-              </div>
-            </div>
-
-            {/* Core Capabilities List */}
+            {/* Capability List */}
             <div className="space-y-2.5 sm:space-y-3 mb-6 sm:mb-8">
               {[
-                { title: 'Custom Web Apps & Headless Commerce', tag: 'React • Cloud' },
-                { title: 'Meta & Google Performance Ads Scaling', tag: 'Full-Funnel' },
-                { title: 'Search Engine Dominance & Technical SEO', tag: 'Top-3 Moat' },
-                { title: 'Brand Strategy & Spatial 3D Aesthetics', tag: 'Awwwards UI' },
+                { title: 'Social Media Management', tag: 'Instagram · Facebook' },
+                { title: 'Meta & Google Ads', tag: 'Setup · Optimisation' },
+                { title: 'SEO & Website Optimisation', tag: 'Local + Organic' },
+                { title: 'Websites, Design & Video', tag: 'Full Service' },
               ].map((item, idx) => (
                 <div
                   key={idx}
@@ -240,22 +218,14 @@ export default function EcosystemSplitter({ activeVertical = 'all', onSelectIT, 
                 {/* Central Play Trigger / Slate Info */}
                 <div className="text-center z-10 px-2">
                   <span className="font-mono text-[9px] sm:text-xs uppercase tracking-wider sm:tracking-widest text-amber-accent block mb-0.5 sm:mb-1">
-                    Current Focus Slate
+                    Entertainment Content
                   </span>
                   <span className="font-syne font-bold text-base sm:text-xl text-white block">
-                    Chronicles of Deccan
+                    Films · Web Series · Music Videos
                   </span>
                   <span className="font-jakarta text-[11px] sm:text-xs text-slate-400 block mt-0.5">
-                    Directed by Srikanth Singam
+                    Announcements coming soon
                   </span>
-
-                  <button
-                    onClick={() => onOpenTrailer('deccan-chronicles')}
-                    className="mt-2.5 sm:mt-3 inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1 sm:py-1.5 rounded-full bg-amber-accent/20 hover:bg-amber-accent/30 border border-amber-accent/50 text-amber-accent font-jakarta text-[11px] sm:text-xs font-semibold tracking-wider transition-all"
-                  >
-                    <Play className="w-3 h-3 fill-amber-accent" />
-                    Preview Teaser
-                  </button>
                 </div>
               </div>
 

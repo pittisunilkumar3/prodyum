@@ -173,8 +173,8 @@ export default function App() {
           </div>
         )}
 
-        {/* Talent & Casting Portal */}
-        {(activeVertical === 'all' || activeVertical === 'entertainments') && (
+        {/* Talent & Casting Portal — hidden until a real casting brief is announced */}
+        {false && (
           <CastingPortal
             isOpen={isCastingModalOpen}
             onOpen={() => setIsCastingModalOpen(true)}

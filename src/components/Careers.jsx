@@ -116,10 +116,6 @@ export default function Careers({ onShowToast }) {
                     <span className="font-mono text-[10px] sm:text-[11px] text-slate-400">
                       {job.department}
                     </span>
-                    {/* Mobile Salary Pill */}
-                    <span className="md:hidden font-mono text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full">
-                      {job.salary.split('+')[0]}
-                    </span>
                   </div>
 
                   <h3 className="font-syne font-bold text-lg sm:text-xl md:text-2xl text-white">
@@ -130,10 +126,10 @@ export default function Careers({ onShowToast }) {
                 <div className="flex items-center gap-3 sm:gap-6 self-end sm:self-center">
                   <div className="text-right hidden md:block">
                     <span className="font-mono text-xs text-slate-300 block font-semibold">
-                      {job.salary}
+                      {job.type}
                     </span>
                     <span className="font-jakarta text-[11px] text-slate-400 block">
-                      {job.type}
+                      {job.experience}
                     </span>
                   </div>
 
@@ -185,11 +181,11 @@ export default function Careers({ onShowToast }) {
                         </div>
                         <div>
                           <span className="text-slate-400 block">Location:</span>
-                          <span className="text-white font-semibold">Kukatpally, Hyderabad</span>
+                          <span className="text-white font-semibold">Kukatpally, Hyderabad (On-site)</span>
                         </div>
                         <div>
-                          <span className="text-slate-400 block">Remuneration:</span>
-                          <span className="text-emerald-400 font-mono font-semibold">{job.salary}</span>
+                          <span className="text-slate-400 block">How to Apply:</span>
+                          <span className="text-white font-semibold">CV + portfolio to hr@prodyum.in or WhatsApp +91 9949590033</span>
                         </div>
                       </div>
 

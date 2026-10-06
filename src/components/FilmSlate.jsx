@@ -79,7 +79,10 @@ export default function FilmSlate({ onOpenTrailer, onOpenCasting }) {
         }
       }
     })();
-    return () => {
+    // Client brief: hide the slate entirely while no verified productions are published
+  if (!loading && projects.length === 0) return null;
+
+  return () => {
       cancelled = true;
     };
   }, []);
