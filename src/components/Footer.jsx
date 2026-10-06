@@ -9,11 +9,45 @@ import {
   Cpu,
   Film,
   Globe,
+  Facebook,
+  Instagram,
+  Twitter,
+  Linkedin,
+  Youtube,
+  MessageCircle,
 } from 'lucide-react';
+import { API_BASE } from '../lib/api';
 import { COMPANY_INFO } from '../data/content';
+
+const SOCIAL_ICONS = [
+  { key: 'facebook_link', label: 'Facebook', icon: Facebook },
+  { key: 'instagram_link', label: 'Instagram', icon: Instagram },
+  { key: 'twitter_link', label: 'Twitter / X', icon: Twitter },
+  { key: 'linkedin_link', label: 'LinkedIn', icon: Linkedin },
+  { key: 'youtube_link', label: 'YouTube', icon: Youtube },
+  { key: 'whatsapp_link', label: 'WhatsApp', icon: MessageCircle },
+];
 
 export default function Footer({ onOpenProjectModal }) {
   const [istTime, setIstTime] = useState('');
+  const [social, setSocial] = useState(null);
+
+  // Admin-managed social media URLs (Admin → Settings → Social Media URLs)
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch(`${API_BASE}/site-settings`);
+        const data = await res.json().catch(() => ({}));
+        if (!cancelled && res.ok && data.ok) setSocial(data.data);
+      } catch {
+        /* footer works fine without social icons */
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   // Live Indian Standard Time (IST: UTC+5:30) Clock
   useEffect(() => {
@@ -60,6 +94,27 @@ export default function Footer({ onOpenProjectModal }) {
               A synergistic powerhouse uniting enterprise digital architecture, mathematical performance marketing, 
               and cinematic film production under the visionary direction of Srikanth Singam.
             </p>
+
+            {/* Social icons — admin-managed (Settings → Social Media URLs) */}
+            {social && (
+              <div className="flex items-center gap-2.5 mt-5 flex-wrap">
+                {SOCIAL_ICONS.map(({ key, label, icon: Icon }) =>
+                  social[key] ? (
+                    <a
+                      key={key}
+                      href={social[key]}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={label}
+                      title={label}
+                      className="p-2.5 rounded-xl bg-white/[0.05] border border-white/10 text-slate-400 hover:text-cyan-accent hover:border-cyan-accent/40 hover:bg-cyan-accent/10 transition-all"
+                    >
+                      <Icon className="w-4 h-4" />
+                    </a>
+                  ) : null
+                )}
+              </div>
+            )}
           </div>
 
           {/* Live Indian Standard Time (IST) Clock & HQ Studio Status */}

@@ -9,8 +9,25 @@ import {
   AlertCircle,
   RefreshCw,
   Info,
+  Share2,
+  Facebook,
+  Instagram,
+  Twitter,
+  Linkedin,
+  Youtube,
+  MessageCircle,
+  ExternalLink,
 } from 'lucide-react';
 import { API_BASE, ADMIN_API } from '../lib/api';
+
+const SOCIAL_FIELDS = [
+  { key: 'facebook_link', label: 'Facebook', icon: Facebook, placeholder: 'https://facebook.com/prodyum' },
+  { key: 'instagram_link', label: 'Instagram', icon: Instagram, placeholder: 'https://instagram.com/prodyum' },
+  { key: 'twitter_link', label: 'Twitter / X', icon: Twitter, placeholder: 'https://x.com/prodyum' },
+  { key: 'linkedin_link', label: 'LinkedIn', icon: Linkedin, placeholder: 'https://linkedin.com/company/prodyum' },
+  { key: 'youtube_link', label: 'YouTube', icon: Youtube, placeholder: 'https://youtube.com/@prodyum' },
+  { key: 'whatsapp_link', label: 'WhatsApp', icon: MessageCircle, placeholder: 'https://wa.me/919999999999' },
+];
 
 const fmtUptime = (s) => {
   const h = Math.floor(s / 3600);
@@ -34,6 +51,56 @@ export default function Settings({ user }) {
   const [system, setSystem] = useState(null);
   const [sysBusy, setSysBusy] = useState(true);
   const [sysError, setSysError] = useState('');
+
+  // Social media links state
+  const [social, setSocial] = useState(null);
+  const [socialBusy, setSocialBusy] = useState(true);
+  const [socialSaving, setSocialSaving] = useState(false);
+  const [socialError, setSocialError] = useState('');
+  const [socialSuccess, setSocialSuccess] = useState('');
+
+  const loadSocial = async () => {
+    setSocialBusy(true);
+    setSocialError('');
+    try {
+      const res = await fetch(`${API_BASE}/site-settings`, { credentials: 'include' });
+      const data = await res.json();
+      if (!res.ok || !data.ok) throw new Error(data.error || 'Failed to load social links.');
+      setSocial(data.data);
+    } catch (err) {
+      setSocialError(err.message || 'Could not load social links.');
+    } finally {
+      setSocialBusy(false);
+    }
+  };
+
+  useEffect(() => {
+    loadSocial();
+  }, []);
+
+  const handleSaveSocial = async (e) => {
+    e.preventDefault();
+    setSocialError('');
+    setSocialSuccess('');
+    setSocialSaving(true);
+    try {
+      const res = await fetch(`${ADMIN_API}/site-settings`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify(social),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) throw new Error(data.error || 'Save failed.');
+      setSocial(data.data);
+      setSocialSuccess('Saved — social icons are live in the footer.');
+      setTimeout(() => setSocialSuccess(''), 3500);
+    } catch (err) {
+      setSocialError(err.message || 'Could not reach the API server.');
+    } finally {
+      setSocialSaving(false);
+    }
+  };
 
   const loadSystem = async () => {
     setSysBusy(true);
@@ -262,6 +329,106 @@ export default function Settings({ user }) {
               </span>
             </div>
           </>
+        ) : null}
+      </div>
+
+      {/* Social Media URLs — shown as icons in the public footer */}
+      <div className="glass-card p-5 sm:p-7 rounded-3xl border border-white/10 xl:col-span-2">
+        <div className="flex items-center justify-between mb-1.5">
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 rounded-xl bg-cyan-accent/10 border border-cyan-accent/30 text-cyan-accent">
+              <Share2 className="w-5 h-5" />
+            </div>
+            <div>
+              <h3 className="font-syne font-bold text-lg text-white">Social Media URLs</h3>
+              <p className="font-jakarta text-xs text-slate-400">
+                Set your profiles — icons appear in the website footer automatically
+              </p>
+            </div>
+          </div>
+          <button
+            onClick={loadSocial}
+            className="p-2 rounded-lg bg-white/[0.05] hover:bg-white/10 border border-white/10 text-slate-400 hover:text-white transition-colors"
+            title="Reload"
+          >
+            <RefreshCw className={`w-3.5 h-3.5 ${socialBusy ? 'animate-spin' : ''}`} />
+          </button>
+        </div>
+
+        {socialError && (
+          <div className="mt-4 flex items-center gap-2 p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-xs font-jakarta text-red-300">
+            <AlertCircle className="w-4 h-4 shrink-0" />
+            {socialError}
+          </div>
+        )}
+        {socialSuccess && (
+          <div className="mt-4 flex items-center gap-2 p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-xs font-jakarta text-emerald-300">
+            <CheckCircle2 className="w-4 h-4 shrink-0" />
+            {socialSuccess}
+          </div>
+        )}
+
+        {socialBusy && !social ? (
+          <div className="flex items-center justify-center gap-2 py-10 font-mono text-xs text-slate-500">
+            <Loader2 className="w-4 h-4 animate-spin" />
+            Loading social links…
+          </div>
+        ) : social ? (
+          <form onSubmit={handleSaveSocial} className="mt-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+              {SOCIAL_FIELDS.map(({ key, label, icon: Icon, placeholder }) => {
+                const current = (social[key] || '').trim();
+                return (
+                  <div key={key}>
+                    <label className="flex items-center justify-between text-xs font-mono uppercase text-slate-300 mb-1.5">
+                      <span className="flex items-center gap-1.5">
+                        <Icon className="w-3.5 h-3.5 text-slate-500" />
+                        {label}
+                      </span>
+                      {current && (
+                        <a
+                          href={current}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-1 text-[9px] normal-case text-emerald-400 hover:underline"
+                        >
+                          live <ExternalLink className="w-3 h-3" />
+                        </a>
+                      )}
+                    </label>
+                    <input
+                      type="url"
+                      value={social[key] || ''}
+                      onChange={(e) => setSocial({ ...social, [key]: e.target.value })}
+                      placeholder={placeholder}
+                      className={inputCls}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+            <p className="mt-3 font-jakarta text-[11px] text-slate-500">
+              Leave a field empty to hide that icon from the footer. Use full URLs (https://…).
+              WhatsApp tip: use <code className="font-mono">https://wa.me/&lt;number&gt;</code>.
+            </p>
+            <button
+              type="submit"
+              disabled={socialSaving}
+              className="mt-4 px-6 py-3 rounded-xl bg-cyan-accent hover:bg-cyan-400 disabled:opacity-50 text-black font-jakarta font-bold text-xs uppercase tracking-wider flex items-center gap-2 shadow-[0_0_20px_rgba(0,240,255,0.3)] transition-all"
+            >
+              {socialSaving ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <span>Saving…</span>
+                </>
+              ) : (
+                <>
+                  <Share2 className="w-4 h-4" />
+                  <span>Save Social Links</span>
+                </>
+              )}
+            </button>
+          </form>
         ) : null}
       </div>
     </div>

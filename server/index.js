@@ -14,6 +14,7 @@ import emailSettingsRoutes from './routes/emailSettings.js';
 import emailTemplateRoutes from './routes/emailTemplates.js';
 import { videoPublicRouter, videoAdminRouter, UPLOADS_DIR } from './routes/videos.js';
 import { pagesPublicRouter, pagesAdminRouter } from './routes/pages.js';
+import { siteSettingsPublicRouter, siteSettingsAdminRouter } from './routes/siteSettings.js';
 import {
   filmPublicRouter,
   filmAdminRouter,
@@ -45,6 +46,7 @@ app.use('/api/videos', videoPublicRouter);
 app.use('/api/films', filmPublicRouter);
 app.use('/api/seo', seoPublicRouter);
 app.use('/api/pages', pagesPublicRouter);
+app.use('/api/site-settings', siteSettingsPublicRouter);
 
 // Dynamic robots.txt served from admin-managed content (StackFood-style robot meta)
 app.get('/robots.txt', async (req, res) => {
@@ -63,6 +65,7 @@ app.get('/robots.txt', async (req, res) => {
 
 app.use('/api/admin/videos', videoAdminRouter); // must be before generic /api/admin router
 app.use('/api/admin/pages', pagesAdminRouter); // must be before generic /api/admin router
+app.use('/api/admin/site-settings', siteSettingsAdminRouter); // must be before generic /api/admin router
 app.use('/api/admin/films', filmAdminRouter); // must be before generic /api/admin router
 app.use('/api/admin/seo', seoAdminRouter); // must be before generic /api/admin router
 app.use('/api/admin/film-categories', categoryAdminRouter); // must be before generic /api/admin router
