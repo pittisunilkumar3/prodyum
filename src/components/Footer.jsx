@@ -16,7 +16,7 @@ import {
   Youtube,
   MessageCircle,
 } from 'lucide-react';
-import { API_BASE } from '../lib/api';
+import { useBranding } from '../lib/branding';
 import { COMPANY_INFO } from '../data/content';
 
 const SOCIAL_ICONS = [
@@ -30,24 +30,9 @@ const SOCIAL_ICONS = [
 
 export default function Footer({ onOpenProjectModal }) {
   const [istTime, setIstTime] = useState('');
-  const [social, setSocial] = useState(null);
-
-  // Admin-managed social media URLs (Admin → Settings → Social Media URLs)
-  useEffect(() => {
-    let cancelled = false;
-    (async () => {
-      try {
-        const res = await fetch(`${API_BASE}/site-settings`);
-        const data = await res.json().catch(() => ({}));
-        if (!cancelled && res.ok && data.ok) setSocial(data.data);
-      } catch {
-        /* footer works fine without social icons */
-      }
-    })();
-    return () => {
-      cancelled = true;
-    };
-  }, []);
+  const brand = useBranding();
+  const siteName = brand.site_name || 'PRODYUM';
+  const social = brand; // same API response carries the social links
 
   // Live Indian Standard Time (IST: UTC+5:30) Clock
   useEffect(() => {
@@ -83,8 +68,11 @@ export default function Footer({ onOpenProjectModal }) {
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 pb-12 border-b border-white/[0.08]">
           <div>
             <div className="flex items-center gap-3 mb-2">
+              {brand.logo_url && (
+                <img src={brand.logo_url} alt={`${siteName} logo`} className="h-10 w-auto" />
+              )}
               <span className="font-syne font-extrabold text-3xl tracking-tight text-white">
-                PRODYUM
+                {siteName.toUpperCase()}
               </span>
               <span className="glass-pill text-[10px] font-mono text-cyan-accent border-cyan-accent/30">
                 PVT. LTD.

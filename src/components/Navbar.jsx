@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, ArrowUpRight, Menu, Search, X } from 'lucide-react';
 import { COMPANY_INFO } from '../data/content';
+import { useBranding } from '../lib/branding';
 import './Navbar.css';
 
 const navLinks = [
@@ -23,6 +24,9 @@ const searchableLinks = [...navLinks, ...additionalLinks];
 
 export default function Navbar({ activeVertical, setActiveVertical, onOpenProjectModal }) {
   const [scrolled, setScrolled] = useState(false);
+  const brand = useBranding();
+  const siteName = brand.site_name || 'ProDyum';
+  const tagline = brand.site_tagline || 'IT · Media · Entertainments';
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -154,7 +158,10 @@ export default function Navbar({ activeVertical, setActiveVertical, onOpenProjec
   return (
     <header ref={headerRef} className={`site-header${scrolled ? ' site-header-scrolled' : ''}`}>
       <div className="site-header-inner">
-        <a className="site-brand" href="#home" aria-label="ProDyum home" onClick={event => navigate(event, navLinks[0])}>
+        <a className="site-brand" href="#home" aria-label={`${siteName} home`} onClick={event => navigate(event, navLinks[0])}>
+          {brand.logo_url ? (
+            <img className="site-brand-mark site-brand-logo" src={brand.logo_url} alt={`${siteName} logo`} />
+          ) : (
           <svg className="site-brand-mark" viewBox="0 0 48 58" fill="none" aria-hidden="true">
             <defs>
               <linearGradient id="header-brand-gradient" x1="3" y1="50" x2="43" y2="8" gradientUnits="userSpaceOnUse">
@@ -169,7 +176,8 @@ export default function Navbar({ activeVertical, setActiveVertical, onOpenProjec
             <path d="M16 44V15H24C31 15 35 19 35 25C35 32 30 36 23 36H21" stroke="white" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" />
             <path d="M9 3H24" stroke="#92FFE7" strokeOpacity=".6" strokeLinecap="round" />
           </svg>
-          <span className="site-brand-copy"><strong>ProDyum</strong><span>IT · Media · Entertainments</span></span>
+          )}
+          <span className="site-brand-copy"><strong>{siteName}</strong><span>{tagline}</span></span>
         </a>
 
         <nav id="primary-navigation" aria-label="Main navigation" className={`site-primary-nav${mobileMenuOpen ? ' is-open' : ''}`}>

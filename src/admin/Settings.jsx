@@ -9,6 +9,8 @@ import {
   AlertCircle,
   RefreshCw,
   Info,
+  Globe,
+  Image as ImageIcon,
   Share2,
   Facebook,
   Instagram,
@@ -19,6 +21,12 @@ import {
   ExternalLink,
 } from 'lucide-react';
 import { API_BASE, ADMIN_API } from '../lib/api';
+import { useBranding, setBrandingCache } from '../lib/branding';
+
+const WEBSITE_FIELDS = [
+  { key: 'site_name', label: 'Site Name', placeholder: 'Prodyum' },
+  { key: 'site_tagline', label: 'Tagline', placeholder: 'IT · Media · Entertainments' },
+];
 
 const SOCIAL_FIELDS = [
   { key: 'facebook_link', label: 'Facebook', icon: Facebook, placeholder: 'https://facebook.com/prodyum' },
@@ -58,6 +66,104 @@ export default function Settings({ user }) {
   const [socialSaving, setSocialSaving] = useState(false);
   const [socialError, setSocialError] = useState('');
   const [socialSuccess, setSocialSuccess] = useState('');
+
+  // Website settings (name / tagline / logo) state
+  const brand = useBranding();
+  const [siteName, setSiteName] = useState('');
+  const [siteTagline, setSiteTagline] = useState('');
+  const [logoPreview, setLogoPreview] = useState('');
+  const [logoFile, setLogoFile] = useState(null);
+  const [siteBusy, setSiteBusy] = useState(true);
+  const [siteSaving, setSiteSaving] = useState(false);
+  const [siteError, setSiteError] = useState('');
+  const [siteSuccess, setSiteSuccess] = useState('');
+
+  // Seed form from the shared branding cache (filled by public fetch)
+  useEffect(() => {
+    if (brand && !siteName && !siteTagline && !logoPreview) {
+      setSiteName(brand.site_name || '');
+      setSiteTagline(brand.site_tagline || '');
+      setLogoPreview(brand.logo_url || '');
+      setSiteBusy(false);
+    }
+  }, [brand]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const handleLogoChange = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setLogoFile(file);
+    setLogoPreview(URL.createObjectURL(file)); // instant preview
+  };
+
+  const handleRemoveLogo = async () => {
+    setSiteError('');
+    setSiteSuccess('');
+    setSiteSaving(true);
+    try {
+      const res = await fetch(`${ADMIN_API}/site-settings`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ logo_url: '' }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) throw new Error(data.error || 'Failed to remove logo.');
+      setLogoPreview('');
+      setLogoFile(null);
+      setBrandingCache(data.data);
+      setSiteSuccess('Logo removed.');
+      setTimeout(() => setSiteSuccess(''), 3000);
+    } catch (err) {
+      setSiteError(err.message || 'Could not reach the API server.');
+    } finally {
+      setSiteSaving(false);
+    }
+  };
+
+  const handleSaveWebsite = async (e) => {
+    e.preventDefault();
+    setSiteError('');
+    setSiteSuccess('');
+    if (!siteName.trim()) {
+      setSiteError('Site name cannot be empty.');
+      return;
+    }
+    setSiteSaving(true);
+    try {
+      let current = null;
+      // 1) upload new logo first (if a file was chosen)
+      if (logoFile) {
+        const fd = new FormData();
+        fd.append('logo', logoFile);
+        const up = await fetch(`${ADMIN_API}/site-settings/logo`, {
+          method: 'POST',
+          credentials: 'include',
+          body: fd,
+        });
+        const upData = await up.json().catch(() => ({}));
+        if (!up.ok || !upData.ok) throw new Error(upData.error || 'Logo upload failed.');
+        current = upData.data;
+        setLogoFile(null);
+      }
+      // 2) save name + tagline
+      const res = await fetch(`${ADMIN_API}/site-settings`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ site_name: siteName, site_tagline: siteTagline }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) throw new Error(data.error || 'Save failed.');
+      current = current ? { ...current, ...data.data } : data.data;
+      setBrandingCache(current); // navbar/footer update instantly, no reload
+      setSiteSuccess('Saved — the whole website now shows the new branding.');
+      setTimeout(() => setSiteSuccess(''), 3500);
+    } catch (err) {
+      setSiteError(err.message || 'Could not reach the API server.');
+    } finally {
+      setSiteSaving(false);
+    }
+  };
 
   const loadSocial = async () => {
     setSocialBusy(true);
@@ -330,6 +436,124 @@ export default function Settings({ user }) {
             </div>
           </>
         ) : null}
+      </div>
+
+      {/* Website Settings — site name, tagline, logo */}
+      <div className="glass-card p-5 sm:p-7 rounded-3xl border border-white/10 xl:col-span-2">
+        <div className="flex items-center gap-3 mb-1.5">
+          <div className="p-2.5 rounded-xl bg-cyan-accent/10 border border-cyan-accent/30 text-cyan-accent">
+            <Globe className="w-5 h-5" />
+          </div>
+          <div>
+            <h3 className="font-syne font-bold text-lg text-white">Website Settings</h3>
+            <p className="font-jakarta text-xs text-slate-400">
+              Site name, tagline & logo — updates the entire website instantly
+            </p>
+          </div>
+        </div>
+
+        {siteError && (
+          <div className="mt-4 flex items-center gap-2 p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-xs font-jakarta text-red-300">
+            <AlertCircle className="w-4 h-4 shrink-0" />
+            {siteError}
+          </div>
+        )}
+        {siteSuccess && (
+          <div className="mt-4 flex items-center gap-2 p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-xs font-jakarta text-emerald-300">
+            <CheckCircle2 className="w-4 h-4 shrink-0" />
+            {siteSuccess}
+          </div>
+        )}
+
+        {siteBusy ? (
+          <div className="flex items-center justify-center gap-2 py-10 font-mono text-xs text-slate-500">
+            <Loader2 className="w-4 h-4 animate-spin" />
+            Loading website settings…
+          </div>
+        ) : (
+          <form onSubmit={handleSaveWebsite} className="mt-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {/* Identity fields */}
+              <div className="space-y-4">
+                <label className="block">
+                  <span className="block text-xs font-mono uppercase text-slate-300 mb-1.5">Site Name</span>
+                  <input
+                    value={siteName}
+                    onChange={(e) => setSiteName(e.target.value)}
+                    placeholder="Prodyum"
+                    required
+                    className={inputCls}
+                  />
+                </label>
+                <label className="block">
+                  <span className="block text-xs font-mono uppercase text-slate-300 mb-1.5">
+                    Tagline <span className="text-slate-500 normal-case">(shows beside the name in the navbar)</span>
+                  </span>
+                  <input
+                    value={siteTagline}
+                    onChange={(e) => setSiteTagline(e.target.value)}
+                    placeholder="IT · Media · Entertainments"
+                    className={inputCls}
+                  />
+                </label>
+              </div>
+
+              {/* Logo upload + preview */}
+              <div>
+                <span className="block text-xs font-mono uppercase text-slate-300 mb-1.5">Logo</span>
+                <div className="flex items-center gap-4 p-4 rounded-xl bg-white/[0.03] border border-white/10">
+                  <div className="w-20 h-20 rounded-xl bg-black/40 border border-white/10 flex items-center justify-center overflow-hidden shrink-0">
+                    {logoPreview ? (
+                      <img src={logoPreview} alt="Logo preview" className="max-w-full max-h-full object-contain" />
+                    ) : (
+                      <ImageIcon className="w-7 h-7 text-slate-600" />
+                    )}
+                  </div>
+                  <div className="flex flex-col gap-2 min-w-0">
+                    <label className="cursor-pointer px-3.5 py-2 rounded-lg bg-cyan-accent/10 hover:bg-cyan-accent/20 border border-cyan-accent/30 text-cyan-accent font-mono text-[11px] uppercase tracking-wider transition w-fit">
+                      {logoPreview ? 'Change Logo' : 'Upload Logo'}
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleLogoChange}
+                        className="hidden"
+                      />
+                    </label>
+                    {logoPreview && (
+                      <button
+                        type="button"
+                        onClick={handleRemoveLogo}
+                        disabled={siteSaving}
+                        className="px-3.5 py-2 rounded-lg bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 text-red-400 font-mono text-[11px] uppercase tracking-wider transition disabled:opacity-50 w-fit"
+                      >
+                        Remove Logo
+                      </button>
+                    )}
+                    <span className="font-jakarta text-[10px] text-slate-500">PNG / JPG / SVG / WEBP — shown in navbar, footer & pages</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              disabled={siteSaving}
+              className="mt-5 px-6 py-3 rounded-xl bg-cyan-accent hover:bg-cyan-400 disabled:opacity-50 text-black font-jakarta font-bold text-xs uppercase tracking-wider flex items-center gap-2 shadow-[0_0_20px_rgba(0,240,255,0.3)] transition-all"
+            >
+              {siteSaving ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <span>Saving…</span>
+                </>
+              ) : (
+                <>
+                  <Globe className="w-4 h-4" />
+                  <span>Save Website Settings</span>
+                </>
+              )}
+            </button>
+          </form>
+        )}
       </div>
 
       {/* Social Media URLs — shown as icons in the public footer */}
