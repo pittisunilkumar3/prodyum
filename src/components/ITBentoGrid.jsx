@@ -5,6 +5,8 @@ import {
 } from 'lucide-react';
 import { IT_SERVICES } from '../data/content';
 
+const slugify = (t) => t.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
 const ICONS = {
   Share2, PenTool, Clapperboard, Camera, TrendingUp, Compass, Code2, Youtube,
 };
@@ -71,6 +73,14 @@ export default function ITBentoGrid({ onOpenProjectModal }) {
                   </span>
                 ))}
               </div>
+
+              <a
+                href={`/services/${slugify(service.title)}`}
+                className="inline-flex items-center gap-1.5 mt-4 font-jakarta text-xs font-semibold text-cyan-accent hover:underline"
+              >
+                Learn more
+                <ArrowRight className="w-3.5 h-3.5" />
+              </a>
             </div>
           );
         })}

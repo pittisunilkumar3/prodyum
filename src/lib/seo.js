@@ -71,7 +71,7 @@ export const DEFAULT_SITE_META = {
     'ProDyum offers social media management, Meta and Google Ads, SEO, websites, graphic design and video services in Hyderabad. Discuss your project with us.',
   keywords:
     'ProDyum, digital marketing Hyderabad, social media management, Meta Ads, Google Ads, SEO Hyderabad, website development, graphic design, video editing, Kukatpally',
-  image: '',
+  image: '/og-image.png',
 };
 
 async function fetchSeoRows() {

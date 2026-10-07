@@ -148,7 +148,7 @@ export default function ContactBooking({ onShowToast }) {
                 </div>
                 <div>
                   <span className="font-mono text-[10px] uppercase text-slate-400 block mb-0.5">
-                    Office Address
+                    Operating Office
                   </span>
                   <p className="font-jakarta text-sm text-white font-medium">
                     {COMPANY_INFO.addressLines.map((line, i) => (
@@ -216,11 +216,32 @@ export default function ContactBooking({ onShowToast }) {
                     ProDyum IT: +91 99495 90033
                   </a>
                   <a
+                    href="https://wa.me/919949590033?text=Hi%20ProDyum%20IT%2C%20I%27d%20like%20to%20discuss%20a%20project."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 mt-1 font-jakarta text-xs text-emerald-400 hover:underline"
+                  >
+                    <MessageCircle className="w-3.5 h-3.5" />
+                    WhatsApp ProDyum IT
+                  </a>
+                  <a
                     href="tel:+919550989977"
-                    className="font-jakarta text-xs text-slate-400 hover:text-amber-accent block transition-colors mt-0.5"
+                    className="font-jakarta text-xs text-slate-400 hover:text-amber-accent block transition-colors mt-1"
                   >
                     Entertainments &amp; Media: +91 95509 89977
                   </a>
+                  <a
+                    href="https://wa.me/919550989977?text=Hi%20ProDyum%20Entertainments%2C%20I%27d%20like%20to%20discuss%20a%20production%20enquiry."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 mt-1 font-jakarta text-xs text-emerald-400 hover:underline"
+                  >
+                    <MessageCircle className="w-3.5 h-3.5" />
+                    WhatsApp Entertainments &amp; Media
+                  </a>
+                  <span className="font-jakarta text-[11px] text-slate-500 block mt-1.5">
+                    Google Business listing: +91 91000 77001
+                  </span>
                 </div>
               </div>
 

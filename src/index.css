@@ -205,3 +205,9 @@ html {
 }
 .policy-content img { max-width: 100%; border-radius: 0.5rem; margin: 1rem 0; }
 .policy-content hr { border-color: rgba(255, 255, 255, 0.1); margin: 2rem 0; }
+
+/* Sticky navigation must not obscure section headings when jumping to anchors */
+section[id],
+div#home {
+  scroll-margin-top: 96px;
+}

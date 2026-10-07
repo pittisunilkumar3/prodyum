@@ -192,10 +192,17 @@ export default function Footer({ onOpenProjectModal }) {
             <div className="space-y-2 text-slate-400">
               <p className="text-white font-medium">ProDyum IT Private Limited</p>
               <p>CIN: {COMPANY_INFO.cin}</p>
+              <p className="font-mono text-[10px] uppercase tracking-wider text-slate-500 pt-1">Operating Office</p>
               {COMPANY_INFO.addressLines.map((line, i) => (
                 <p key={i}>{line}</p>
               ))}
               <p>{COMPANY_INFO.hours}</p>
+              <p className="pt-1">
+                Queries / grievances:{' '}
+                <a href={`mailto:${COMPANY_INFO.itEmail}`} className="text-slate-300 hover:text-white underline-offset-2 hover:underline">
+                  {COMPANY_INFO.itEmail}
+                </a>
+              </p>
               <div className="pt-2">
                 <button
                   onClick={onOpenProjectModal}
