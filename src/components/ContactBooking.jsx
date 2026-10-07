@@ -15,11 +15,15 @@ import {
   ShieldCheck,
   Compass,
   MessageCircle,
+  Facebook,
+  Twitter,
 } from 'lucide-react';
 import { COMPANY_INFO, ENQUIRY_SERVICES, BUDGET_OPTIONS_IT, TIMELINE_OPTIONS } from '../data/content';
 import { submitToApi } from '../lib/api';
+import { useBranding } from '../lib/branding';
 
 export default function ContactBooking({ onShowToast }) {
+  const brand = useBranding(); // admin-managed social links (same source as footer)
   const [category, setCategory] = useState('it');
   const [formData, setFormData] = useState({
     name: '',
@@ -215,43 +219,27 @@ export default function ContactBooking({ onShowToast }) {
             <span className="font-mono text-xs uppercase tracking-widest text-slate-400 block mb-3">
               Official Media Channels
             </span>
-            <div className="flex items-center gap-3">
-              <a
-                href={COMPANY_INFO.socials.linkedin}
-                target="_blank"
-                rel="noreferrer"
-                className="p-3 rounded-xl bg-white/[0.05] hover:bg-cyan-accent/20 border border-white/10 hover:border-cyan-accent/40 text-slate-300 hover:text-white transition-all"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="w-4 h-4" />
-              </a>
-              <a
-                href={COMPANY_INFO.socials.instagram}
-                target="_blank"
-                rel="noreferrer"
-                className="p-3 rounded-xl bg-white/[0.05] hover:bg-amber-accent/20 border border-white/10 hover:border-amber-accent/40 text-slate-300 hover:text-white transition-all"
-                aria-label="Instagram"
-              >
-                <Instagram className="w-4 h-4" />
-              </a>
-              <a
-                href={COMPANY_INFO.socials.youtube}
-                target="_blank"
-                rel="noreferrer"
-                className="p-3 rounded-xl bg-white/[0.05] hover:bg-red-500/20 border border-white/10 hover:border-red-500/40 text-slate-300 hover:text-white transition-all"
-                aria-label="YouTube"
-              >
-                <Youtube className="w-4 h-4" />
-              </a>
-              <a
-                href={COMPANY_INFO.socials.x}
-                target="_blank"
-                rel="noreferrer"
-                className="p-3 rounded-xl bg-white/[0.05] hover:bg-white/15 border border-white/10 text-slate-300 hover:text-white transition-all font-mono text-xs px-3.5"
-                aria-label="X / Twitter"
-              >
-                𝕏
-              </a>
+<div className="flex flex-wrap items-center gap-3">
+              {[
+                { url: brand.facebook_link, label: 'Facebook', icon: Facebook, hover: 'hover:bg-cyan-accent/20 hover:border-cyan-accent/40' },
+                { url: brand.instagram_link, label: 'Instagram', icon: Instagram, hover: 'hover:bg-amber-accent/20 hover:border-amber-accent/40' },
+                { url: brand.twitter_link, label: 'Twitter / X', icon: Twitter, hover: 'hover:bg-white/15' },
+                { url: brand.linkedin_link, label: 'LinkedIn', icon: Linkedin, hover: 'hover:bg-cyan-accent/20 hover:border-cyan-accent/40' },
+                { url: brand.youtube_link, label: 'YouTube', icon: Youtube, hover: 'hover:bg-red-500/20 hover:border-red-500/40' },
+                { url: brand.whatsapp_link, label: 'WhatsApp', icon: MessageCircle, hover: 'hover:bg-emerald-500/20 hover:border-emerald-500/40' },
+              ].filter((s) => s.url).map(({ url, label, icon: Icon, hover }) => (
+                <a
+                  key={label}
+                  href={url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={`p-3 rounded-xl bg-white/[0.05] border border-white/10 text-slate-300 hover:text-white transition-all ${hover}`}
+                  aria-label={label}
+                  title={label}
+                >
+                  <Icon className="w-4 h-4" />
+                </a>
+              ))}
             </div>
           </div>
         </div>
