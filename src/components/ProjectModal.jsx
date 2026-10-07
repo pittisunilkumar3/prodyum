@@ -7,7 +7,6 @@ import {
   Film,
   CheckCircle2,
   ArrowRight,
-  ShieldCheck,
 } from 'lucide-react';
 import { COMPANY_INFO } from '../data/content';
 import { submitToApi } from '../lib/api';
@@ -229,15 +228,12 @@ export default function ProjectModal({ isOpen, onClose, onShowToast }) {
               disabled={submitting}
               className="w-full py-3.5 rounded-xl bg-gradient-to-r from-cyan-accent to-cyan-400 hover:from-cyan-300 hover:to-cyan-500 text-black font-jakarta font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(0,240,255,0.4)] disabled:opacity-50 transition-all"
             >
-              {submitting ? 'Connecting with Executive Desk...' : 'Dispatch Project Blueprint'}
+              {submitting ? 'Sending…' : 'Send Enquiry'}
               <Send className="w-3.5 h-3.5" />
             </button>
           </div>
 
-          <div className="flex items-center justify-center gap-2 text-[10px] font-mono text-slate-400">
-            <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-            <span>Strict NDA & Non-Disclosure Protection by Default</span>
-          </div>
+
         </form>
       </div>
     </div>

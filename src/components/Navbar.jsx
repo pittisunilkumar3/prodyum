@@ -6,20 +6,13 @@ import './Navbar.css';
 
 const navLinks = [
   { id: 'home', label: 'Home', target: 'home', keywords: 'overview welcome' },
-  { id: 'about', label: 'About', target: 'ecosystem', keywords: 'company ecosystem brand' },
-  { id: 'it', label: 'ProDyum IT', target: 'services', vertical: 'it', keywords: 'technology web development software branding seo digital marketing' },
-  { id: 'media', label: 'ProDyum Media', target: 'hero-card-media', keywords: 'content podcasts interviews digital promotions creators' },
-  { id: 'entertainments', label: 'ProDyum Entertainments', target: 'film-slate', vertical: 'entertainments', keywords: 'cinema films production music videos web series' },
-  { id: 'services', label: 'Services', target: 'services', keywords: 'web development marketing design seo advertising' },
-  { id: 'projects', label: 'Projects', target: 'film-slate', keywords: 'portfolio productions film slate trailers' },
-  { id: 'youtube', label: 'YouTube', href: COMPANY_INFO.socials.youtube, keywords: 'watch videos channel' },
-  { id: 'promote', label: 'Promote', action: 'project', keywords: 'enquiry inquiry collaborate campaign booking' },
-  { id: 'contact', label: 'Contact', target: 'contact', keywords: 'email phone address office hyderabad' },
-];
-const additionalLinks = [
-  { id: 'casting', label: 'Casting', target: 'casting', keywords: 'auditions actors talent' },
+  { id: 'about', label: 'About', target: 'ecosystem', keywords: 'company ecosystem brands prodyum it entertainments media' },
+  { id: 'services', label: 'Services', target: 'services', keywords: 'social media ads seo website design video marketing' },
+  { id: 'work', label: 'Our Work', target: 'youtube-channels', keywords: 'portfolio work channels videos projects' },
   { id: 'careers', label: 'Careers', target: 'careers', keywords: 'jobs hiring work openings' },
+  { id: 'contact', label: 'Contact', target: 'contact', keywords: 'email phone address office hyderabad enquiry' },
 ];
+const additionalLinks = [];
 const searchableLinks = [...navLinks, ...additionalLinks];
 
 export default function Navbar({ activeVertical, setActiveVertical, onOpenProjectModal }) {
@@ -153,7 +146,7 @@ export default function Navbar({ activeVertical, setActiveVertical, onOpenProjec
   const queryWords = searchQuery.trim().toLowerCase().split(/\s+/).filter(Boolean);
   const results = queryWords.length
     ? searchableLinks.filter(link => queryWords.every(word => `${link.label} ${link.keywords}`.toLowerCase().includes(word)))
-    : navLinks.filter(link => ['about', 'it', 'media', 'entertainments', 'contact'].includes(link.id));
+    : navLinks.filter(link => ['about', 'services', 'work', 'careers', 'contact'].includes(link.id));
 
   return (
     <header ref={headerRef} className={`site-header${scrolled ? ' site-header-scrolled' : ''}`}>

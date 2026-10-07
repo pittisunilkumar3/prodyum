@@ -66,11 +66,11 @@ let seoPromise = null;
 
 // Must mirror the hardcoded tags in index.html so nothing "flickers" before the API responds
 export const DEFAULT_SITE_META = {
-  title: 'Prodyum | Architecting Digital Commerce & Cinematic Narratives',
+  title: 'ProDyum IT | Digital Marketing and Creative Services Hyderabad',
   description:
-    'Prodyum Pvt. Ltd. (Kukatpally, Hyderabad) - Dual-vertical enterprise powering high-performance IT & Creative Solutions and award-winning Cinematic Entertainments founded by Srikanth Singam.',
+    'ProDyum offers social media management, Meta and Google Ads, SEO, websites, graphic design and video services in Hyderabad. Discuss your project with us.',
   keywords:
-    'Prodyum, Srikanth Singam, IT Services Hyderabad, Web Development, Meta Ads, Film Production Hyderabad, Telugu Cinema, Kukatpally Production House',
+    'ProDyum, digital marketing Hyderabad, social media management, Meta Ads, Google Ads, SEO Hyderabad, website development, graphic design, video editing, Kukatpally',
   image: '',
 };
 

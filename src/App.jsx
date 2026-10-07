@@ -5,7 +5,6 @@ import Hero from './components/Hero';
 import EcosystemSplitter from './components/EcosystemSplitter';
 import ITBentoGrid from './components/ITBentoGrid';
 import FilmSlate from './components/FilmSlate';
-import CastingPortal from './components/CastingPortal';
 import Careers from './components/Careers';
 import ContactBooking from './components/ContactBooking';
 import Footer from './components/Footer';
@@ -173,15 +172,7 @@ export default function App() {
           </div>
         )}
 
-        {/* Talent & Casting Portal — hidden until a real casting brief is announced */}
-        {false && (
-          <CastingPortal
-            isOpen={isCastingModalOpen}
-            onOpen={() => setIsCastingModalOpen(true)}
-            onClose={() => setIsCastingModalOpen(false)}
-            onShowToast={showToast}
-          />
-        )}
+
 
         {/* Careers & Recruiting */}
         <Careers onShowToast={showToast} />

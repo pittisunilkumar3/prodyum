@@ -75,7 +75,7 @@ export default function Careers({ onShowToast }) {
         </div>
         <p className="font-jakarta text-xs sm:text-sm text-slate-400 max-w-md">
           Join the elite team shaping high-growth digital commerce and boundary-pushing cinema in Hyderabad. 
-          We offer aggressive compensation, world-class hardware, and zero bureaucratic drag.
+          You will work across ProDyum IT, Entertainments and Media on real client and production work, with clear briefs and room to grow.
         </p>
       </div>
 

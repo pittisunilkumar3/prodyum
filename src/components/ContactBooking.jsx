@@ -18,7 +18,7 @@ import {
   Facebook,
   Twitter,
 } from 'lucide-react';
-import { COMPANY_INFO, ENQUIRY_SERVICES, BUDGET_OPTIONS_IT, TIMELINE_OPTIONS } from '../data/content';
+import { COMPANY_INFO, ENQUIRY_SERVICES, BUDGET_OPTIONS_IT, TIMELINE_OPTIONS, SOCIAL_DIRECTORY } from '../data/content';
 import { submitToApi } from '../lib/api';
 import { useBranding } from '../lib/branding';
 
@@ -192,6 +192,35 @@ export default function ContactBooking({ onShowToast }) {
                   >
                     Entertainments: {COMPANY_INFO.entertainmentEmail}
                   </a>
+                  <a
+                    href={`mailto:${COMPANY_INFO.mediaEmail}`}
+                    className="font-jakarta text-xs text-slate-400 hover:text-amber-accent block transition-colors mt-0.5"
+                  >
+                    Media: {COMPANY_INFO.mediaEmail}
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4 p-4 rounded-2xl bg-white/[0.03] border border-white/10">
+                <div className="p-2.5 rounded-xl bg-cyan-accent/10 text-cyan-accent shrink-0">
+                  <Phone className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="font-mono text-[10px] uppercase text-slate-400 block mb-0.5">
+                    Phone &amp; WhatsApp
+                  </span>
+                  <a
+                    href="tel:+919949590033"
+                    className="font-jakarta text-sm text-white hover:text-cyan-accent block transition-colors"
+                  >
+                    ProDyum IT: +91 99495 90033
+                  </a>
+                  <a
+                    href="tel:+919550989977"
+                    className="font-jakarta text-xs text-slate-400 hover:text-amber-accent block transition-colors mt-0.5"
+                  >
+                    Entertainments &amp; Media: +91 95509 89977
+                  </a>
                 </div>
               </div>
 
@@ -204,10 +233,10 @@ export default function ContactBooking({ onShowToast }) {
                     Operating Hours
                   </span>
                   <p className="font-jakarta text-sm text-white">
-                    Monday - Saturday: 09:30 - 19:00 IST
+                    Monday – Saturday: 10:00 AM – 7:00 PM
                   </p>
                   <span className="font-mono text-xs text-slate-400">
-                    Emergency SLA: 24/7 Priority Support
+                    Sunday: Closed
                   </span>
                 </div>
               </div>
@@ -219,26 +248,27 @@ export default function ContactBooking({ onShowToast }) {
             <span className="font-mono text-xs uppercase tracking-widest text-slate-400 block mb-3">
               Official Media Channels
             </span>
-<div className="flex flex-wrap items-center gap-3">
-              {[
-                { url: brand.facebook_link, label: 'Facebook', icon: Facebook, hover: 'hover:bg-cyan-accent/20 hover:border-cyan-accent/40' },
-                { url: brand.instagram_link, label: 'Instagram', icon: Instagram, hover: 'hover:bg-amber-accent/20 hover:border-amber-accent/40' },
-                { url: brand.twitter_link, label: 'Twitter / X', icon: Twitter, hover: 'hover:bg-white/15' },
-                { url: brand.linkedin_link, label: 'LinkedIn', icon: Linkedin, hover: 'hover:bg-cyan-accent/20 hover:border-cyan-accent/40' },
-                { url: brand.youtube_link, label: 'YouTube', icon: Youtube, hover: 'hover:bg-red-500/20 hover:border-red-500/40' },
-                { url: brand.whatsapp_link, label: 'WhatsApp', icon: MessageCircle, hover: 'hover:bg-emerald-500/20 hover:border-emerald-500/40' },
-              ].filter((s) => s.url).map(({ url, label, icon: Icon, hover }) => (
-                <a
-                  key={label}
-                  href={url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className={`p-3 rounded-xl bg-white/[0.05] border border-white/10 text-slate-300 hover:text-white transition-all ${hover}`}
-                  aria-label={label}
-                  title={label}
-                >
-                  <Icon className="w-4 h-4" />
-                </a>
+<div className="space-y-4">
+              {SOCIAL_DIRECTORY.map((group) => (
+                <div key={group.brand}>
+                  <span className={`font-jakarta text-xs font-semibold ${group.accent} block mb-1.5`}>
+                    {group.brand}
+                  </span>
+                  <div className="flex flex-wrap gap-2">
+                    {group.links.map((l) => (
+                      <a
+                        key={l.label}
+                        href={l.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center px-3 py-1.5 rounded-full bg-white/[0.05] hover:bg-white/[0.12] border border-white/10 hover:border-cyan-accent/40 text-slate-300 hover:text-white font-jakarta text-[11px] transition-all"
+                      >
+                        {l.label}
+                        <span className="sr-only"> — {group.brand}</span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
           </div>

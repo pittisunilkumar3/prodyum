@@ -30,6 +30,9 @@ export const COMPANY_INFO = {
   // Contacts (Founder-confirmed)
   email: "contact@prodyum.in",
   itEmail: "it@prodyum.in",
+  entertainmentsPhone: "+91 9550989977",
+  mediaPhone: "+91 9550989977",
+  mediaEmail: "media@prodyum.in",
   careersEmail: "hr@prodyum.in",
   entertainmentEmail: "entertainment@prodyum.in",
   mediaEmail: "media@prodyum.in",
@@ -269,3 +272,45 @@ export const BUDGET_OPTIONS_IT = [
 ];
 
 export const TIMELINE_OPTIONS = ["Immediate", "Within one month", "Within three months", "Exploring"];
+
+// Verified brand account register (Founder-supplied, doc section 11, 30 Sep 2026)
+export const SOCIAL_DIRECTORY = [
+  {
+    brand: "ProDyum IT",
+    accent: "text-cyan-accent",
+    links: [
+      { label: "Instagram", url: "https://www.instagram.com/prodyum_it/" },
+      { label: "Facebook", url: "https://www.facebook.com/profile.php?id=61559644906402" },
+      { label: "LinkedIn", url: "https://in.linkedin.com/company/prodyumit" },
+      { label: "X (Twitter)", url: "https://x.com/ProDyumIT" },
+    ],
+  },
+  {
+    brand: "ProDyum Entertainments",
+    accent: "text-amber-accent",
+    links: [
+      { label: "YouTube", url: "https://www.youtube.com/@prodyumentertainments" },
+      { label: "Instagram", url: "https://www.instagram.com/prodyumentertainments/" },
+      { label: "Facebook", url: "https://www.facebook.com/profile.php?id=61575092141948" },
+      { label: "X (Twitter)", url: "https://x.com/ProdyumE49496" },
+    ],
+  },
+  {
+    brand: "ProDyum Media",
+    accent: "text-slate-200",
+    links: [
+      { label: "Instagram", url: "https://www.instagram.com/prodyum_media/" },
+      { label: "YouTube", url: "https://www.youtube.com/@prodyummedia-b9x" },
+      { label: "Facebook", url: "https://www.facebook.com/profile.php?id=61564503903036" },
+    ],
+  },
+  {
+    brand: "Kavya's Tape Recorder (Music)",
+    accent: "text-slate-400",
+    links: [
+      { label: "YouTube", url: "https://youtube.com/@kavyasistla" },
+      { label: "Instagram", url: "https://www.instagram.com/kavyas_tape_recorder" },
+      { label: "Facebook", url: "https://www.facebook.com/share/19RWdSvu7r/" },
+    ],
+  },
+];

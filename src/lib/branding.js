@@ -11,7 +11,7 @@ import { API_BASE } from './api';
  */
 
 const DEFAULTS = {
-  site_name: 'Prodyum',
+  site_name: 'ProDyum',
   site_tagline: 'IT · Media · Entertainments',
   logo_url: '',
 };
